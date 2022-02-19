@@ -1,4 +1,4 @@
-# WhaleInjuryCovariates
+# SeriousInjury
 #
 # Function WhaleInjuryCovariates() reads a character field from object of class data.frame
 # and identifies predefined words/phrases in 'Narrative' field used as 

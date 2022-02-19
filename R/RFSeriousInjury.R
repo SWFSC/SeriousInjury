@@ -16,13 +16,17 @@
 #'
 #'
 
-SeriousInjuryTutorial <- function() {
-  utils::browseURL(system.file("index.html", package = "SeriousInjury"))
-}
+SeriousInjury <- function(x) { y = x^2
+                                         y     }
 
-.onAttach <- function(libname, pkgname) {
-  packageStartupMessage(
-    "Welcome to SeriousInjury v", utils::packageVersion("SeriousInjury"), "\n",
-    "See SeriousInjuryTutorial() for a guide to the package."
-  )
-  }
+
+#
+#  utils::browseURL(system.file("index.html", package = "SeriousInjury"))
+#}
+
+#.onAttach <- function(libname, pkgname) {
+#  packageStartupMessage(
+#    "Welcome to SeriousInjury v", utils::packageVersion("SeriousInjury"), "\n",
+#    "See SeriousInjuryTutorial() for a guide to the package."
+#  )
+#  }
