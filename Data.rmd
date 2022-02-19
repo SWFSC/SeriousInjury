@@ -1,0 +1,36 @@
+---
+title: Injury Narratives
+output: html_document
+---
+***
+#### The data.frame *LargeWhaleData* is included with the R-Package *SeriousInjury*. *LargeWhaleData* includes all whale injury cases used to develop classification tree models to assess injury severity. Injury descriptions are included in the 'Narrative' field of *LargeWhaleData*. Covariates are defined and identified as presence / absence values for each row of *LargeWhaleData*, using the function WhaleInjuryCovariates().
+
+```
+# Example code to identify the covariate 'decline' from injury narratives in data.frame 'LargeWhaleData'.
+#   function WhaleInjuryCovariates() applied to data.frame 'LargeWhaleData'
+#    data.frame narrative field must be named 'Narrative' for use with WhaleInjuryCovariates().
+#     use function 'grepl' to search for words/phrases in 'Narrative'.
+#      code covariates numerically as 1/0, aligned with their TRUE/FALSE (=presence/absence) state.
+
+# Evidence of a health decline? 
+#  Search 'Narrative' for words/phrases associated with health declines.
+    
+    decline <- grepl(" abnormal|chronic|deteriorat|fair|
+     compromise|scoliosis|deform|cyamid|lice|lethargic|
+      lesion|discolor|diatom|poor cond|poor health|poor body|
+       poor over|poor skin|rake|skin|slough|thin |emaciated|malnourish|
+        underweight|starv|mobility", LargeWhaleData$Narrative, ignore.case=T)
+    
+    decline <- as.numeric(lapply(decline, as.numeric))
+     decline
+    
+# Use WhaleInjuryCovariates() to append all covariates to each row of 'LargeWhaleData' 
+    
+    head(LargeWhaleData)
+
+    new.data.frame <- WhaleInjuryCovariates(LargeWhaleData)
+
+    head(new.data.frame)
+    
+```
+

@@ -1,0 +1,23 @@
+name: ""
+navbar:
+  title: <img src="NOAA_logo.png" width=75 height=75>
+  output_dir: "_site"
+  left:
+    - text: "R-Package Serious Injury"
+      href: index.html
+    - text: "About"
+      href: about.html
+    - text: "Data"
+      href: data.html
+    - text: "Covariates"
+      href: Covariate-Descriptions.html
+    - text: "Entanglement Model"
+      href: Entanglement-Model.html
+    - text: "Vessel Model"
+      href: Vessel-Model.html
+    - text: "Predict New Data"
+      href: Predict-New-Data.html
+
+output:
+  html_document:
+   theme: default
