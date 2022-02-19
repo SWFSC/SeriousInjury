@@ -4,13 +4,12 @@
 #'
 #' Random Forest (RF) Method For Assessment of Whale Injuries
 #'
-#'
 #' @usage
 #' SeriousInjury()
 #'
 #' @author Jim Carretta <jim.carretta@noaa.gov>
 #'
-#' @examples
+#' @examples SeriousInjury(25)
 #'
 #' @export
 #'

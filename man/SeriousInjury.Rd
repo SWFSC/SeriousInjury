@@ -10,6 +10,7 @@ SeriousInjury()
 Random Forest (RF) Method For Assessment of Whale Injuries
 }
 \examples{
+SeriousInjury(25)
 
 }
 \author{
