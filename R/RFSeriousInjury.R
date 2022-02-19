@@ -1,4 +1,4 @@
-#' @title SeriousInjury()
+#' @title SeriousInjuryTutorial()
 #'
 #' @description
 #'
@@ -8,25 +8,25 @@
 #' (n=20 records) for use with WhaleInjuryCovariates()
 #'
 #' @usage
-#' RFSeriousInjuryTutorial()
+#' SeriousInjuryTutorial()
 #'
 #' @param x an object of class 'data.frame'
 #'
 #' @author Jim Carretta <jim.carretta@noaa.gov>
 #'
-#' @examples WhaleInjuryCovariates(whales)
+#' @examples SeriousInjuryTutorial()
 #'
 #' @export
 #'
 #'
 
-SeriousInjuryTutorial <- function() {
-  utils::browseURL(system.file("index.html", package = "SeriousInjury"))
-}
+#SeriousInjuryTutorial <- function() {
+#  utils::browseURL(system.file("index.html", package = "SeriousInjury"))
+#}
 
-.onAttach <- function(libname, pkgname) {
-  packageStartupMessage(
-    "Welcome to SeriousInjury v", utils::packageVersion("SeriousInjury"), "\n",
-    "See SeriousInjuryTutorial() for a guide to the package."
-  )
-}
+#.onAttach <- function(libname, pkgname) {
+#  packageStartupMessage(
+#    "Welcome to SeriousInjury v", utils::packageVersion("SeriousInjury"), "\n",
+#    "See SeriousInjuryTutorial() for a guide to the package."
+#  )
+#}
