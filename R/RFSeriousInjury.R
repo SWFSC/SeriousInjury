@@ -21,7 +21,7 @@
 #'
 
 #SeriousInjuryTutorial <- function() {
-#  utils::browseURL(system.file("index.html", package = "SeriousInjury"))
+#  utils::browseURL(system.file("index.html", package = "WhaleInjuryCovariates"))
 #}
 
 #.onAttach <- function(libname, pkgname) {
