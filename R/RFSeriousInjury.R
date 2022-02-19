@@ -25,4 +25,4 @@ SeriousInjuryTutorial <- function() {
     "Welcome to SeriousInjury v", utils::packageVersion("SeriousInjury"), "\n",
     "See SeriousInjuryTutorial() for a guide to the package."
   )
-}
+  }
