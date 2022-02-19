@@ -16,7 +16,7 @@
 #'
 #' @examples SeriousInjuryTutorial()
 #'
-#' @export
+#' @export SeriousInjury
 #'
 #'
 
