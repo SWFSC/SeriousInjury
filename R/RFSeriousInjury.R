@@ -13,19 +13,17 @@
 #'
 #' @export
 #'
-#'
 
-SeriousInjury <- function(x) { y = x^2
-                                         y     }
+SeriousInjury <- function(x) { y <- x^2
+                                y}
 
+SeriousInjuryTutorial <- function() {
+  utils::browseURL(system.file("index.html", package = "SeriousInjury"))
+}
 
-#
-#  utils::browseURL(system.file("index.html", package = "SeriousInjury"))
-#}
-
-#.onAttach <- function(libname, pkgname) {
-#  packageStartupMessage(
-#    "Welcome to SeriousInjury v", utils::packageVersion("SeriousInjury"), "\n",
-#    "See SeriousInjuryTutorial() for a guide to the package."
-#  )
-#  }
+.onAttach <- function(libname, pkgname) {
+  packageStartupMessage(
+    "Welcome to SeriousInjury v", utils::packageVersion("SeriousInjury"), "\n",
+    "See SeriousInjuryTutorial() for a guide to the package."
+  )
+}
