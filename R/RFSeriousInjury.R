@@ -18,7 +18,7 @@ SeriousInjury <- function(x) { y <- x^2
                                 y}
 
 SeriousInjuryTutorial <- function() {
-  utils::browseURL(system.file("index.html", package = "SeriousInjury"))
+  utils::browseURL(system.file("https://github.com/JimCarretta/SeriousInjury/blob/main/_site/index.html", package = "SeriousInjury"))
 }
 
 .onAttach <- function(libname, pkgname) {
