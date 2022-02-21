@@ -3,10 +3,11 @@
 #' @usage SeriousInjuryTutorial()
 #'
 #' @export
+#'
+#'
 
  SeriousInjuryTutorial <- function() {
-
-  SeriousInjuryTutorial() <- browseURL("https://jimcarretta.github.io/index.html")
+  browseURL("https://JimCarretta.github.io/index.html")
  }
 
  onAttach <- function(libname, pkgname) {
