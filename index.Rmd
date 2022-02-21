@@ -1,4 +1,3 @@
-
 ---
 title: "R-Package *SeriousInjury*"
 subtitle: "Classify Whale Injuries as Non-Serious or Serious from Case Narratives"
