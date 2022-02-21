@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Injury Covariates</title>
+
+<script src="site_libs/header-attrs-2.9/header-attrs.js"></script>
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Assessing Whale Injuries with Random Forests</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">R-Package Serious Injury</a>
+</li>
+<li>
+  <a href="about.html">About</a>
+</li>
+<li>
+  <a href="data.html">Data</a>
+</li>
+<li>
+  <a href="Covariate-Descriptions.html">Covariates</a>
+</li>
+<li>
+  <a href="Entanglement-Model.html">Entanglement Model</a>
+</li>
+<li>
+  <a href="Vessel-Model.html">Vessel Model</a>
+</li>
+<li>
+  <a href="Predict-New-Data.html">Predict New Data</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Injury Covariates</h1>
+
+</div>
+
+
+<hr />
+<div id="covariates-are-derived-from-injury-narratives-with-the-function-whaleinjurycovariates.-code-to-define-maintain-and-extract-covariates-from-narratives-is-found-in-the-r-script-large-whale-injury-covariates.r.-covariates-are-defined-below-followed-by-example-code-defining-the-covariate-decline-coding-it-as-a-presence-absence-value-and-appending-these-values-to-the-data.frame-largewhaledata." class="section level4">
+<h4>Covariates are derived from injury narratives with the function ‘<em>WhaleInjuryCovariates()</em>’. Code to define, maintain, and extract covariates from narratives is found in the R-script <em>Large Whale Injury Covariates.R</em>. Covariates are defined below, followed by example code defining the covariate <em>decline</em>, coding it as a presence / absence value, and appending these values to the data.frame ‘<em>LargeWhaleData</em>’.</h4>
+<hr />
+</div>
+<div id="definitions" class="section level4">
+<h4>Definitions:</h4>
+</div>
+<div id="anchored" class="section level4">
+<h4><b><em>anchored</em></b></h4>
+<p>
+Evidence a whale was anchored or immobilized by entangling material or gear. Narrative mentions inability to dive or swim or that whale is immobilized. Includes references to a heavily-weighted whale with multiple pots/traps impeding normal movement.
+</p>
+</div>
+<div id="calf.juv" class="section level4">
+<h4><b><em>calf.juv</em></b></h4>
+<p>
+Narrative includes reference to an injured calf or juvenile. Also includes narratives where injury involves the mother of a dependent calf.
+</p>
+</div>
+<div id="constricting" class="section level4">
+<h4><b><em>constricting</em></b></h4>
+<p>
+Evidence of a constricting entanglement, including line cutting into whale, wrapped tightly around body or flippers.
+</p>
+</div>
+<div id="decline" class="section level4">
+<h4><b><em>decline</em></b></h4>
+<p>
+Narrative includes evidence of a health decline, such as the presence of cyamids, emaciation, discolored skin, deformities caused by a chronic entanglement or severe vessel strike incident.
+</p>
+</div>
+<div id="extensive.severe" class="section level4">
+<h4><b><em>extensive.severe</em></b></h4>
+<p>
+Evidence of severe injury that can include amputation or necrosis of body parts due to a chronic entanglement or acute vessel strike injury.
+</p>
+</div>
+<div id="fluke.peduncle" class="section level4">
+<h4><b><em>fluke.peduncle</em></b></h4>
+<p>
+Narrative includes reference of entanglement or vessel strike injury that involves the tail, flukes, or peduncle.
+</p>
+</div>
+<div id="gear.free" class="section level4">
+<h4><b><em>gear.free</em></b></h4>
+<p>
+Evidence that the whale freed itself from the gear or entangling material. Typically involves a whale resighted at a later date than the initial entanglement observation.
+</p>
+</div>
+<div id="head" class="section level4">
+<h4><b><em>head</em></b></h4>
+<p>
+Narrative indicates that the head, mouth, or blowhole was involved in the entanglement or vessel strike injury.
+</p>
+</div>
+<div id="healing" class="section level4">
+<h4><b><em>healing</em></b></h4>
+<p>
+Narrative refers to healing or healed wounds.
+</p>
+</div>
+<div id="laceration.deep" class="section level4">
+<h4><b><em>laceration.deep</em></b></h4>
+<p>
+Narrative includes reference to deep laceration resulting from vessel strike or entanglement. May include reference to blubber or muscle layers.
+</p>
+</div>
+<div id="laceration.shallow" class="section level4">
+<h4><b><em>laceration.shallow</em></b></h4>
+<p>
+Narrative includes reference to shallow or superficial lacerations.
+</p>
+</div>
+<div id="pectoral" class="section level4">
+<h4><b><em>pectoral</em></b></h4>
+<p>
+Narrative includes involvement of pectoral flipper or ‘fins’ in entanglement or vessel strike injury.
+</p>
+</div>
+<div id="swim.dive" class="section level4">
+<h4><b><em>swim.dive</em></b></h4>
+<p>
+Evidence that the whale is swimming, feeding, or diving normally.
+</p>
+</div>
+<div id="trailing" class="section level4">
+<h4><b><em>trailing</em></b></h4>
+<p>
+Was the whale trailing gear or other entangling material?
+</p>
+</div>
+<div id="vessel.fast" class="section level4">
+<h4><b><em>vessel.fast</em></b></h4>
+<p>
+Narrative includes reference to vessel speeds &lt; 10 kts.
+</p>
+</div>
+<div id="vessel.large" class="section level4">
+<h4><b><em>vessel.large</em></b></h4>
+<p>
+Narrative includes reference to large vessels such as military vessels, ferries, container ships, or vessel &gt;65 ft in length.
+</p>
+</div>
+<div id="vessel.slow" class="section level4">
+<h4><b><em>vessel.slow</em></b></h4>
+<p>
+Narrative includes reference to vessel speeds &gt;= 10 kts.
+</p>
+</div>
+<div id="vessel.small" class="section level4">
+<h4><b><em>vessel.small</em></b></h4>
+<p>
+Narrative includes reference to small vessels such as sailboats, recreational vessels, RHIB vessels, or vessel size &lt; 65 ft in length or smaller than the whale, if this can be determined.
+</p>
+</div>
+<div id="wraps.multi" class="section level4">
+<h4><b><em>wraps.multi</em></b></h4>
+<p>
+Narrative includes reference to whale with multiple wraps of line or gear around body or appendage.
+</p>
+</div>
+<div id="wraps.no" class="section level4">
+<h4><b><em>wraps.no</em></b></h4>
+<p>
+Narrative includes reference to a whale without any wraps of line or gear around body or appendage.
+</p>
+<p><br><br></p>
+<pre><code># To install the latest *SeriousInjury* version from GitHub:
+
+# make sure you have devtools installed
+if (!require(&#39;devtools&#39;)) install.packages(&#39;devtools&#39;)
+
+# install from GitHub
+devtools::install_github(&#39;JimCarretta/SeriousInjury&#39;)
+
+# Example code to identify covariate &#39;decline&#39; from injury narratives in data.frame &#39;LargeWhaleData&#39;.
+#   function WhaleInjuryCovariates() applied to data.frame &#39;LargeWhaleData&#39;
+#    data.frame narrative field must be named &#39;Narrative&#39; for use with WhaleInjuryCovariates().
+#     use function &#39;grepl&#39; to search for words/phrases in &#39;Narrative&#39;.
+#      code covariates numerically as 1/0, aligned with their TRUE/FALSE (=presence/absence) state.
+
+# Evidence of a health decline? 
+#  Search &#39;Narrative&#39; for words/phrases associated with health declines.
+    
+    decline &lt;- grepl(&quot; abnormal|chronic|deteriorat|fair|
+     compromise|scoliosis|deform|cyamid|lice|lethargic|
+      lesion|discolor|diatom|poor cond|poor health|poor body|
+       poor over|poor skin|rake|skin|slough|thin |emaciated|malnourish|
+        underweight|starv|mobility&quot;, LargeWhaleData$Narrative, ignore.case=T)
+    
+    decline &lt;- as.numeric(lapply(decline, as.numeric))
+     decline
+    
+# Use WhaleInjuryCovariates() to append all covariates to each row of &#39;LargeWhaleData&#39; 
+    
+    head(LargeWhaleData)
+
+    new.data.frame &lt;- WhaleInjuryCovariates(LargeWhaleData)
+
+    head(new.data.frame)
+    </code></pre>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
