@@ -1,13 +1,12 @@
-#' @title SeriousInjuryTutorial()
+#' @title SeriousInjuryTutorial
 #'
 #' @usage SeriousInjuryTutorial()
 #'
 #' @export
 
 SeriousInjuryTutorial <- function() {
-  #browseURL("https://jimcarretta.github.io/index.html")
 
-  utils::browseURL("index.html")
+  utils::browseURL("https://jimcarretta.github.io/index.html")
 }
 
 onAttach <- function(libname, pkgname) {
