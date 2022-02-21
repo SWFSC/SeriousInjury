@@ -5,9 +5,9 @@
 #' @export
 
 SeriousInjuryTutorial <- function() {
-  browseURL("https://jimcarretta.github.io/index.html")
+  #browseURL("https://jimcarretta.github.io/index.html")
 
-  #utils::browseURL("index.html")
+  utils::browseURL("index.html")
 }
 
 onAttach <- function(libname, pkgname) {
