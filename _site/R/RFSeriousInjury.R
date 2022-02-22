@@ -17,13 +17,4 @@
 SeriousInjury <- function(x) { y <- x^2
                                 y}
 
-SeriousInjuryTutorial <- function() {
-  utils::browseURL(system.file("https://github.com/JimCarretta/SeriousInjury/blob/main/_site/index.html", package = "SeriousInjury"))
-}
 
-.onAttach <- function(libname, pkgname) {
-  packageStartupMessage(
-    "Welcome to SeriousInjury v", utils::packageVersion("SeriousInjury"), "\n",
-    "See SeriousInjuryTutorial() for a guide to the package."
-  )
-}

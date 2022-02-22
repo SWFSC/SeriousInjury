@@ -1,6 +1,6 @@
 ---
 title: "R-Package *SeriousInjury*"
-subtitle: "Classify Whale Injuries as Non-Serious or Serious from Case Narratives"
+subtitle: "Assess Whale Injuries with Classification Trees"
 author: "Jim Carretta <jim.carretta@noaa.gov>"
 date: "`r format(Sys.time(), '%d %B %Y')`"
 output: html_document
