@@ -6,8 +6,15 @@
 #'
 #'
 
+<<<<<<< HEAD
  SeriousInjuryTutorial <- function() {
   SeriousInjuryTutorial <- browseURL("https://JimCarretta.github.io/index.html")
+=======
+ SIguide = "https://JimCarretta.github.io/index.html"
+
+ SeriousInjuryTutorial <- function(x) {
+  browseURL(SIguide)
+>>>>>>> d45232fc6382574382e9d8b0565624d2a51ddfd3
  }
 
  onAttach <- function(libname, pkgname) {
