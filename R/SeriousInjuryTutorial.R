@@ -8,13 +8,15 @@
 
  SIguide = "https://JimCarretta.github.io/index.html"
 
- SeriousInjuryTutorial <- function(x) {
+ SeriousInjuryTutorial <- function() {
   browseURL(SIguide)
+   SeriousInjuryTutorial()
  }
 
- onAttach <- function(libname, pkgname) {
+# onAttach <- function(libname, pkgname) {
   packageStartupMessage(
-    "Welcome to Serious Injury v", utils::packageVersion("SeriousInjury"), "\n",
+    "Welcome to Serious Injury v", packageVersion("SeriousInjury"), "\n",
     "See SeriousInjuryTutorial() for a guide to the package."
   )
- }
+# }
+
