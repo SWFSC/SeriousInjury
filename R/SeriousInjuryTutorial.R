@@ -6,11 +6,10 @@
 #'
 #'
 
-SIguide = "https://JimCarretta.github.io/index.html"
-
 
 SeriousInjuryTutorial <- function() {
-  browseURL(SIguide)
+  SIguide = "https://JimCarretta.github.io/index.html"
+  SeriousInjury() <- browseURL(SIguide)
 }
 
 
