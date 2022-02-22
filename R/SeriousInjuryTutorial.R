@@ -6,10 +6,10 @@
 #'
 #'
 
- url = "https://JimCarretta.github.io/index.html"
+ SIguide = "https://JimCarretta.github.io/index.html"
 
  SeriousInjuryTutorial <- function(x) {
-  browseURL(url)
+  browseURL(SIguide)
  }
 
  onAttach <- function(libname, pkgname) {
