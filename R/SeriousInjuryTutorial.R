@@ -3,15 +3,10 @@
 #' @usage SeriousInjuryTutorial()
 #'
 #' @export
-#'
-#'
-
 
 SeriousInjuryTutorial <- function() {
-  SIguide = "https://JimCarretta.github.io/index.html"
-  SeriousInjury() <- browseURL(SIguide)
+  browseURL("https://JimCarretta.github.io/index.html")
 }
-
 
 onAttach <- function(libname, pkgname) {
   packageStartupMessage(
