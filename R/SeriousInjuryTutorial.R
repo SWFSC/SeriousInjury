@@ -6,13 +6,15 @@
 #'
 #'
 
- SeriousInjuryTutorial <- function() {
-  browseURL("https://JimCarretta.github.io/index.html")
+ url = "https://JimCarretta.github.io/index.html"
+
+ SeriousInjuryTutorial <- function(x) {
+  browseURL(url)
  }
 
  onAttach <- function(libname, pkgname) {
   packageStartupMessage(
     "Welcome to Serious Injury v", utils::packageVersion("SeriousInjury"), "\n",
-    "See SeriousInjuryTutorial() for a package description."
+    "See SeriousInjuryTutorial() for a guide to the package."
   )
  }
