@@ -299,25 +299,25 @@ each class. A binary prediction (either <em>Dead.Decline</em> or
 <em>Recovered</em>) is also returned, based on the majority class
 assignment (&gt;50% of trees). In case of ties, which are rare, the
 model randomly assigns a class.</h4>
-<pre><code># Example data.frame of unknown outcomes.
+<pre><code># Import data of class data.frame with required field name &#39;Narrative&#39;.
 
-#UnknownOutcomes &lt;- read.csv(&quot;Unknown.Entangled.Narratives.csv&quot;)
-#head(UnknownOutcomes)
+UnknownOutcomes &lt;- read.csv(&quot;Unknown.Entangled.Narratives.csv&quot;)
+head(UnknownOutcomes)
 
-# Apply function *WhaleInjuryCovariates()* to *UnknownOutcomes*. 
-# WhaleInjuryCovariates() searches &#39;Narrative&#39; for occurrences of phrases and
-# keywords used to define and code covariates and appends these to the file.
+#  Apply function *WhaleInjuryCovariates()* to *UnknownOutcomes*. 
+#  WhaleInjuryCovariates() searches &#39;Narrative&#39; for occurrences of phrases and
+#  keywords used to define and code covariates and appends these to the file.
 
-# new.df &lt;- WhaleInjuryCovariates(UnknownOutcomes)
-# head(new.df)
+new.df &lt;- WhaleInjuryCovariates(UnknownOutcomes)
+head(new.df)
 
 # Apply existing &#39;ModelEntangle&#39; to new.df to generate binary and probabilistic model predictions
 
-# majority.prediction &lt;- predict(model.entangle, new.df, type=&#39;response&#39;)
-# prob.prediction &lt;- predict(model.entangle, new.df, type=&#39;prob&#39;)
+majority.prediction &lt;- predict(model.entangle, new.df, type=&#39;response&#39;)
+prob.prediction &lt;- predict(model.entangle, new.df, type=&#39;prob&#39;)
 
-# predictions.df &lt;- cbind.data.frame(majority.predictions, prob.predictions, new.df)
-# head(predictions.df)
+predictions.df &lt;- cbind.data.frame(majority.predictions, prob.predictions, new.df)
+head(predictions.df)
 </code></pre>
 </div>
 </div>

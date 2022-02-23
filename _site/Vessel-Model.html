@@ -11,7 +11,7 @@
 
 
 
-<title>Vessel Model</title>
+<title>VesselModel</title>
 
 <script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -274,19 +274,19 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Vessel Model</h1>
+<h1 class="title toc-ignore">VesselModel</h1>
 
 </div>
 
 
 <hr />
 <div
-id="the-vessel-strike-serious-injury-model-model.vessel-is-an-object-of-class-rfpermute-that-includes-x-observations-of-known-outcome-injury-cases-representing-y-species.-vessel-injury-cases-are-included-as-the-data.frame-vesseldata-in-the-r-package-seriousinjury."
+id="the-vessel-strike-model-modelvessel-is-an-object-of-class-rfpermute-that-includes-x-observations-of-known-outcome-injury-cases-representing-y-species.-vessel-injury-cases-are-included-as-the-data.frame-vesseldata-in-the-r-package-seriousinjury."
 class="section level4">
-<h4>The Vessel Strike Serious Injury Model (Model.Vessel) is an object
-of class <em>rfPermute</em> that includes x observations of
-known-outcome injury cases, representing y species. Vessel injury cases
-are included as the data.frame <em>VesselData</em> in the R-Package
+<h4>The Vessel Strike Model (ModelVessel) is an object of class
+<em>rfPermute</em> that includes x observations of known-outcome injury
+cases, representing y species. Vessel injury cases are included as the
+data.frame <em>VesselData</em> in the R-Package
 <em>SeriousInjury</em>.</h4>
 <pre><code># Create randomForest model (using R-Package rfPermute) using known-outcome vessel strike data
 
@@ -309,12 +309,11 @@ size.RF = 1000
  
 sampsize = balancedSampsize(data.vessel$Health.status)
 
-Model.Vessel = rfPermute(VesselData$Health.status ~ .,
+ModelVessel = rfPermute(VesselData$Health.status ~ .,
  VesselData, sampsize=sampsize, ntree=size.RF, 
   replace=FALSE, importance=TRUE, proximity=TRUE)
 
-Model.Vessel
- </code></pre>
+ModelVessel</code></pre>
 </div>
 
 
