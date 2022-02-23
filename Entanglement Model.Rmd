@@ -1,5 +1,5 @@
 ---
-title: "EntanglementModel"
+title: "Entanglement Model"
 output: html_document
 ---
 
@@ -7,7 +7,7 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 ***
-#### The Entanglement Serious Injury Model (Model.Entanglement) is an object of class *rfPermute* that includes x observations of known-outcome injury cases, representing y species. Entanglement injury cases are included as the data.frame *EntanglementData* in the R-Package *SeriousInjury*.
+#### *ModelEntanglement* is a Random Forest object of class *rfPermute*.
 
 ```
 # Create randomForest model (using R-Package rfPermute) using known-outcome entanglement strike data
@@ -29,13 +29,13 @@ size.RF = 1000
 # balance sample size for each class; we are equally-interested in correctly      
 #  predicting non-serious and serious injuries
  
-sampsize = balancedSampsize(data.entanglement$Health.status)
+sampsize = balancedSampsize(data.entangle$Health.status)
 
-Model.Entanglement = rfPermute(EntanglementData$Health.status ~ .,
+ModelEntanglement = rfPermute(data.entangle$Health.status ~ .,
  EntanglementData, sampsize=sampsize, ntree=size.RF, 
   replace=FALSE, importance=TRUE, proximity=TRUE)
 
-Model.Entanglement
+ModelEntanglement
  
 ```
 

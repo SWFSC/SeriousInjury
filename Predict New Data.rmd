@@ -6,28 +6,21 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-### Use existing Random Forest models to predict probability of a death, health decline or recovery for new cases where the outcome is unknown.
+### Use existing Random Forest models to predict probability of a death, health decline or recovery for novel cases where the outcome is unknown.
 
-#### Perhaps all you have is an injury narrative, lacking covariates used with entanglement and vessel strike models. You can estimate the probability of a non-serious or serious injury (representing recoveries and deaths|health declines, respectively) using the example code below. Both *Dead.Decline* and *Recovered* probabilities are estimated, based on the fraction of Random Forest tree assignments to each class. A binary prediction (either *Dead.Decline* or *Recovered*) is also returned, based on the majority class assignment (>50% of trees). In case of ties, which are rare, the model randomly assigns a class.
+#### Estimate the probability of a non-serious or serious injury using example code below. Both *Dead.Decline* and *Recovered* probabilities are estimated, based on the fraction of Random Forest tree assignments to each class. A binary prediction (either *Dead.Decline* or *Recovered*) is also returned, based on the majority class assignment (>50% of trees). In case of ties, which are rare, the model randomly assigns a class.
+
 ```
-# Import data of class data.frame with required field name 'Narrative'.
+# 'data.test.entangle' data.frame with required field name 'Narrative' and appended covariates.
 
-UnknownOutcomes <- read.csv("Unknown.Entangled.Narratives.csv")
-head(UnknownOutcomes)
+head(data.test.entangle)
 
-#  Apply function *WhaleInjuryCovariates()* to *UnknownOutcomes*. 
-#  WhaleInjuryCovariates() searches 'Narrative' for occurrences of phrases and
-#  keywords used to define and code covariates and appends these to the file.
+# Apply existing 'ModelEntangle' to data.test.entangle to generate binary and probabilistic model predictions
 
-new.df <- WhaleInjuryCovariates(UnknownOutcomes)
-head(new.df)
+majority.prediction <- predict(ModelEntangle, data.test.entangle, type='response')
+prob.prediction <- predict(ModelEntangle, data.test.entangle, type='prob')
 
-# Apply existing 'ModelEntangle' to new.df to generate binary and probabilistic model predictions
-
-majority.prediction <- predict(model.entangle, new.df, type='response')
-prob.prediction <- predict(model.entangle, new.df, type='prob')
-
-predictions.df <- cbind.data.frame(majority.predictions, prob.predictions, new.df)
+predictions.df <- cbind.data.frame(majority.predictions, prob.predictions, data.test.entangle)
 head(predictions.df)
 
 ```

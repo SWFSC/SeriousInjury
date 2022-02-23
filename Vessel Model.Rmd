@@ -31,7 +31,7 @@ size.RF = 1000
  
 sampsize = balancedSampsize(data.vessel$Health.status)
 
-ModelVessel = rfPermute(VesselData$Health.status ~ .,
+ModelVessel = rfPermute(data.vessel$Health.status ~ .,
  VesselData, sampsize=sampsize, ntree=size.RF, 
   replace=FALSE, importance=TRUE, proximity=TRUE)
 

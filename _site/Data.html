@@ -13,8 +13,8 @@
 
 <title>Injury Narratives</title>
 
-<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
-<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="site_libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
@@ -280,18 +280,10 @@ $(document).ready(function () {
 
 
 <hr />
-<div
-id="the-data.frame-largewhaledata-is-included-with-the-r-package-seriousinjury.-largewhaledata-includes-all-whale-injury-cases-used-to-develop-classification-tree-models-to-assess-injury-severity.-injury-descriptions-are-included-in-the-narrative-field-of-largewhaledata.-covariates-are-defined-and-identified-as-presence-absence-values-for-each-row-of-largewhaledata-using-the-function-whaleinjurycovariates."
-class="section level4">
-<h4>The data.frame <em>LargeWhaleData</em> is included with the
-R-Package <em>SeriousInjury</em>. <em>LargeWhaleData</em> includes all
-whale injury cases used to develop classification tree models to assess
-injury severity. Injury descriptions are included in the ‘Narrative’
-field of <em>LargeWhaleData</em>. Covariates are defined and identified
-as presence / absence values for each row of <em>LargeWhaleData</em>,
-using the function WhaleInjuryCovariates().</h4>
-<pre><code># Example code to identify the covariate &#39;decline&#39; from injury narratives in data.frame &#39;LargeWhaleData&#39;.
-#   function WhaleInjuryCovariates() applied to data.frame &#39;LargeWhaleData&#39;
+<div id="the-data.frame-whaledata-is-included-with-the-r-package-seriousinjury.-whaledata-includes-all-whale-injury-cases-used-to-develop-classification-tree-models-to-assess-injury-severity.-injury-descriptions-are-included-in-the-narrative-field-of-whaledata.-covariates-are-defined-and-identified-as-presence-absence-values-or-factors-vessel-size-and-speed-covariates-for-each-row-of-whaledata-using-the-function-whaleinjurycovariates." class="section level4">
+<h4>The data.frame <em>WhaleData</em> is included with the R-Package <em>SeriousInjury</em>. <em>WhaleData</em> includes all whale injury cases used to develop classification tree models to assess injury severity. Injury descriptions are included in the ‘Narrative’ field of <em>WhaleData</em>. Covariates are defined and identified as presence / absence values or factors (Vessel size and speed covariates) for each row of <em>WhaleData</em>, using the function WhaleInjuryCovariates().</h4>
+<pre><code># Example code to identify the covariate &#39;decline&#39; from injury narratives in data.frame &#39;WhaleData&#39;.
+#   function WhaleInjuryCovariates() applied to data.frame &#39;WhaleData&#39;
 #    data.frame narrative field must be named &#39;Narrative&#39; for use with WhaleInjuryCovariates().
 #     use function &#39;grepl&#39; to search for words/phrases in &#39;Narrative&#39;.
 #      code covariates numerically as 1/0, aligned with their TRUE/FALSE (=presence/absence) state.
@@ -303,16 +295,16 @@ using the function WhaleInjuryCovariates().</h4>
      compromise|scoliosis|deform|cyamid|lice|lethargic|
       lesion|discolor|diatom|poor cond|poor health|poor body|
        poor over|poor skin|rake|skin|slough|thin |emaciated|malnourish|
-        underweight|starv|mobility&quot;, LargeWhaleData$Narrative, ignore.case=T)
+        underweight|starv|mobility&quot;, WhaleData$Narrative, ignore.case=T)
     
     decline &lt;- as.numeric(lapply(decline, as.numeric))
      decline
     
-# Use WhaleInjuryCovariates() to append all covariates to each row of &#39;LargeWhaleData&#39; 
+# Use WhaleInjuryCovariates() to append all covariates to each row of &#39;WhaleData&#39; 
     
-    head(LargeWhaleData)
+    head(WhaleData)
 
-    new.data.frame &lt;- WhaleInjuryCovariates(LargeWhaleData)
+    new.data.frame &lt;- WhaleInjuryCovariates(WhaleData)
 
     head(new.data.frame)</code></pre>
 </div>

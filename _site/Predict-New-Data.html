@@ -13,8 +13,8 @@
 
 <title>Predict New Data</title>
 
-<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
-<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="site_libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
@@ -280,43 +280,20 @@ $(document).ready(function () {
 
 
 <hr />
-<div
-id="use-existing-random-forest-models-to-predict-probability-of-a-death-health-decline-or-recovery-for-new-cases-where-the-outcome-is-unknown."
-class="section level3">
-<h3>Use existing Random Forest models to predict probability of a death,
-health decline or recovery for new cases where the outcome is
-unknown.</h3>
-<div
-id="perhaps-all-you-have-is-an-injury-narrative-lacking-covariates-used-with-entanglement-and-vessel-strike-models.-you-can-estimate-the-probability-of-a-non-serious-or-serious-injury-representing-recoveries-and-deathshealth-declines-respectively-using-the-example-code-below.-both-dead.decline-and-recovered-probabilities-are-estimated-based-on-the-fraction-of-random-forest-tree-assignments-to-each-class.-a-binary-prediction-either-dead.decline-or-recovered-is-also-returned-based-on-the-majority-class-assignment-50-of-trees.-in-case-of-ties-which-are-rare-the-model-randomly-assigns-a-class."
-class="section level4">
-<h4>Perhaps all you have is an injury narrative, lacking covariates used
-with entanglement and vessel strike models. You can estimate the
-probability of a non-serious or serious injury (representing recoveries
-and deaths|health declines, respectively) using the example code below.
-Both <em>Dead.Decline</em> and <em>Recovered</em> probabilities are
-estimated, based on the fraction of Random Forest tree assignments to
-each class. A binary prediction (either <em>Dead.Decline</em> or
-<em>Recovered</em>) is also returned, based on the majority class
-assignment (&gt;50% of trees). In case of ties, which are rare, the
-model randomly assigns a class.</h4>
-<pre><code># Import data of class data.frame with required field name &#39;Narrative&#39;.
+<div id="use-existing-random-forest-models-to-predict-probability-of-a-death-health-decline-or-recovery-for-novel-cases-where-the-outcome-is-unknown." class="section level3">
+<h3>Use existing Random Forest models to predict probability of a death, health decline or recovery for novel cases where the outcome is unknown.</h3>
+<div id="estimate-the-probability-of-a-non-serious-or-serious-injury-using-example-code-below.-both-dead.decline-and-recovered-probabilities-are-estimated-based-on-the-fraction-of-random-forest-tree-assignments-to-each-class.-a-binary-prediction-either-dead.decline-or-recovered-is-also-returned-based-on-the-majority-class-assignment-50-of-trees.-in-case-of-ties-which-are-rare-the-model-randomly-assigns-a-class." class="section level4">
+<h4>Estimate the probability of a non-serious or serious injury using example code below. Both <em>Dead.Decline</em> and <em>Recovered</em> probabilities are estimated, based on the fraction of Random Forest tree assignments to each class. A binary prediction (either <em>Dead.Decline</em> or <em>Recovered</em>) is also returned, based on the majority class assignment (&gt;50% of trees). In case of ties, which are rare, the model randomly assigns a class.</h4>
+<pre><code># &#39;data.test.entangle&#39; data.frame with required field name &#39;Narrative&#39; and appended covariates.
 
-UnknownOutcomes &lt;- read.csv(&quot;Unknown.Entangled.Narratives.csv&quot;)
-head(UnknownOutcomes)
+head(data.test.entangle)
 
-#  Apply function *WhaleInjuryCovariates()* to *UnknownOutcomes*. 
-#  WhaleInjuryCovariates() searches &#39;Narrative&#39; for occurrences of phrases and
-#  keywords used to define and code covariates and appends these to the file.
+# Apply existing &#39;ModelEntangle&#39; to data.test.entangle to generate binary and probabilistic model predictions
 
-new.df &lt;- WhaleInjuryCovariates(UnknownOutcomes)
-head(new.df)
+majority.prediction &lt;- predict(ModelEntangle, data.test.entangle, type=&#39;response&#39;)
+prob.prediction &lt;- predict(ModelEntangle, data.test.entangle, type=&#39;prob&#39;)
 
-# Apply existing &#39;ModelEntangle&#39; to new.df to generate binary and probabilistic model predictions
-
-majority.prediction &lt;- predict(model.entangle, new.df, type=&#39;response&#39;)
-prob.prediction &lt;- predict(model.entangle, new.df, type=&#39;prob&#39;)
-
-predictions.df &lt;- cbind.data.frame(majority.predictions, prob.predictions, new.df)
+predictions.df &lt;- cbind.data.frame(majority.predictions, prob.predictions, data.test.entangle)
 head(predictions.df)
 </code></pre>
 </div>
