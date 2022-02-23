@@ -1,20 +1,13 @@
 #' @title SeriousInjury()
 #'
-#' @description
+#' @description Package to assess large whale injuries with Random Forests
 #'
-#' Random Forest (RF) Method For Assessment of Whale Injuries
-#'
-#' @usage
-#' SeriousInjury()
+#' @usage SeriousInjury()
 #'
 #' @author Jim Carretta <jim.carretta@noaa.gov>
 #'
-#' @examples SeriousInjury(25)
+#' @examples
 #'
 #' @export
 #'
-
-SeriousInjury <- function(x) { y <- x^2
-                                y}
-
 

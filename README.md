@@ -1,9 +1,10 @@
-# SeriousInjury
+# R-Package *SeriousInjury*
 #
-# Function WhaleInjuryCovariates() reads a character field from object of class data.frame
-# and identifies predefined words/phrases in 'Narrative' field used as 
-# covariates for large whale serious injury analyses.
+# Use function *WhaleInjuryCovariates* to append
+# covariates to injury narratives of large whales.
 #
-# data.frame field name must be 'Narrative' to use WhaleInjuryCovariates()
-#
+# Resulting data frame is used with Random Forest
+# Models to classify injuries as serious or non-serious,
+# based on the fraction of Random Forest trees assigning
+# cases to each injury severity category.
  
