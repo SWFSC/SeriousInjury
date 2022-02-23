@@ -10,8 +10,8 @@
 #'
 #' @export SeriousInjuryTutorial
 #'
-SeriousInjuryTutorial <- function(x) {
-  x=browseURL("https://JimCarretta.github.io/index.html")
+SeriousInjuryTutorial <- function() {
+  browseURL("https://JimCarretta.github.io/index.html")
 }
 
 .onAttach <- function(libname, pkgname) {
