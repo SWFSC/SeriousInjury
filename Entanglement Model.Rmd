@@ -1,5 +1,5 @@
 ---
-title: "Entanglement Model"
+title: "EntanglementModel"
 output: html_document
 ---
 

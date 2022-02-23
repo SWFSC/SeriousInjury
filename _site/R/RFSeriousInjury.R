@@ -1,8 +1,8 @@
-#' @title SeriousInjury()
+#' @title SeriousInjuryTutorial()
 #'
 #' @description Package to assess large whale injuries with Random Forests
 #'
-#' @usage SeriousInjury()
+#' @usage SeriousInjuryTutorial()
 #'
 #' @author Jim Carretta <jim.carretta@noaa.gov>
 #'
@@ -10,4 +10,6 @@
 #'
 #' @export
 #'
-
+SeriousInjuryTutorial <- function() {
+  browseURL("https://JimCarretta.github.io/index.html")
+}

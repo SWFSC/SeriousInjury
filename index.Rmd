@@ -13,15 +13,15 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```
 ****
-####  Under the Marine Mammal Protection Act (MMPA), NOAA evaluates human-caused injuries and mortalities of marine mammals through a <a href="https://media.fisheries.noaa.gov/dam-migration/02-238.pdf">Serious Injury Policy</a> and <a href="https://media.fisheries.noaa.gov/dam-migration/02-238-01.pdf">Procedural Directive</a>. Injuries are defined as 'non-serious' or 'serious', where the latter is defined as *<b>"any injury that is more likely than not to result in mortality, or any injury that presents a greater than 50 percent chance of death to a marine mammal"</b>*.
+####  Under the Marine Mammal Protection Act (MMPA), NOAA assesses human-caused injuries and mortalities of marine mammals through a <a href="https://media.fisheries.noaa.gov/dam-migration/02-238.pdf">Serious Injury Policy</a> and <a href="https://media.fisheries.noaa.gov/dam-migration/02-238-01.pdf">Procedural Directive</a>. Injuries are defined as 'non-serious' or 'serious', where the latter is defined as *<b>"any injury that is more likely than not to result in mortality, or any injury that presents a greater than 50 percent chance of death to a marine mammal"</b>*.
 
-####  NOAA is updating the Serious Injury policy and procedures for large whales with new data and a new Random Forest method to estimate individual probabilities of a health decline, death, or recovery for entanglements and vessel strikes. 
+####  NOAA is reviewing the Serious Injury policy and procedures for large whales with new data and assessing a new Random Forest method to estimate individual probabilities of a health decline, death, or recovery for entanglements and vessel strikes. 
 
-####  The major change is that current serious injury procedures requiring biologists to assess a series of conditions , e.g. 
+####  The major proposed change is that current serious injury procedures requiring biologists to assess a series of conditions , e.g. 
 
 #### <b>*"Was entangling gear constricting or loose?"*</b> 
 
-#### are now automated using a Random Forest (RF) algorithm. The RF model uses covariates derived from key words and phrases in injury narratives known to be good predictors of non-serious vs serious injuries.
+#### could be automated using a Random Forest (RF) algorithm. The RF model uses covariates derived from key words and phrases in injury narratives known to be good predictors of non-serious vs serious injuries.
 
 #### Methods, R functions, and application examples for large whale data are summarized in the R-Package *<a href="https://github.com/JimCarretta/SeriousInjury">SeriousInjury</a>* and are summarized on this website.
 
@@ -32,5 +32,4 @@ if (!require('devtools')) install.packages('devtools')
 
 # install from GitHub
 devtools::install_github('JimCarretta/SeriousInjury')
-
 ```

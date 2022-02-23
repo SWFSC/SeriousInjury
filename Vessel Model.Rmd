@@ -1,5 +1,5 @@
 ---
-title: "Vessel Model"
+title: "VesselModel"
 output: html_document
 ---
 
@@ -7,7 +7,7 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 ***
-#### The Vessel Strike Serious Injury Model (Model.Vessel) is an object of class *rfPermute* that includes x observations of known-outcome injury cases, representing y species. Vessel injury cases are included as the data.frame *VesselData* in the R-Package *SeriousInjury*.
+#### The Vessel Strike Model (ModelVessel) is an object of class *rfPermute* that includes x observations of known-outcome injury cases, representing y species. Vessel injury cases are included as the data.frame *VesselData* in the R-Package *SeriousInjury*.
 
 ```
 # Create randomForest model (using R-Package rfPermute) using known-outcome vessel strike data
@@ -31,12 +31,11 @@ size.RF = 1000
  
 sampsize = balancedSampsize(data.vessel$Health.status)
 
-Model.Vessel = rfPermute(VesselData$Health.status ~ .,
+ModelVessel = rfPermute(VesselData$Health.status ~ .,
  VesselData, sampsize=sampsize, ntree=size.RF, 
   replace=FALSE, importance=TRUE, proximity=TRUE)
 
-Model.Vessel
- 
+ModelVessel
 ```
 
 

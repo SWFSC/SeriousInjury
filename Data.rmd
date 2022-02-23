@@ -4,7 +4,6 @@ output: html_document
 ---
 ***
 #### The data.frame *LargeWhaleData* is included with the R-Package *SeriousInjury*. *LargeWhaleData* includes all whale injury cases used to develop classification tree models to assess injury severity. Injury descriptions are included in the 'Narrative' field of *LargeWhaleData*. Covariates are defined and identified as presence / absence values for each row of *LargeWhaleData*, using the function WhaleInjuryCovariates().
-
 ```
 # Example code to identify the covariate 'decline' from injury narratives in data.frame 'LargeWhaleData'.
 #   function WhaleInjuryCovariates() applied to data.frame 'LargeWhaleData'
@@ -31,6 +30,5 @@ output: html_document
     new.data.frame <- WhaleInjuryCovariates(LargeWhaleData)
 
     head(new.data.frame)
-    
 ```
 
