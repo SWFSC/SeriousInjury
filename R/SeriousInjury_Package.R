@@ -11,7 +11,7 @@
 #' @export SeriousInjuryTutorial
 #'
 SeriousInjuryTutorial <- function(x) {
-   x=browseURL("https://JimCarretta.github.io/index.html")
+  x=browseURL("https://JimCarretta.github.io/index.html")
 }
 
 .onAttach <- function(libname, pkgname) {
@@ -20,5 +20,3 @@ SeriousInjuryTutorial <- function(x) {
     "See SeriousInjuryTutorial() for a guide to the package."
   )
 }
-
-
