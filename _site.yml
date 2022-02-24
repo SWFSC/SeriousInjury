@@ -8,7 +8,7 @@ navbar:
     - text: "About"
       href: about.html
     - text: "Data"
-      href: data.html
+      href: Data.html
     - text: "Covariates"
       href: Covariate-Descriptions.html
     - text: "Entanglement Model"

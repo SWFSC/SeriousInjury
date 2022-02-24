@@ -7,7 +7,7 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 ***
-#### *ModelEntanglement* is a Random Forest object of class *rfPermute*.
+#### The Entanglement Model (ModelEntangle) is an object of class rfPermute that includes x observations of known-outcome injury cases, representing y species. Entanglement injury cases are included as the data.frame "EntangleData" in the R-Package SeriousInjury.
 
 ```
 # Create randomForest model (using R-Package rfPermute) using known-outcome entanglement strike data
