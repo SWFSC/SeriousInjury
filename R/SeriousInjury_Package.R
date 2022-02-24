@@ -1,6 +1,6 @@
 #' @title SeriousInjuryTutorial
 #'
-#' @description Package to assess large whale injuries with Random Forests
+#' @description Assign whale injuries as Serious vs Non-Serious with Random Forests
 #'
 #' @usage SeriousInjuryTutorial()
 #'

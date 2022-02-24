@@ -13,8 +13,8 @@
 
 <title>Injury Covariates</title>
 
-<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
-<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="site_libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
@@ -237,7 +237,7 @@ $(document).ready(function () {
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html"><img src="NOAA_logo.png" width=75 height=75></a>
+      <a class="navbar-brand" href="index.html"></a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
@@ -280,16 +280,8 @@ $(document).ready(function () {
 
 
 <hr />
-<div
-id="covariates-are-derived-from-injury-narratives-with-the-function-whaleinjurycovariates.-code-to-define-maintain-and-extract-covariates-from-narratives-is-found-in-the-r-script-large-whale-injury-covariates.r.-covariates-are-defined-below-followed-by-example-code-defining-the-covariate-decline-coding-it-as-a-presence-absence-value-and-appending-these-values-to-the-data.frame-largewhaledata."
-class="section level4">
-<h4>Covariates are derived from injury narratives with the function
-‘<em>WhaleInjuryCovariates()</em>’. Code to define, maintain, and
-extract covariates from narratives is found in the R-script <em>Large
-Whale Injury Covariates.R</em>. Covariates are defined below, followed
-by example code defining the covariate <em>decline</em>, coding it as a
-presence / absence value, and appending these values to the data.frame
-‘<em>LargeWhaleData</em>’.</h4>
+<div id="covariates-are-derived-from-injury-narratives-with-the-function-whaleinjurycovariates.-code-to-define-maintain-and-extract-covariates-from-narratives-is-found-in-the-r-script-large-whale-injury-covariates.r.-covariates-are-defined-below-followed-by-example-code-defining-the-covariate-decline-coding-it-as-a-presence-absence-value-and-appending-these-values-to-the-data.frame-largewhaledata." class="section level4">
+<h4>Covariates are derived from injury narratives with the function ‘<em>WhaleInjuryCovariates()</em>’. Code to define, maintain, and extract covariates from narratives is found in the R-script <em>Large Whale Injury Covariates.R</em>. Covariates are defined below, followed by example code defining the covariate <em>decline</em>, coding it as a presence / absence value, and appending these values to the data.frame ‘<em>LargeWhaleData</em>’.</h4>
 <hr />
 </div>
 <div id="definitions" class="section level4">
@@ -298,62 +290,49 @@ presence / absence value, and appending these values to the data.frame
 <div id="anchored" class="section level4">
 <h4><b><em>anchored</em></b></h4>
 <p>
-Evidence a whale was anchored or immobilized by entangling material or
-gear. Narrative mentions inability to dive or swim or that whale is
-immobilized. Includes references to a heavily-weighted whale with
-multiple pots/traps impeding normal movement.
+Evidence a whale was anchored or immobilized by entangling material or gear. Narrative mentions inability to dive or swim or that whale is immobilized. Includes references to a heavily-weighted whale with multiple pots/traps impeding normal movement.
 </p>
 </div>
 <div id="calf.juv" class="section level4">
 <h4><b><em>calf.juv</em></b></h4>
 <p>
-Narrative includes reference to an injured calf or juvenile. Also
-includes narratives where injury involves the mother of a dependent
-calf.
+Narrative includes reference to an injured calf or juvenile. Also includes narratives where injury involves the mother of a dependent calf.
 </p>
 </div>
 <div id="constricting" class="section level4">
 <h4><b><em>constricting</em></b></h4>
 <p>
-Evidence of a constricting entanglement, including line cutting into
-whale, wrapped tightly around body or flippers.
+Evidence of a constricting entanglement, including line cutting into whale, wrapped tightly around body or flippers.
 </p>
 </div>
 <div id="decline" class="section level4">
 <h4><b><em>decline</em></b></h4>
 <p>
-Narrative includes evidence of a health decline, such as the presence of
-cyamids, emaciation, discolored skin, deformities caused by a chronic
-entanglement or severe vessel strike incident.
+Narrative includes evidence of a health decline, such as the presence of cyamids, emaciation, discolored skin, deformities caused by a chronic entanglement or severe vessel strike incident.
 </p>
 </div>
 <div id="extensive.severe" class="section level4">
 <h4><b><em>extensive.severe</em></b></h4>
 <p>
-Evidence of severe injury that can include amputation or necrosis of
-body parts due to a chronic entanglement or acute vessel strike injury.
+Evidence of severe injury that can include amputation or necrosis of body parts due to a chronic entanglement or acute vessel strike injury.
 </p>
 </div>
 <div id="fluke.peduncle" class="section level4">
 <h4><b><em>fluke.peduncle</em></b></h4>
 <p>
-Narrative includes reference of entanglement or vessel strike injury
-that involves the tail, flukes, or peduncle.
+Narrative includes reference of entanglement or vessel strike injury that involves the tail, flukes, or peduncle.
 </p>
 </div>
 <div id="gear.free" class="section level4">
 <h4><b><em>gear.free</em></b></h4>
 <p>
-Evidence that the whale freed itself from the gear or entangling
-material. Typically involves a whale resighted at a later date than the
-initial entanglement observation.
+Evidence that the whale freed itself from the gear or entangling material. Typically involves a whale resighted at a later date than the initial entanglement observation.
 </p>
 </div>
 <div id="head" class="section level4">
 <h4><b><em>head</em></b></h4>
 <p>
-Narrative indicates that the head, mouth, or blowhole was involved in
-the entanglement or vessel strike injury.
+Narrative indicates that the head, mouth, or blowhole was involved in the entanglement or vessel strike injury.
 </p>
 </div>
 <div id="healing" class="section level4">
@@ -365,9 +344,7 @@ Narrative refers to healing or healed wounds.
 <div id="laceration.deep" class="section level4">
 <h4><b><em>laceration.deep</em></b></h4>
 <p>
-Narrative includes reference to deep laceration resulting from vessel
-strike or entanglement. May include reference to blubber or muscle
-layers.
+Narrative includes reference to deep laceration resulting from vessel strike or entanglement. May include reference to blubber or muscle layers.
 </p>
 </div>
 <div id="laceration.shallow" class="section level4">
@@ -379,8 +356,7 @@ Narrative includes reference to shallow or superficial lacerations.
 <div id="pectoral" class="section level4">
 <h4><b><em>pectoral</em></b></h4>
 <p>
-Narrative includes involvement of pectoral flipper or ‘fins’ in
-entanglement or vessel strike injury.
+Narrative includes involvement of pectoral flipper or ‘fins’ in entanglement or vessel strike injury.
 </p>
 </div>
 <div id="swim.dive" class="section level4">
@@ -404,8 +380,7 @@ Narrative includes reference to vessel speeds &lt; 10 kts.
 <div id="vessel.large" class="section level4">
 <h4><b><em>vessel.large</em></b></h4>
 <p>
-Narrative includes reference to large vessels such as military vessels,
-ferries, container ships, or vessel &gt;65 ft in length.
+Narrative includes reference to large vessels such as military vessels, ferries, container ships, or vessel &gt;65 ft in length.
 </p>
 </div>
 <div id="vessel.slow" class="section level4">
@@ -417,23 +392,19 @@ Narrative includes reference to vessel speeds &gt;= 10 kts.
 <div id="vessel.small" class="section level4">
 <h4><b><em>vessel.small</em></b></h4>
 <p>
-Narrative includes reference to small vessels such as sailboats,
-recreational vessels, RHIB vessels, or vessel size &lt; 65 ft in length
-or smaller than the whale, if this can be determined.
+Narrative includes reference to small vessels such as sailboats, recreational vessels, RHIB vessels, or vessel size &lt; 65 ft in length or smaller than the whale, if this can be determined.
 </p>
 </div>
 <div id="wraps.multi" class="section level4">
 <h4><b><em>wraps.multi</em></b></h4>
 <p>
-Narrative includes reference to whale with multiple wraps of line or
-gear around body or appendage.
+Narrative includes reference to whale with multiple wraps of line or gear around body or appendage.
 </p>
 </div>
 <div id="wraps.no" class="section level4">
 <h4><b><em>wraps.no</em></b></h4>
 <p>
-Narrative includes reference to a whale without any wraps of line or
-gear around body or appendage.
+Narrative includes reference to a whale without any wraps of line or gear around body or appendage.
 </p>
 <p><br><br></p>
 <pre><code># To install the latest *SeriousInjury* version from GitHub:
