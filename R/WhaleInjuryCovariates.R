@@ -14,8 +14,7 @@
 #' Package includes example data.frame 'whales'
 #' (n=20 records) for use with WhaleInjuryCovariates
 #'
-#' @usage
-#' WhaleInjuryCovariates(x)
+#' @usage WhaleInjuryCovariates(x)
 #'
 #' @param x an object of class 'data.frame'
 #'

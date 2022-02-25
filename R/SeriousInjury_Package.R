@@ -9,7 +9,6 @@
 #' @examples
 #'
 #' @export SeriousInjuryTutorial
-#' @export WhaleInjuryCovariates
 #'
 SeriousInjuryTutorial <- function() {
   browseURL("https://JimCarretta.github.io")
