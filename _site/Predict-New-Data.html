@@ -16,7 +16,7 @@
 <script src="site_libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<link href="site_libs/bootstrap-3.3.5/css/darkly.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
@@ -293,7 +293,7 @@ head(data.test.entangle)
 majority.prediction &lt;- predict(ModelEntangle, data.test.entangle, type=&#39;response&#39;)
 prob.prediction &lt;- predict(ModelEntangle, data.test.entangle, type=&#39;prob&#39;)
 
-predictions.df &lt;- cbind.data.frame(majority.predictions, prob.predictions, data.test.entangle)
+predictions.df &lt;- cbind.data.frame(majority.prediction, prob.prediction, data.test.entangle)
 head(predictions.df)
 </code></pre>
 </div>
