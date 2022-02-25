@@ -23,7 +23,7 @@
 #'
 #' @examples WhaleInjuryCovariates(whales)
 #'
-#' @export
+#' @export WhaleInjuryCovariates
 
    WhaleInjuryCovariates = function(x) {
 
