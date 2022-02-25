@@ -22,8 +22,8 @@
 #'
 #' @examples WhaleInjuryCovariates(WhaleData)
 #'
-#' @export WhaleInjuryCovariates
-
+#' @export
+#'
    WhaleInjuryCovariates = function(x) {
 
 # 02-16-2022
