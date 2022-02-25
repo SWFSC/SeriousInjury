@@ -1,4 +1,4 @@
-## R-Package *SeriousInjury*
+## R-Package *SeriousInjury* v1.0.0
 #
 ### Estimate Whale Injury Severity probabilities with classification trees
 #
