@@ -1,12 +1,23 @@
 Package: SeriousInjury
 Type: Package
-Title: SeriousInjury
+Title: Classify Whale Injuries as Serious or Non-Serious with Classification Trees
 Version: 1.0.0
 Depends: ggplot2, grid, rfPermute
 Author: Jim Carretta
 Maintainer: Jim Carretta <jim.carretta@noaa.gov>
-Description: Random Forest (RF) Models to Assess Whale Injuries
-License: What license is it under?
+Description: Use Random Forest (RF) classification trees to assign whale injuries
+    as 'Serious' or 'Non-Serious', based on narratives. There are two RF models, 
+    one for vessel strikes (ModelVessel) and one for entanglements (ModelVessel).
+    Covariates used in RF models are generated directly from narratives, by coding
+    the presence or absence of key words / phrases (i.e. 'healthy' vs 'emaciated')
+    associated with known serious and non-serious injury cases. Models are based on
+    'known-outcome' cases, e.g. recoveries documented >=1 yr after a vessel strike or
+    entanglement, observed health declines or serious injuries at any point after
+    an incident, and deaths. Models are then applied to 'unknown outcome' cases, where 
+    injury severity and risk to whales are unknown due to a lack of details and/or 
+    brief observation periods.
+URL: https://github.com/JimCarretta/SeriousInjury
+License: GPL-3 plus file LICENSE
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.1.2
