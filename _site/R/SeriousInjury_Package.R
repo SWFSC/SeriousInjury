@@ -8,7 +8,7 @@
 #'
 #' @examples
 #'
-#' @export SeriousInjuryTutorial
+#' @export
 #'
 SeriousInjuryTutorial <- function() {
   browseURL("https://JimCarretta.github.io")

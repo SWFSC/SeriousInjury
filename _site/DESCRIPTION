@@ -2,6 +2,7 @@ Package: SeriousInjury
 Type: Package
 Title: SeriousInjury
 Version: 1.0.0
+Depends: ggplot2, grid, rfPermute
 Author: Jim Carretta
 Maintainer: Jim Carretta <jim.carretta@noaa.gov>
 Description: Random Forest (RF) Models to Assess Whale Injuries
