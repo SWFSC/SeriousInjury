@@ -1,4 +1,4 @@
-#' @title SeriousInjuryTutorial
+#' @title Tutorial
 #'
 #' @description Assign whale injuries as Serious vs Non-Serious with Random Forests
 #'

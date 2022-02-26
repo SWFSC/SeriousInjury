@@ -2,7 +2,7 @@
 % Please edit documentation in R/WhaleInjuryCovariates.R
 \name{WhaleInjuryCovariates}
 \alias{WhaleInjuryCovariates}
-\title{WhaleInjuryCovariates}
+\title{Injury Covariates}
 \usage{
 WhaleInjuryCovariates(x)
 }

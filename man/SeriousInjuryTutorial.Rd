@@ -2,7 +2,7 @@
 % Please edit documentation in R/SeriousInjury_Package.R
 \name{SeriousInjuryTutorial}
 \alias{SeriousInjuryTutorial}
-\title{SeriousInjuryTutorial}
+\title{Tutorial}
 \usage{
 SeriousInjuryTutorial()
 }
