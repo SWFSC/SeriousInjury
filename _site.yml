@@ -3,7 +3,7 @@ navbar:
   title:
   output_dir: "_site"
   left:
-    - text: "R-Package Serious Injury"
+    - text: "Package Serious Injury"
       href: index.html
     - text: "About"
       href: about.html
