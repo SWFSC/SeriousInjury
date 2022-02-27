@@ -11,7 +11,8 @@
 #' @export
 #'
 SeriousInjuryTutorial <- function() {
-  browseURL("https://JimCarretta.github.io")
+#  browseURL("https://JimCarretta.github.io")
+  browseURL(system.file("_site", "index.html", package="SeriousInjury", mustWork=TRUE))
 }
 
 .onAttach <- function(libname, pkgname) {
