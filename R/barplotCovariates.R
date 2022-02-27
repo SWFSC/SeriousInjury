@@ -19,7 +19,6 @@
 
  barplotCovariates <- function(df) {
 
- df <- WhaleData
  df.covars <- WhaleInjuryCovariates(df)
 
  df.covars$Health.status[grep("dead|decline", df.covars$Health.status, ignore.case=T)] <- "DEAD.DECLINE"
