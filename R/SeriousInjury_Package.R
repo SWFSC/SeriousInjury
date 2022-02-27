@@ -17,7 +17,6 @@
 #' @export
 #'
 SeriousInjuryTutorial <- function() {
-#  browseURL("https://JimCarretta.github.io")
   browseURL(system.file("extdata", "index.html", package="SeriousInjury", mustWork=TRUE))
 }
 
