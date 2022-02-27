@@ -3,7 +3,7 @@ title: 'Injury Covariates'
 output: html_document
 ---
 ****
-#### Covariates are derived from injury narratives with the function '*WhaleInjuryCovariates()*'. Code to define, maintain, and extract covariates from narratives is found in the R-script *Large Whale Injury Covariates.R*. Covariates are defined below, followed by example code defining the covariate *decline*, coding it as a presence / absence value, and appending these values to the data.frame '*LargeWhaleData*'.
+#### Covariates are derived from injury narratives with the function '*WhaleInjuryCovariates()*'. Code to define, maintain, and extract covariates from narratives is found in the R-script *Large Whale Injury Covariates.R*. Covariates are defined below, followed by example code defining the covariate *decline*, coding it as a presence / absence value, and appending these values to the data.frame 'WhaleData'.
   
 ****
   
@@ -80,8 +80,8 @@ if (!require('devtools')) install.packages('devtools')
 # install from GitHub
 devtools::install_github('JimCarretta/SeriousInjury')
 
-# Example code to identify covariate 'decline' from injury narratives in data.frame 'LargeWhaleData'.
-#   function WhaleInjuryCovariates() applied to data.frame 'LargeWhaleData'
+# Example code to identify covariate 'decline' from injury narratives in data.frame 'WhaleData'.
+#   function WhaleInjuryCovariates() applied to data.frame 'WhaleData'
 #    data.frame narrative field must be named 'Narrative' for use with WhaleInjuryCovariates().
 #     use function 'grepl' to search for words/phrases in 'Narrative'.
 #      code covariates numerically as 1/0, aligned with their TRUE/FALSE (=presence/absence) state.
@@ -93,16 +93,16 @@ devtools::install_github('JimCarretta/SeriousInjury')
      compromise|scoliosis|deform|cyamid|lice|lethargic|
       lesion|discolor|diatom|poor cond|poor health|poor body|
        poor over|poor skin|rake|skin|slough|thin |emaciated|malnourish|
-        underweight|starv|mobility", LargeWhaleData$Narrative, ignore.case=T)
+        underweight|starv|mobility", WhaleData$Narrative, ignore.case=T)
     
     decline <- as.numeric(lapply(decline, as.numeric))
      decline
     
-# Use WhaleInjuryCovariates() to append all covariates to each row of 'LargeWhaleData' 
+# Use WhaleInjuryCovariates() to append all covariates to each row of 'WhaleData' 
     
-    head(LargeWhaleData)
+    head(WhaleData)
 
-    new.data.frame <- WhaleInjuryCovariates(LargeWhaleData)
+    new.data.frame <- WhaleInjuryCovariates(WhaleData)
 
     head(new.data.frame)
     

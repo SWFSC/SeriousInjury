@@ -4,17 +4,17 @@
 \alias{barplotCovariates}
 \title{Barplot Covariates}
 \usage{
-barplotCovariates(x)
+barplotCovariates(df)
 }
 \arguments{
-\item{x}{an object of class 'data.frame'}
+\item{df}{an object of class 'data.frame'}
 }
 \description{
 Create barplot of injury covariates from data frame column 'Narrative',
 stratified by known health status ("DEAD.DECLINE" vs "RECOVERED")
 }
 \examples{
-barplotCovariates(WhaleDataCovs)
+barplotCovariates(df)
 
 }
 \author{

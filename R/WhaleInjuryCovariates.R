@@ -7,18 +7,18 @@
 #' data frame is used with Random Forest classification trees to predict health status of whales involved in
 #' entanglements or vessel strikes. Package includes example data frame "WhaleData"
 #'
-#' @usage WhaleInjuryCovariates(x)
+#' @usage WhaleInjuryCovariates(df)
 #'
-#' @param x an object of class 'data.frame'
+#' @param df an object of class 'data.frame'
 #'
 #' @author Jim Carretta <jim.carretta@noaa.gov>
 #'
-#' @examples WhaleInjuryCovariates(x)
+#' @examples WhaleInjuryCovariates(df)
 #'
 #' @export
 #'
 
-WhaleInjuryCovariates = function(x) {
+WhaleInjuryCovariates = function(df) {
 
 # 02-25-2022
 # Covariates defined below, starting with covariate = 'anchored'
@@ -40,20 +40,20 @@ WhaleInjuryCovariates = function(x) {
                     "whale was stationary", "animal was stationary", "stationary animal",
                     "weighted","using flippers only", "could not freely swim"), collapse="|")
 
- anchored = grepl(anchored, x$Narrative, ignore.case=TRUE)
+ anchored = grepl(anchored, df$Narrative, ignore.case=TRUE)
 
  anchored = as.numeric(lapply(anchored, as.numeric))
 
 # Was a calf, juvenile or lactating mother involved in the case?
  calf.juv = paste(c("calf","juvenile","young","dependent"), collapse="|")
-    calf.juv = grepl(calf.juv, x$Narrative, ignore.case=TRUE)
+    calf.juv = grepl(calf.juv, df$Narrative, ignore.case=TRUE)
      calf.juv = as.numeric(lapply(calf.juv, as.numeric))
 
 # Evidence of constricting entanglement?
  constricting = paste(c("constricting", "deep cut", "tight", "cutting", "impress", "embed", "pinn",
                         "twisted", "necrotic", "amputat", "missing.*fluke", "fluke.*missing", "severed"), collapse="|")
 
- constricting = grepl(constricting, x$Narrative, ignore.case=TRUE)
+ constricting = grepl(constricting, df$Narrative, ignore.case=TRUE)
  constricting = as.numeric(lapply(constricting, as.numeric))
 
 # Evidence of a health decline?
@@ -62,17 +62,17 @@ WhaleInjuryCovariates = function(x) {
                    "poor health", "poor body", "poor over","poor skin","rake","discolored skin","skin discolor",
                    "slough", "thin ", "emaciat", "malnourish", "underweight", "starv"), collapse="|")
 
- decline = grepl(decline, x$Narrative, ignore.case=TRUE)
+ decline = grepl(decline, df$Narrative, ignore.case=TRUE)
  decline = as.numeric(lapply(decline, as.numeric))
 
 # 'Extensive or Severe' case resulting from entanglement or vessel strike?
  extensive.severe = paste(c("extensive","severe","severed","substantial","massive","amputat","major","missing fluke"), collapse="|")
-     extensive.severe = grepl(extensive.severe, x$Narrative, ignore.case=TRUE)
+     extensive.severe = grepl(extensive.severe, df$Narrative, ignore.case=TRUE)
       extensive.severe = as.numeric(lapply(extensive.severe, as.numeric))
 
 # Did injury involve fluke or peduncle area?
  fluke.peduncle = paste(c("fluke","peduncle","tail"), collapse="TRUE")
-      fluke.peduncle = grepl(fluke.peduncle, x$Narrative, ignore.case=TRUE)
+      fluke.peduncle = grepl(fluke.peduncle, df$Narrative, ignore.case=TRUE)
        fluke.peduncle = as.numeric(lapply(fluke.peduncle, as.numeric))
 
 #  Evidence that whale is now gear-free after initial sighting? Or is expected to shed loose gear?
@@ -80,12 +80,12 @@ WhaleInjuryCovariates = function(x) {
                       "free of gear", "self.*release", "disentangled", "removal of all gear",
                        "no gear remaining", "all gear removed"), collapse="|")
 
- gear.free = grepl(gear.free, x$Narrative, ignore.case=TRUE)
+ gear.free = grepl(gear.free, df$Narrative, ignore.case=TRUE)
   gear.free = as.numeric(lapply(gear.free, as.numeric))
 
 # Injury involved head, rostrum, or mouth?
  head = paste(c("head","baleen","mouth","rostrum","lips"," lip ", "jaw","blowhole","nares"), collapse="|")
-      head = grepl(head, x$Narrative, ignore.case=TRUE)
+      head = grepl(head, df$Narrative, ignore.case=TRUE)
        head = as.numeric(lapply(head, as.numeric))
 
 # Deep laceration?
@@ -97,7 +97,7 @@ WhaleInjuryCovariates = function(x) {
                               "laceration.*large", "laceration.*propell", "propell.*laceration",
                               "deep.*propel", "propel.*deep"), collapse="|")
 
- laceration.deep = grepl(laceration.deep, x$Narrative, ignore.case=TRUE)
+ laceration.deep = grepl(laceration.deep, df$Narrative, ignore.case=TRUE)
  laceration.deep = as.numeric(lapply(laceration.deep, as.numeric))
 
 # Shallow laceration?
@@ -105,7 +105,7 @@ WhaleInjuryCovariates = function(x) {
                        "laceration.*minor", "superficial.*laceration", "laceration.*superficial", "heal.*laceration",
                        "laceration.*heal", "small.*laceration","laceration.*small"), collapse="|")
 
- laceration.shallow = grepl(laceration.shallow, x$Narrative, ignore.case=TRUE)
+ laceration.shallow = grepl(laceration.shallow, df$Narrative, ignore.case=TRUE)
  laceration.shallow = as.numeric(lapply(laceration.shallow, as.numeric))
 
 # Deep vs Shallow laceration is hierarchical. A whale with both gets coded for a deep laceration.
@@ -119,47 +119,47 @@ WhaleInjuryCovariates = function(x) {
  healing = paste(c("healing","healed","healthy.*resight","resight.*healthy","good health",
                     "no visible injur","no injur", "no noticeable injuries", " normal behavior"), collapse="|")
 
- healing = grepl(healing, x$Narrative, ignore.case=TRUE)
+ healing = grepl(healing, df$Narrative, ignore.case=TRUE)
  healing = as.numeric(lapply(healing, as.numeric))
 
 # Did injury involve flipper/pectoral?
  pectoral = paste(c("pectoral","flipper","pecs"), collapse="|")
-   pectoral = grepl(pectoral, x$Narrative, ignore.case=TRUE)
+   pectoral = grepl(pectoral, df$Narrative, ignore.case=TRUE)
     pectoral = as.numeric(lapply(pectoral, as.numeric))
 
 # Narrative includes reference to swimming and / or diving whale?
  swim.dive = paste(c("free.*swimming", "swimming.*free", "swimming.*diving", "diving.*swimming",
                     "swimming.*dove", "dove.*swim", "swam"), collapse = "|")
 
- swim.dive = grepl(swim.dive, x$Narrative, ignore.case=TRUE)
+ swim.dive = grepl(swim.dive, df$Narrative, ignore.case=TRUE)
  swim.dive = as.numeric(lapply(swim.dive, as.numeric))
 
 # Was whale trailing gear?
  trailing = paste(c("trail", "towing", "dragging", "feet behind", "ft behind", "behind whale",
                  "behind.animal", "behind the whale", "towed gear"), collapse = "|")
 
- trailing = grepl(trailing, x$Narrative, ignore.case=TRUE)
+ trailing = grepl(trailing, df$Narrative, ignore.case=TRUE)
  trailing = as.numeric(lapply(trailing, as.numeric))
 
 # Whale has wraps of gear (none or multiple?)
  wraps.no = paste(c("no wrap"), collapse="|")
- wraps.no = grepl(wraps.no, x$Narrative, ignore.case=TRUE)
+ wraps.no = grepl(wraps.no, df$Narrative, ignore.case=TRUE)
  wraps.no = as.numeric(lapply(wraps.no, as.numeric))
 
  wraps.multi = paste(c("multiple wraps","several wraps","wrapped several","wrapped multiple"), collapse="|")
- wraps.multi = grepl(wraps.multi, x$Narrative, ignore.case=TRUE)
+ wraps.multi = grepl(wraps.multi, df$Narrative, ignore.case=TRUE)
  wraps.multi = as.numeric(lapply(wraps.multi, as.numeric))
 
 # Begin vessel strike covariate section, append covariates to current data frame
 # Assign null Vessel Speed and Size factors as default filter to index from
-  VessSpd <- rep("VSpdUnk", nrow(x))
-  VessSz <- rep("VSzUnk", nrow(x))
+  VessSpd <- rep("VSpdUnk", nrow(df))
+  VessSz <- rep("VSzUnk", nrow(df))
 
 # Vessel Variables (VSize and VSpeed)
 #  Archive Vessel Size and Speed strings
 
 # identify character vector that includes all unique numeric values in data$Narrative
-  all.values <- unlist(regmatches(x$Narrative, gregexpr("[0-9]*\\.?[0-9]", x$Narrative)))
+  all.values <- unlist(regmatches(df$Narrative, gregexpr("[0-9]*\\.?[0-9]", df$Narrative)))
   all.values <- as.character(unique(as.numeric(all.values)))
   all.values <- as.numeric(sort(all.values))
 
@@ -206,8 +206,8 @@ WhaleInjuryCovariates = function(x) {
        VLg.strings <- paste(c(VLg.strings, More.VLg.strings), sep=",", collapse="|")
 
 # indices for known vessel size identified first as filter
-       VSm.ind <- grep(VSm.strings, x$Narrative, ignore.case=TRUE)
-       VLg.ind <- grep(VLg.strings, x$Narrative, ignore.case=TRUE)
+       VSm.ind <- grep(VSm.strings, df$Narrative, ignore.case=TRUE)
+       VLg.ind <- grep(VLg.strings, df$Narrative, ignore.case=TRUE)
 
 # Vessel Speed descriptions / definitions VSpeed threshold is <= 10 kts and >10 kts
 
@@ -237,8 +237,8 @@ WhaleInjuryCovariates = function(x) {
        More.VFast.strings <- c("wrapped around bow", "stuck on bow", "larger and faster than whale", "bow of a large ship", ">10kt", ">10 kt", ">10 knots")
        VFast.strings <- paste(c(VFast.strings, More.VFast.strings), sep=",", collapse="|")
 
-       VSlow.ind <- grep(VSlow.strings, x$Narrative, ignore.case=TRUE)
-       VFast.ind <- grep(VFast.strings, x$Narrative, ignore.case=TRUE)
+       VSlow.ind <- grep(VSlow.strings, df$Narrative, ignore.case=TRUE)
+       VFast.ind <- grep(VFast.strings, df$Narrative, ignore.case=TRUE)
 
        VessSz[VSm.ind] <- "VSzSmall"
        VessSz[VLg.ind] <- "VSzLarge"
@@ -248,7 +248,7 @@ WhaleInjuryCovariates = function(x) {
 
 # overwrite entanglement 'CAUSE=EN' records with unknown vessel sizes / speeds
 
-       EN.ind <- which(x$CAUSE=="EN")
+       EN.ind <- which(df$CAUSE=="EN")
        VessSz[EN.ind] <- "VSzUnk"
        VessSpd[EN.ind] <- "VSpdUnk"
 
@@ -262,7 +262,7 @@ WhaleInjuryCovariates = function(x) {
 # assigned the known category last (Fast supercedes Unknown and Slow, Large supercedes Unknown and Small)
 
 
-       df <- cbind.data.frame(x, anchored, calf.juv, constricting, decline, extensive.severe, fluke.peduncle, gear.free, head, healing,
+       df <- cbind.data.frame(df, anchored, calf.juv, constricting, decline, extensive.severe, fluke.peduncle, gear.free, head, healing,
                              laceration.deep, laceration.shallow, pectoral, swim.dive, trailing, VessSpd, VessSz, wraps.multi, wraps.no)
 
        df$VessSpd <- factor(df$VessSpd)
