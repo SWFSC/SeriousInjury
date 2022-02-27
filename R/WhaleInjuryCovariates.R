@@ -13,7 +13,7 @@
 #'
 #' @author Jim Carretta <jim.carretta@noaa.gov>
 #'
-#' @examples WhaleInjuryCovariates(WhaleData)
+#' @examples WhaleInjuryCovariates(x)
 #'
 #' @export
 #'

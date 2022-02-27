@@ -10,7 +10,7 @@
 #'
 #' @author Jim Carretta <jim.carretta@noaa.gov>
 #'
-#' @examples barplotCovariates(WhaleDataCovs)
+#' @examples barplotCovariates(df)
 #'
 #' @export
 #'
