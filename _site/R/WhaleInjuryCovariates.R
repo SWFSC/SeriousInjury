@@ -1,17 +1,11 @@
-#' @title WhaleInjuryCovariates()
+#' @title Injury Covariates
 #'
 #' @description
-#' Identify Covariates for Whale Injury Assessments from
-#' Narratives + Append Covariates to existing data.frame.
-#'
-#' Search wide-form data.frame column named 'Narrative' for words/phrases
-#' to be coded as binary absence / presence (0/1) injury covariates.
-#' Append to new data.frame with function WhaleInjuryCovariates().
-#'
-#' Resulting data.frame is used with randomForest models to predict
-#' health status of whales involved in entanglements or vessel strikes.
-#'
-#' Package includes example data.frame "WhaleData"
+#' Define covariates from whale injury narratives based on presence or absence of key words or phrases
+#' used to predict health outcomes. 'Narratives' (case sensitive) should be in a wide-form data frame
+#' in column of same name. Append covariates to data frame using function WhaleInjuryCovariates(). Resulting
+#' data frame is used with Random Forest classification trees to predict health status of whales involved in
+#' entanglements or vessel strikes. Package includes example data frame "WhaleData"
 #'
 #' @usage WhaleInjuryCovariates(x)
 #'
@@ -23,9 +17,10 @@
 #'
 #' @export
 #'
- WhaleInjuryCovariates = function(x) {
 
-# 02-16-2022
+WhaleInjuryCovariates = function(x) {
+
+# 02-25-2022
 # Covariates defined below, starting with covariate = 'anchored'
 # Multiple words/phrases may be pooled into a single covariate, e.g. the covariate 'decline'
 # includes narrative words/phrases 'cyamid', 'whale lice', 'emaciation', 'skin discoloration', etc.

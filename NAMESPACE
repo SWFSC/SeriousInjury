@@ -3,3 +3,8 @@
 export(SeriousInjuryTutorial)
 export(WhaleInjuryCovariates)
 export(barplotCovariates)
+import(ggplot2)
+import(graphics)
+import(grid)
+import(rfPermute)
+import(utils)

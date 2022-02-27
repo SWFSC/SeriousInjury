@@ -8,6 +8,12 @@
 #'
 #' @examples
 #'
+#' @import ggplot2
+#' @import graphics
+#' @import grid
+#' @import rfPermute
+#' @import utils
+#'
 #' @export
 #'
 SeriousInjuryTutorial <- function() {

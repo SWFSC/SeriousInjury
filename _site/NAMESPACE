@@ -2,3 +2,4 @@
 
 export(SeriousInjuryTutorial)
 export(WhaleInjuryCovariates)
+export(barplotCovariates)

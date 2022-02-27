@@ -1,4 +1,4 @@
-#' @title SeriousInjuryTutorial
+#' @title Tutorial
 #'
 #' @description Assign whale injuries as Serious vs Non-Serious with Random Forests
 #'
@@ -11,7 +11,8 @@
 #' @export
 #'
 SeriousInjuryTutorial <- function() {
-  browseURL("https://JimCarretta.github.io")
+#  browseURL("https://JimCarretta.github.io")
+  browseURL(system.file("extdata", "index.html", package="SeriousInjury", mustWork=TRUE))
 }
 
 .onAttach <- function(libname, pkgname) {

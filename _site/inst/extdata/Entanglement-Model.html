@@ -9,14 +9,12 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
-<meta name="author" content="Jim Carretta jim.carretta@noaa.gov" />
 
-<meta name="date" content="2022-02-26" />
 
-<title>R-Package SeriousInjury</title>
+<title>Entanglement Model</title>
 
-<script src="site_libs/header-attrs-2.10/header-attrs.js"></script>
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/darkly.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
@@ -220,78 +218,6 @@ $(document).ready(function () {
 
 
 
-<style type="text/css">
-
-#TOC {
-  margin: 25px 0px 20px 0px;
-}
-@media (max-width: 768px) {
-#TOC {
-  position: relative;
-  width: 100%;
-}
-}
-
-@media print {
-#TOC {
-  display: none !important;
-}
-.toc-content {
-  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
-  float: right;
-}
-}
-
-.toc-content {
-  padding-left: 30px;
-  padding-right: 40px;
-}
-
-div.main-container {
-  max-width: 1200px;
-}
-
-div.tocify {
-  width: 20%;
-  max-width: 260px;
-  max-height: 85%;
-}
-
-@media (min-width: 768px) and (max-width: 991px) {
-  div.tocify {
-    width: 25%;
-  }
-}
-
-@media (max-width: 767px) {
-  div.tocify {
-    width: 100%;
-    max-width: none;
-  }
-}
-
-.tocify ul, .tocify li {
-  line-height: 20px;
-}
-
-.tocify-subheader .tocify-item {
-  font-size: 0.90em;
-}
-
-.tocify .list-group-item {
-  border-radius: 0px;
-}
-
-.tocify-subheader {
-  display: inline;
-}
-.tocify-subheader .tocify-item {
-  font-size: 0.95em;
-}
-
-</style>
-
-
 
 </head>
 
@@ -299,16 +225,6 @@ div.tocify {
 
 
 <div class="container-fluid main-container">
-
-
-<!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row">
-<div class="col-xs-12 col-sm-4 col-md-3">
-<div id="TOC" class="tocify">
-</div>
-</div>
-
-<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -326,7 +242,7 @@ div.tocify {
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="index.html">Package Serious Injury</a>
+  <a href="index.html">R-Package Serious Injury</a>
 </li>
 <li>
   <a href="about.html">About</a>
@@ -358,49 +274,50 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">R-Package <em>SeriousInjury</em></h1>
-<h3 class="subtitle">Assess Whale Injuries with Classification Trees</h3>
-<h4 class="author">Jim Carretta <a href="mailto:jim.carretta@noaa.gov" class="email">jim.carretta@noaa.gov</a></h4>
-<h4 class="date">26 February 2022</h4>
+<h1 class="title toc-ignore">Entanglement Model</h1>
 
 </div>
 
 
 <hr />
-<div id="noaa-assesses-anthropogenic-injuries-and-deaths-under-the-marine-mammal-protection-act-mmpa-through-a-serious-injury-policy-and-procedural-directive.-injuries-are-defined-as-non-serious-or-serious-where-the-latter-is-defined-as-any-injury-that-is-more-likely-than-not-to-result-in-mortality-or-any-injury-that-presents-a-greater-than-50-percent-chance-of-death-to-a-marine-mammal." class="section level4">
-<h4>NOAA assesses anthropogenic injuries and deaths under the Marine Mammal Protection Act (MMPA) through a <a href="https://media.fisheries.noaa.gov/dam-migration/02-238.pdf">Serious Injury Policy</a> and <a href="https://media.fisheries.noaa.gov/dam-migration/02-238-01.pdf">Procedural Directive</a>. Injuries are defined as ‘Non-Serious’ or ‘Serious’, where the latter is defined as <em><b>“any injury that is more likely than not to result in mortality, or any injury that presents a greater than 50 percent chance of death to a marine mammal”</b></em>.</h4>
-</div>
-<div id="noaa-is-reviewing-the-serious-injury-policy-and-procedures-for-large-whales-with-new-data-and-assessing-a-new-random-forest-method-to-estimate-individual-probabilities-of-a-health-decline-death-or-recovery-for-entanglements-and-vessel-strikes." class="section level4">
-<h4>NOAA is reviewing the Serious Injury policy and procedures for large whales with new data and assessing a new Random Forest method to estimate individual probabilities of a health decline, death, or recovery for entanglements and vessel strikes.</h4>
-</div>
-<div id="the-major-proposed-change-is-that-current-serious-injury-procedures-requiring-biologists-to-assess-a-series-of-conditions-e.g." class="section level4">
-<h4>The major proposed change is that current serious injury procedures requiring biologists to assess a series of conditions , e.g. </h4>
-</div>
-<div id="was-entangling-gear-constricting-or-loose" class="section level4">
-<h4><b><em>“Was entangling gear constricting or loose?”</em></b></h4>
-</div>
-<div id="could-be-automated-using-a-random-forest-rf-algorithm.-the-rf-model-uses-covariates-derived-from-key-words-and-phrases-in-injury-narratives-known-to-be-good-predictors-of-non-serious-vs-serious-injuries." class="section level4">
-<h4>could be automated using a Random Forest (RF) algorithm. The RF model uses covariates derived from key words and phrases in injury narratives known to be good predictors of non-serious vs serious injuries.</h4>
-</div>
-<div id="methods-r-functions-and-application-examples-for-large-whale-data-are-summarized-in-the-r-package-seriousinjury-and-are-summarized-on-this-website." class="section level4">
-<h4>Methods, R functions, and application examples for large whale data are summarized in the R-Package <em><a href="https://github.com/JimCarretta/SeriousInjury">SeriousInjury</a></em> and are summarized on this website.</h4>
-</div>
-<div id="to-install-the-latest-seriousinjury-version-from-github" class="section level4">
-<h4>To install the latest <em>SeriousInjury</em> version from GitHub:</h4>
-<pre><code># make sure you have devtools installed
+<div
+id="the-entanglement-model-modelentangle-is-an-object-of-class-rfpermute-that-includes-x-observations-of-known-outcome-injury-cases-representing-y-species.-entanglement-injury-cases-are-included-as-the-data.frame-entangledata-in-the-r-package-seriousinjury."
+class="section level4">
+<h4>The Entanglement Model (ModelEntangle) is an object of class
+rfPermute that includes x observations of known-outcome injury cases,
+representing y species. Entanglement injury cases are included as the
+data.frame “EntangleData” in the R-Package SeriousInjury.</h4>
+<pre><code># Create randomForest model (using R-Package rfPermute) using known-outcome entanglement strike data
+
+# make sure you have devtools installed
 if (!require(&#39;devtools&#39;)) install.packages(&#39;devtools&#39;)
 
 # install from GitHub
-devtools::install_github(&#39;JimCarretta/SeriousInjury&#39;)</code></pre>
-</div>
-<div id="installing-the-seriousinjury-package-will-also-install-the-package-rfpermute-which-is-used-to-build-random-forest-models." class="section level4">
-<h4>Installing the ‘SeriousInjury’ package will also install the package ‘rfPermute’, which is used to build Random Forest models.</h4>
+devtools::install_github(&#39;EricArcher/rfPermute&#39;)
+
+library(rfPermute)
+
+# set.seed for reproducibility
+set.seed(123)
+
+# how many RF trees to build
+size.RF = 1000
+
+# balance sample size for each class; we are equally-interested in correctly      
+#  predicting non-serious and serious injuries
+ 
+sampsize = balancedSampsize(data.entangle$Health.status)
+
+ModelEntanglement = rfPermute(data.entangle$Health.status ~ .,
+ EntanglementData, sampsize=sampsize, ntree=size.RF, 
+  replace=FALSE, importance=TRUE, proximity=TRUE)
+
+ModelEntanglement
+ </code></pre>
 </div>
 
 
 
-</div>
-</div>
 
 </div>
 
@@ -433,35 +350,6 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
-<script>
-$(document).ready(function ()  {
-
-    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
-    $('.unlisted.unnumbered').addClass('toc-ignore')
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = false;
-    options.smoothScroll = false;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
