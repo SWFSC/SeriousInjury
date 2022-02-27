@@ -4,9 +4,9 @@
 #' Create barplot of injury covariates from data frame column 'Narrative',
 #' stratified by known health status ("DEAD.DECLINE" vs "RECOVERED")
 #'
-#' @usage barplotCovariates(x)
+#' @usage barplotCovariates(df)
 #'
-#' @param x an object of class 'data.frame'
+#' @param df an object of class 'data.frame'
 #'
 #' @author Jim Carretta <jim.carretta@noaa.gov>
 #'
@@ -27,7 +27,7 @@
 
 # drop empty factors for Health.status
 
-# levels(df.covars$Health.status) <- c("DEAD.DECLINE", "RECOVERED", "UNKNOWN")
+ levels(df.covars$Health.status) <- c("DEAD.DECLINE", "RECOVERED", "UNKNOWN")
 
  df.covars = droplevels(df.covars)
 
