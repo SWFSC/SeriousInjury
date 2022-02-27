@@ -6,7 +6,7 @@
 #'
 #' @author Jim Carretta <jim.carretta@noaa.gov>
 #'
-#' @examples
+#' @examples SeriousInjuryTutorial()
 #'
 #' @import ggplot2
 #' @import graphics
