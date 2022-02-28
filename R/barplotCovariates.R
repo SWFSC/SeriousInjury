@@ -27,7 +27,7 @@
 
 # drop empty factors for Health.status
 
- levels(df.covars$Health.status) <- c("DEAD.DECLINE", "RECOVERED", "UNKNOWN")
+# levels(df.covars$Health.status) <- c("DEAD.DECLINE", "RECOVERED", "UNKNOWN")
 
  df.covars = droplevels(df.covars)
 
@@ -67,15 +67,16 @@
 
  df.final <- s4[,order(names(s4))]
 
- matrix <- as.matrix(df.final)
- ## keep only "DEAD.DECLINE" and "RECOVERED" response classes for plotting (omit "UNKNOWN")
- matrix <- matrix[1:2,]
+ injury.matrix <- as.matrix(df.final)
+
+# keep only "DEAD.DECLINE" and "RECOVERED" response classes for plotting (omit "UNKNOWN")
+ injury.matrix <- injury.matrix[1:2,]
 
 # jpeg("Covariate_Barplot.jpg", width=2000, height=1200, units="px", res=300)
 
  use.colors <- c("black", "gray75")
 
- VPlot = barplot(matrix, width=0.5, ylab="Number Cases",
+ VPlot = barplot(injury.matrix, width=0.5, ylab="Number Cases",
                  xaxt="n", xlab="", horiz=F, col=use.colors, main="")
  # rotate and place x axis text
  text(cex=1, x=VPlot + 0.25, y=-5, names(df.final), xpd=TRUE, srt=45, pos=2)
@@ -84,6 +85,5 @@
  legend("topright", legend.type, title="Health Status", bty="n", col=use.colors, cex=0.75, fill=c(col=c(use.colors)))
 
  VPlot
-# dev.off()
 
  }

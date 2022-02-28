@@ -20,7 +20,7 @@
 
 WhaleInjuryCovariates = function(df) {
 
-# 02-25-2022
+# 02-27-2022
 # Covariates defined below, starting with covariate = 'anchored'
 # Multiple words/phrases may be pooled into a single covariate, e.g. the covariate 'decline'
 # includes narrative words/phrases 'cyamid', 'whale lice', 'emaciation', 'skin discoloration', etc.
