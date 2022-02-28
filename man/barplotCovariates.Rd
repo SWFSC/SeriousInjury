@@ -2,7 +2,7 @@
 % Please edit documentation in R/barplotCovariates.R
 \name{barplotCovariates}
 \alias{barplotCovariates}
-\title{Barplot Covariates}
+\title{BarplotCovariates}
 \usage{
 barplotCovariates(df)
 }
@@ -10,8 +10,8 @@ barplotCovariates(df)
 \item{df}{an object of class 'data.frame'}
 }
 \description{
-Create barplot of injury covariates from data frame column 'Narrative',
-stratified by known health status ("DEAD.DECLINE" vs "RECOVERED")
+Create barplot of injury covariates, stratified by health status ("DEAD.DECLINE" vs "RECOVERED").
+Covariates must be appended to data frame using function WhaleInjuryCovariates()
 }
 \examples{
 barplotCovariates(df)

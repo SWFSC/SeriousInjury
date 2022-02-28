@@ -25,9 +25,7 @@ SeriousInjuryTutorial <- function() {
     "Welcome to SeriousInjury v", utils::packageVersion("SeriousInjury"), "\n",
     "See SeriousInjuryTutorial() for a guide to the package."
   )
-}
 
-.onAttach <- function(libname, pkgname) {
   WhaleData <- read.csv(system.file("extdata", "WhaleData.csv", package="SeriousInjury", mustWork=TRUE))
 }
 

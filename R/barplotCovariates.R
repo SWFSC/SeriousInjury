@@ -1,8 +1,8 @@
-#' @title Barplot Covariates
+#' @title BarplotCovariates
 #'
 #' @description
-#' Create barplot of injury covariates from data frame column 'Narrative',
-#' stratified by known health status ("DEAD.DECLINE" vs "RECOVERED")
+#' Create barplot of injury covariates, stratified by health status ("DEAD.DECLINE" vs "RECOVERED").
+#' Covariates must be appended to data frame using function WhaleInjuryCovariates()
 #'
 #' @usage barplotCovariates(df)
 #'
@@ -19,27 +19,15 @@
 
  barplotCovariates <- function(df) {
 
- df.covars <- WhaleInjuryCovariates(df)
-
- df.covars$Health.status[grep("dead|decline", df.covars$Health.status, ignore.case=T)] <- "DEAD.DECLINE"
- df.covars$Health.status[grep("recovered", df.covars$Health.status, ignore.case=T)] <- "RECOVERED"
- df.covars$Health.status[grep("unknown", df.covars$Health.status, ignore.case=T)] <- "UNKNOWN"
-
-# drop empty factors for Health.status
-
-# levels(df.covars$Health.status) <- c("DEAD.DECLINE", "RECOVERED", "UNKNOWN")
-
- df.covars = droplevels(df.covars)
-
- first.covariate.col = which(names(df.covars) %in% "anchored")
- last.covariate.col = which(names(df.covars) %in% "VessSpd")
- covariate.names = names(df.covars[first.covariate.col:last.covariate.col])
+ first.covariate.col = which(names(df) %in% "anchored")
+ last.covariate.col = which(names(df) %in% "VessSpd")
+ covariate.names = names(df[first.covariate.col:last.covariate.col])
 
  # index dead.decline and recovered health indices
 
- df.dead.decline = df.covars[grep("dead|decline", df.covars$Health.status, ignore.case=T),]
- df.recovered = df.covars[grep("recovered", df.covars$Health.status, ignore.case=T),]
- df.unknown = df.covars[grep("unk", df.covars$Health.status, ignore.case=T),]
+ df.dead.decline = df[grep("dead|decline", df$Health.status, ignore.case=T),]
+ df.recovered = df[grep("recovered", df$Health.status, ignore.case=T),]
+ df.unknown = df[grep("unk", df$Health.status, ignore.case=T),]
 
  # sum presence / absence of covariates by df type (using numeric covariates)
  # identify numeric covariates
@@ -48,7 +36,7 @@
                      "gear.free", "head", "healing", "laceration.deep", "laceration.shallow", "pectoral",
                      "swim.dive", "trailing", "wraps.multi", "wraps.no")
 
- numeric.covars.cols <- which(names(df.covars) %in% numeric.covars)
+ numeric.covars.cols <- which(names(df) %in% numeric.covars)
 
 # sum of positive variable occurrences for numeric variables over three health status responses
  s1 <- colSums(df.dead.decline[,numeric.covars.cols])
@@ -58,8 +46,8 @@
  s4 <- rbind.data.frame(s1, s2, s3)
  names(s4) <- numeric.covars
 
- t1 <- table(df.covars$Health.status, df.covars$VessSpd)
- t2 <- table(df.covars$Health.status, df.covars$VessSz)
+ t1 <- table(df$Health.status, df$VessSpd)
+ t2 <- table(df$Health.status, df$VessSz)
 
  s4 <- cbind.data.frame(s4, t1[,1], t1[,2], t2[,1], t2[,2])
 
