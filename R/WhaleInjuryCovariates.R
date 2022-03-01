@@ -1,4 +1,4 @@
-#' @title Injury Covariates
+#' @title InjuryCovariates
 #'
 #' @description
 #' Define covariates from whale injury narratives based on presence or absence of key words or phrases
