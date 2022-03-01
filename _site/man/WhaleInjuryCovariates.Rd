@@ -2,12 +2,12 @@
 % Please edit documentation in R/WhaleInjuryCovariates.R
 \name{WhaleInjuryCovariates}
 \alias{WhaleInjuryCovariates}
-\title{Injury Covariates}
+\title{InjuryCovariates}
 \usage{
-WhaleInjuryCovariates(x)
+WhaleInjuryCovariates(df)
 }
 \arguments{
-\item{x}{an object of class 'data.frame'}
+\item{df}{an object of class 'data.frame'}
 }
 \description{
 Define covariates from whale injury narratives based on presence or absence of key words or phrases
@@ -17,7 +17,7 @@ data frame is used with Random Forest classification trees to predict health sta
 entanglements or vessel strikes. Package includes example data frame "WhaleData"
 }
 \examples{
-WhaleInjuryCovariates(WhaleData)
+WhaleInjuryCovariates(df)
 
 }
 \author{

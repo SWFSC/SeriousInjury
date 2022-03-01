@@ -7,18 +7,18 @@
 #' data frame is used with Random Forest classification trees to predict health status of whales involved in
 #' entanglements or vessel strikes. Package includes example data frame "WhaleData"
 #'
-#' @usage WhaleInjuryCovariates(df)
+#' @usage InjuryCovariates(df)
 #'
 #' @param df an object of class 'data.frame'
 #'
 #' @author Jim Carretta <jim.carretta@noaa.gov>
 #'
-#' @examples WhaleInjuryCovariates(df)
+#' @examples InjuryCovariates(df)
 #'
 #' @export
 #'
 
-WhaleInjuryCovariates = function(df) {
+InjuryCovariates = function(df) {
 
 # 02-27-2022
 # Covariates defined below, starting with covariate = 'anchored'
