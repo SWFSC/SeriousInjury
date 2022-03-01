@@ -281,15 +281,12 @@ $(document).ready(function () {
 
 <hr />
 <div
-id="covariates-are-derived-from-injury-narratives-with-the-function-injurycovariates.-code-to-define-maintain-and-extract-covariates-from-narratives-is-found-in-the-r-script-large-whale-injury-covariates.r.-covariates-are-defined-below-followed-by-example-code-defining-the-covariate-decline-coding-it-as-a-presence-absence-value-and-appending-these-values-to-the-data.frame-whaledata."
+id="covariates-are-derived-from-injury-narratives-with-the-function-injurycovariates.-code-to-define-maintain-and-extract-covariates-from-narratives-is-found-in-the-r-script-injurycovariates.r.-covariates-are-defined-below."
 class="section level4">
 <h4>Covariates are derived from injury narratives with the function
 ‘<em>InjuryCovariates()</em>’. Code to define, maintain, and extract
-covariates from narratives is found in the R-script <em>Large Whale
-Injury Covariates.R</em>. Covariates are defined below, followed by
-example code defining the covariate <em>decline</em>, coding it as a
-presence / absence value, and appending these values to the data.frame
-‘WhaleData’.</h4>
+covariates from narratives is found in the R-script
+<em>InjuryCovariates.R</em>. Covariates are defined below.</h4>
 </div>
 <div id="definitions" class="section level4">
 <h4>Definitions:</h4>
@@ -435,40 +432,6 @@ Narrative includes reference to a whale without any wraps of line or
 gear around body or appendage.
 </p>
 <p><br><br></p>
-<pre><code># To install the latest *SeriousInjury* version from GitHub:
-
-# make sure you have devtools installed
-if (!require(&#39;devtools&#39;)) install.packages(&#39;devtools&#39;)
-
-# install from GitHub
-devtools::install_github(&#39;JimCarretta/SeriousInjury&#39;)
-
-# Example code to identify covariate &#39;decline&#39; from injury narratives in data.frame &#39;WhaleData&#39;.
-#   function InjuryCovariates() applied to data.frame &#39;WhaleData&#39;
-#    data.frame narrative field must be named &#39;Narrative&#39; for use with WhaleInjuryCovariates().
-#     use function &#39;grepl&#39; to search for words/phrases in &#39;Narrative&#39;.
-#      code covariates numerically as 1/0, aligned with their TRUE/FALSE (=presence/absence) state.
-
-# Evidence of a health decline? 
-#  Search &#39;Narrative&#39; for words/phrases associated with health declines.
-    
-    decline &lt;- grepl(&quot; abnormal|chronic|deteriorat|fair|
-     compromise|scoliosis|deform|cyamid|lice|lethargic|
-      lesion|discolor|diatom|poor cond|poor health|poor body|
-       poor over|poor skin|rake|skin|slough|thin |emaciated|malnourish|
-        underweight|starv|mobility&quot;, WhaleData$Narrative, ignore.case=T)
-    
-    decline &lt;- as.numeric(lapply(decline, as.numeric))
-     decline
-    
-# Use InjuryCovariates() to append all covariates to each row of &#39;WhaleData&#39; 
-    
-    head(WhaleData)
-
-    new.data.frame &lt;- InjuryCovariates(WhaleData)
-
-    head(new.data.frame)
-    </code></pre>
 </div>
 
 
