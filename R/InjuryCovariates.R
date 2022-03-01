@@ -3,7 +3,7 @@
 #' @description
 #' Define covariates from whale injury narratives based on presence or absence of key words or phrases
 #' used to predict health outcomes. 'Narratives' (case sensitive) should be in a wide-form data frame
-#' in column of same name. Append covariates to data frame using function WhaleInjuryCovariates(). Resulting
+#' in column of same name. Append covariates to data frame using function InjuryCovariates(). Resulting
 #' data frame is used with Random Forest classification trees to predict health status of whales involved in
 #' entanglements or vessel strikes. Package includes example data frame "WhaleData"
 #'
@@ -15,9 +15,13 @@
 #'
 #' @examples
 #' InjuryData <- read.csv(system.file("extdata", "WhaleData.csv", package="SeriousInjury", mustWork=TRUE))
+#'
 #' head(InjuryData)
+#'
 #' # append injury covariates to InjuryData
+#'
 #' InjuryDataCov <- InjuryCovariates(InjuryData)
+#'
 #' head(InjuryDataCov)
 #'
 #' # show barplot of injury covariates by health status
