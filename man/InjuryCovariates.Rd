@@ -17,7 +17,14 @@ data frame is used with Random Forest classification trees to predict health sta
 entanglements or vessel strikes. Package includes example data frame "WhaleData"
 }
 \examples{
-InjuryCovariates(df)
+InjuryData <- read.csv(system.file("extdata", "WhaleData.csv", package="SeriousInjury", mustWork=TRUE))
+head(InjuryData)
+# append injury covariates to InjuryData
+InjuryDataCov <- InjuryCovariates(InjuryData)
+head(InjuryDataCov)
+
+# show barplot of injury covariates by health status
+ barplotCovariates(InjuryDataCov)
 
 }
 \author{
