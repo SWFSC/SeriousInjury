@@ -16,7 +16,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 head(data.test.entangle)
 
-# Apply existing 'ModelEntangle' to data.test.entangle to generate binary and probabilistic model predictions
+# Apply existing 'ModelEntanglement' to data.test.entangle to generate binary and probabilistic model predictions
 
 majority.prediction <- predict(ModelEntanglement, data.test.entangle, type='response')
 prob.prediction <- predict(ModelEntanglement, data.test.entangle, type='prob')
