@@ -1,7 +1,7 @@
 Package: SeriousInjury
 Type: Package
 Title: Classify Whale Injuries as Serious or Non-Serious with Classification Trees
-Version: 1.0.0
+Version: 1.1.0
 Depends: ggplot2, graphics, grid, rfPermute, utils
 Author: Jim Carretta
 Maintainer: Jim Carretta <jim.carretta@noaa.gov>
