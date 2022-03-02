@@ -7,9 +7,7 @@ output: html_document
 
 ##### *WhaleData* is raw data for all whale injury cases, with injury descriptions in the 'Narrative' field. 
 
-##### Data used in Random Forest (RF) models includes known-outcome cases (Health.status="DEAD.DECLINE" or "RECOVERED"), excluding
-cases where human intervention to remove entanglements occurred. Model data includes two data frames; *data.entangle* and *data.vessel*,
-used in RF models.
+##### Data used in Random Forest (RF) models includes known-outcome cases (Health.status="DEAD.DECLINE" or "RECOVERED"), excluding cases where human intervention to remove entanglements occurred. Model data includes two data frames; *data.entangle* and *data.vessel*, used in RF models.
 
 ##### The data frame *data.test.entangle* includes cases with Health.status="UNKNOWN" and is used with the predict() function and the RF object 'ModelEntanglement' to assign each case to "DEAD.DECLINE" or "RECOVERED".
 
