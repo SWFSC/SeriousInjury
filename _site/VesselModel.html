@@ -11,10 +11,10 @@
 
 
 
-<title>Predict New Data</title>
+<title>Vessel Model</title>
 
-<script src="site_libs/header-attrs-2.10/header-attrs.js"></script>
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/darkly.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
@@ -251,16 +251,16 @@ $(document).ready(function () {
   <a href="data.html">Data</a>
 </li>
 <li>
-  <a href="Covariate-Descriptions.html">Covariates</a>
+  <a href="Covariates.html">Covariates</a>
 </li>
 <li>
-  <a href="Entanglement-Model.html">Entanglement Model</a>
+  <a href="EntanglementModel.html">Entanglement Model</a>
 </li>
 <li>
-  <a href="Vessel-Model.html">Vessel Model</a>
+  <a href="VesselModel.html">Vessel Model</a>
 </li>
 <li>
-  <a href="Predict-New-Data.html">Predict New Data</a>
+  <a href="PredictNewData.html">Predict New Data</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -274,29 +274,51 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Predict New Data</h1>
+<h1 class="title toc-ignore">Vessel Model</h1>
 
 </div>
 
 
 <hr />
-<div id="use-existing-random-forest-models-to-predict-probability-of-a-death-health-decline-or-recovery-for-novel-cases-where-the-outcome-is-unknown." class="section level3">
-<h3>Use existing Random Forest models to predict probability of a death, health decline or recovery for novel cases where the outcome is unknown.</h3>
-<div id="estimate-the-probability-of-a-non-serious-or-serious-injury-using-example-code-below.-both-dead.decline-and-recovered-probabilities-are-estimated-based-on-the-fraction-of-random-forest-tree-assignments-to-each-class.-a-binary-prediction-either-dead.decline-or-recovered-is-also-returned-based-on-the-majority-class-assignment-50-of-trees.-in-case-of-ties-which-are-rare-the-model-randomly-assigns-a-class." class="section level4">
-<h4>Estimate the probability of a non-serious or serious injury using example code below. Both <em>Dead.Decline</em> and <em>Recovered</em> probabilities are estimated, based on the fraction of Random Forest tree assignments to each class. A binary prediction (either <em>Dead.Decline</em> or <em>Recovered</em>) is also returned, based on the majority class assignment (&gt;50% of trees). In case of ties, which are rare, the model randomly assigns a class.</h4>
-<pre><code># &#39;data.test.entangle&#39; data.frame with required field name &#39;Narrative&#39; and appended covariates.
+<div
+id="the-vessel-strike-model-modelvessel-is-an-object-of-class-rfpermute-that-includes-known-outcome-vessel-injury-cases-included-as-the-data.frame-data.vessel-in-the-r-package-seriousinjury."
+class="section level4">
+<h4>The Vessel Strike Model (ModelVessel) is an object of class
+<em>rfPermute</em> that includes known-outcome vessel injury cases,
+included as the data.frame <em>data.vessel</em> in the R-Package
+<em>SeriousInjury</em>.</h4>
+<pre><code># Create randomForest model (using R-Package rfPermute) using known-outcome vessel strike data
 
-head(data.test.entangle)
+# make sure you have devtools installed
+if (!require(&#39;devtools&#39;)) install.packages(&#39;devtools&#39;)
 
-# Apply existing &#39;ModelEntanglement&#39; to data.test.entangle to generate binary and probabilistic model predictions
+# install from GitHub
+devtools::install_github(&#39;EricArcher/rfPermute&#39;)
 
-majority.prediction &lt;- predict(ModelEntanglement, data.test.entangle, type=&#39;response&#39;)
-prob.prediction &lt;- predict(ModelEntanglement, data.test.entangle, type=&#39;prob&#39;)
+library(rfPermute)
 
-predictions.df &lt;- cbind.data.frame(majority.prediction, prob.prediction, data.test.entangle)
-head(predictions.df)
-</code></pre>
-</div>
+# set.seed for reproducibility
+set.seed(123)
+
+# how many RF trees to build
+size.RF = 1000
+
+# covariates included in ModelVessel
+vessel.covariates = which(names(data.vessel)%in%c(&quot;calf.juv&quot;, &quot;decline&quot;, &quot;extensive.severe&quot;, &quot;fluke.peduncle&quot;, &quot;head&quot;, &quot;healing&quot;, &quot;laceration.deep&quot;,&quot;laceration.shallow&quot;, &quot;pectoral&quot;, &quot;VessSpd&quot;, &quot;VessSz&quot;))
+
+# balance sample size for each health class; we are equally-interested in correctly      
+#  predicting non-serious and serious injuries
+ 
+sampsize = balancedSampsize(data.vessel$Health.status)
+
+# RF Vessel Strike model
+
+ModelVessel = rfPermute(data.vessel$Health.status ~ .,
+ data.vessel[,c(vessel.covariates)], sampsize=sampsize, ntree=size.RF, 
+  replace=FALSE, importance=TRUE, proximity=TRUE)
+
+# RF Vessel Strike model Confusion Matrix
+ModelVessel</code></pre>
 </div>
 
 

@@ -11,7 +11,7 @@
 
 
 
-<title>Entanglement Model</title>
+<title>Injury Covariates</title>
 
 <script src="site_libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
@@ -274,49 +274,138 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Entanglement Model</h1>
+<h1 class="title toc-ignore">Injury Covariates</h1>
 
 </div>
 
 
 <hr />
-<div id="the-entanglement-model-modelentangle-is-an-object-of-class-rfpermute-that-includes-known-outcome-entanglement-injury-cases-included-as-the-data.frame-data.entangle-in-the-r-package-seriousinjury." class="section level4">
-<h4>The Entanglement Model (ModelEntangle) is an object of class <em>rfPermute</em> that includes known-outcome entanglement injury cases, included as the data.frame <em>data.entangle</em> in the R-Package <em>SeriousInjury</em>.</h4>
-<pre><code># Create randomForest model (using R-Package rfPermute) using known-outcome entanglement strike data
-
-# make sure you have devtools installed
-if (!require(&#39;devtools&#39;)) install.packages(&#39;devtools&#39;)
-
-# install from GitHub
-devtools::install_github(&#39;EricArcher/rfPermute&#39;)
-
-library(rfPermute)
-
-# set.seed for reproducibility
-set.seed(123)
-
-# how many RF trees to build
-size.RF = 1000
-
-# covariates included in ModelEntangle
-
-entangle.covariates = which(names(data.entangle)%in%c(&quot;anchored&quot;, &quot;calf.juv&quot;, &quot;constricting&quot;, &quot;decline&quot;, &quot;extensive.severe&quot;, &quot;fluke.peduncle&quot;, &quot;gear.free&quot;, &quot;head&quot;, &quot;healing&quot;, &quot;laceration.deep&quot;,
-                                                    &quot;laceration.shallow&quot;, &quot;pectoral&quot;, &quot;swim.dive&quot;, &quot;trailing&quot;, &quot;wraps.multi&quot;, &quot;wraps.no&quot;))
-
-# balance sample size for each class; we are equally-interested in correctly      
-#  predicting non-serious and serious injuries
- 
-sampsize = balancedSampsize(data.entangle$Health.status)
-
-# RF Entanglement model
-
-ModelEntanglement = rfPermute(data.entangle$Health.status ~ .,
- data.entangle[,entangle.covariates], sampsize=sampsize, ntree=size.RF, 
-  replace=FALSE, importance=TRUE, proximity=TRUE)
-  
-# RF Entanglement model Confusion Matrix
-ModelEntanglement
- </code></pre>
+<div id="covariates-are-derived-from-injury-narratives-with-the-function-injurycovariates.-code-to-define-maintain-and-extract-covariates-from-narratives-is-found-in-the-r-script-injurycovariates.r.-covariates-are-defined-below." class="section level4">
+<h4>Covariates are derived from injury narratives with the function ‘<em>InjuryCovariates()</em>’. Code to define, maintain, and extract covariates from narratives is found in the R-script <em>InjuryCovariates.R</em>. Covariates are defined below.</h4>
+</div>
+<div id="definitions" class="section level4">
+<h4>Definitions:</h4>
+</div>
+<div id="anchored" class="section level4">
+<h4><b><em>anchored</em></b></h4>
+<p>
+Evidence a whale was anchored or immobilized by entangling material or gear. Narrative mentions inability to dive or swim or that whale is immobilized. Includes references to a heavily-weighted whale with multiple pots/traps impeding normal movement.
+</p>
+</div>
+<div id="calf.juv" class="section level4">
+<h4><b><em>calf.juv</em></b></h4>
+<p>
+Narrative includes reference to an injured calf or juvenile. Also includes narratives where injury involves the mother of a dependent calf.
+</p>
+</div>
+<div id="constricting" class="section level4">
+<h4><b><em>constricting</em></b></h4>
+<p>
+Evidence of a constricting entanglement, including line cutting into whale, wrapped tightly around body or flippers.
+</p>
+</div>
+<div id="decline" class="section level4">
+<h4><b><em>decline</em></b></h4>
+<p>
+Narrative includes evidence of a health decline, such as the presence of cyamids, emaciation, discolored skin, deformities caused by a chronic entanglement or severe vessel strike incident.
+</p>
+</div>
+<div id="extensive.severe" class="section level4">
+<h4><b><em>extensive.severe</em></b></h4>
+<p>
+Evidence of severe injury that can include amputation or necrosis of body parts due to a chronic entanglement or acute vessel strike injury.
+</p>
+</div>
+<div id="fluke.peduncle" class="section level4">
+<h4><b><em>fluke.peduncle</em></b></h4>
+<p>
+Narrative includes reference of entanglement or vessel strike injury that involves the tail, flukes, or peduncle.
+</p>
+</div>
+<div id="gear.free" class="section level4">
+<h4><b><em>gear.free</em></b></h4>
+<p>
+Evidence that the whale freed itself from the gear or entangling material. Typically involves a whale resighted at a later date than the initial entanglement observation.
+</p>
+</div>
+<div id="head" class="section level4">
+<h4><b><em>head</em></b></h4>
+<p>
+Narrative indicates that the head, mouth, or blowhole was involved in the entanglement or vessel strike injury.
+</p>
+</div>
+<div id="healing" class="section level4">
+<h4><b><em>healing</em></b></h4>
+<p>
+Narrative refers to healing or healed wounds.
+</p>
+</div>
+<div id="laceration.deep" class="section level4">
+<h4><b><em>laceration.deep</em></b></h4>
+<p>
+Narrative includes reference to deep laceration resulting from vessel strike or entanglement. May include reference to blubber or muscle layers.
+</p>
+</div>
+<div id="laceration.shallow" class="section level4">
+<h4><b><em>laceration.shallow</em></b></h4>
+<p>
+Narrative includes reference to shallow or superficial lacerations.
+</p>
+</div>
+<div id="pectoral" class="section level4">
+<h4><b><em>pectoral</em></b></h4>
+<p>
+Narrative includes involvement of pectoral flipper or ‘fins’ in entanglement or vessel strike injury.
+</p>
+</div>
+<div id="swim.dive" class="section level4">
+<h4><b><em>swim.dive</em></b></h4>
+<p>
+Evidence that the whale is swimming, feeding, or diving normally.
+</p>
+</div>
+<div id="trailing" class="section level4">
+<h4><b><em>trailing</em></b></h4>
+<p>
+Was the whale trailing gear or other entangling material?
+</p>
+</div>
+<div id="vessel.fast" class="section level4">
+<h4><b><em>vessel.fast</em></b></h4>
+<p>
+Narrative includes reference to vessel speeds &lt; 10 kts.
+</p>
+</div>
+<div id="vessel.large" class="section level4">
+<h4><b><em>vessel.large</em></b></h4>
+<p>
+Narrative includes reference to large vessels such as military vessels, ferries, container ships, or vessel &gt;65 ft in length.
+</p>
+</div>
+<div id="vessel.slow" class="section level4">
+<h4><b><em>vessel.slow</em></b></h4>
+<p>
+Narrative includes reference to vessel speeds &gt;= 10 kts.
+</p>
+</div>
+<div id="vessel.small" class="section level4">
+<h4><b><em>vessel.small</em></b></h4>
+<p>
+Narrative includes reference to small vessels such as sailboats, recreational vessels, RHIB vessels, or vessel size &lt; 65 ft in length or smaller than the whale, if this can be determined.
+</p>
+</div>
+<div id="wraps.multi" class="section level4">
+<h4><b><em>wraps.multi</em></b></h4>
+<p>
+Narrative includes reference to whale with multiple wraps of line or gear around body or appendage.
+</p>
+</div>
+<div id="wraps.no" class="section level4">
+<h4><b><em>wraps.no</em></b></h4>
+<p>
+Narrative includes reference to a whale without any wraps of line or gear around body or appendage.
+</p>
+<p><br><br></p>
 </div>
 
 

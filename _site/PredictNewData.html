@@ -13,8 +13,8 @@
 
 <title>Predict New Data</title>
 
-<script src="site_libs/header-attrs-2.10/header-attrs.js"></script>
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/darkly.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
@@ -251,16 +251,16 @@ $(document).ready(function () {
   <a href="data.html">Data</a>
 </li>
 <li>
-  <a href="Covariate-Descriptions.html">Covariates</a>
+  <a href="Covariates.html">Covariates</a>
 </li>
 <li>
-  <a href="Entanglement-Model.html">Entanglement Model</a>
+  <a href="EntanglementModel.html">Entanglement Model</a>
 </li>
 <li>
-  <a href="Vessel-Model.html">Vessel Model</a>
+  <a href="VesselModel.html">Vessel Model</a>
 </li>
 <li>
-  <a href="Predict-New-Data.html">Predict New Data</a>
+  <a href="PredictNewData.html">Predict New Data</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -280,10 +280,22 @@ $(document).ready(function () {
 
 
 <hr />
-<div id="use-existing-random-forest-models-to-predict-probability-of-a-death-health-decline-or-recovery-for-novel-cases-where-the-outcome-is-unknown." class="section level3">
-<h3>Use existing Random Forest models to predict probability of a death, health decline or recovery for novel cases where the outcome is unknown.</h3>
-<div id="estimate-the-probability-of-a-non-serious-or-serious-injury-using-example-code-below.-both-dead.decline-and-recovered-probabilities-are-estimated-based-on-the-fraction-of-random-forest-tree-assignments-to-each-class.-a-binary-prediction-either-dead.decline-or-recovered-is-also-returned-based-on-the-majority-class-assignment-50-of-trees.-in-case-of-ties-which-are-rare-the-model-randomly-assigns-a-class." class="section level4">
-<h4>Estimate the probability of a non-serious or serious injury using example code below. Both <em>Dead.Decline</em> and <em>Recovered</em> probabilities are estimated, based on the fraction of Random Forest tree assignments to each class. A binary prediction (either <em>Dead.Decline</em> or <em>Recovered</em>) is also returned, based on the majority class assignment (&gt;50% of trees). In case of ties, which are rare, the model randomly assigns a class.</h4>
+<div
+id="use-existing-random-forest-models-to-predict-probability-of-a-death-health-decline-or-recovery-for-novel-cases-where-the-outcome-is-unknown."
+class="section level3">
+<h3>Use existing Random Forest models to predict probability of a death,
+health decline or recovery for novel cases where the outcome is
+unknown.</h3>
+<div
+id="estimate-the-probability-of-a-non-serious-or-serious-injury-using-example-code-below.-both-dead.decline-and-recovered-probabilities-are-estimated-based-on-the-fraction-of-random-forest-tree-assignments-to-each-class.-a-binary-prediction-either-dead.decline-or-recovered-is-also-returned-based-on-the-majority-class-assignment-50-of-trees.-in-case-of-ties-which-are-rare-the-model-randomly-assigns-a-class."
+class="section level4">
+<h4>Estimate the probability of a non-serious or serious injury using
+example code below. Both <em>Dead.Decline</em> and <em>Recovered</em>
+probabilities are estimated, based on the fraction of Random Forest tree
+assignments to each class. A binary prediction (either
+<em>Dead.Decline</em> or <em>Recovered</em>) is also returned, based on
+the majority class assignment (&gt;50% of trees). In case of ties, which
+are rare, the model randomly assigns a class.</h4>
 <pre><code># &#39;data.test.entangle&#39; data.frame with required field name &#39;Narrative&#39; and appended covariates.
 
 head(data.test.entangle)
