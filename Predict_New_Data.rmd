@@ -18,8 +18,8 @@ head(data.test.entangle)
 
 # Apply existing 'ModelEntangle' to data.test.entangle to generate binary and probabilistic model predictions
 
-majority.prediction <- predict(ModelEntangle, data.test.entangle, type='response')
-prob.prediction <- predict(ModelEntangle, data.test.entangle, type='prob')
+majority.prediction <- predict(ModelEntanglement, data.test.entangle, type='response')
+prob.prediction <- predict(ModelEntanglement, data.test.entangle, type='prob')
 
 predictions.df <- cbind.data.frame(majority.prediction, prob.prediction, data.test.entangle)
 head(predictions.df)
