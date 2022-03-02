@@ -1,9 +1,7 @@
 ## R-Package *SeriousInjury* v1.1.1
 #
-### Estimate Whale Injury Severity probabilities with classification trees
+### Estimate Whale Injury Severity probabilities with classification trees.
 #
-### Injury Covariates generated using function InjuryCovariates()
+### See SeriousInjuryTutorial() for a guide to the package.
 #
-### Whale Injuries categorized as serious (*DEAD.DECLINE*) or non-serious (*RECOVERED*)
-#
-### Package includes data frame 'WhaleData'
+### Package includes data frame 'WhaleData'.
