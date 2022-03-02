@@ -251,16 +251,16 @@ $(document).ready(function () {
   <a href="data.html">Data</a>
 </li>
 <li>
-  <a href="Covariate-Descriptions.html">Covariates</a>
+  <a href="Covariates.html">Covariates</a>
 </li>
 <li>
-  <a href="Entanglement-Model.html">Entanglement Model</a>
+  <a href="Entanglement_Model.html">Entanglement Model</a>
 </li>
 <li>
-  <a href="Vessel-Model.html">Vessel Model</a>
+  <a href="Vessel_Model.html">Vessel Model</a>
 </li>
 <li>
-  <a href="Predict-New-Data.html">Predict New Data</a>
+  <a href="Predict_New_Data.html">Predict New Data</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -289,9 +289,8 @@ $(document).ready(function () {
 <h5>Data used in Random Forest (RF) models includes known-outcome cases (Health.status=“DEAD.DECLINE” or “RECOVERED”), excluding</h5>
 <p>cases where human intervention to remove entanglements occurred. Model data includes two data frames; <em>data.entangle</em> and <em>data.vessel</em>, used in RF models.</p>
 </div>
-<div id="the-data-frame-data.test.entangle-includes-cases-with-health.statusunknown-and-is-used-with-the-predict-function-and-the-rf-object" class="section level5">
-<h5>The data frame <em>data.test.entangle</em> includes cases with Health.status=“UNKNOWN” and is used with the predict() function and the RF object</h5>
-<p>‘ModelEntangle’ to assign each case to “DEAD.DECLINE” or “RECOVERED”.</p>
+<div id="the-data-frame-data.test.entangle-includes-cases-with-health.statusunknown-and-is-used-with-the-predict-function-and-the-rf-object-modelentanglement-to-assign-each-case-to-dead.decline-or-recovered." class="section level5">
+<h5>The data frame <em>data.test.entangle</em> includes cases with Health.status=“UNKNOWN” and is used with the predict() function and the RF object ‘ModelEntanglement’ to assign each case to “DEAD.DECLINE” or “RECOVERED”.</h5>
 <pre><code># Example code to identify the covariate &#39;decline&#39; from injury narratives in data.frame &#39;WhaleData&#39;.
 #   function InjuryCovariates() applied to data.frame &#39;WhaleData&#39;
 #    data.frame narrative field must be named &#39;Narrative&#39; for use with InjuryCovariates().

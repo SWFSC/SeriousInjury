@@ -26,7 +26,6 @@ SeriousInjuryTutorial <- function() {
     "See SeriousInjuryTutorial() for a guide to the package."
   )
 
-  WhaleData <- read.csv(system.file("extdata", "WhaleData.csv", package="SeriousInjury", mustWork=TRUE))
 }
 
 
