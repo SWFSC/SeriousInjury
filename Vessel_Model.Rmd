@@ -7,7 +7,7 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 ***
-#### The Vessel Strike Model (ModelVessel) is an object of class *rfPermute* that includes x observations of known-outcome injury cases, representing y species. Vessel injury cases are included as the data.frame *VesselData* in the R-Package *SeriousInjury*.
+#### The Vessel Strike Model (ModelVessel) is an object of class *rfPermute* that includes known-outcome vessel injury cases, included as the data.frame *data.vessel* in the R-Package *SeriousInjury*.
 
 ```
 # Create randomForest model (using R-Package rfPermute) using known-outcome vessel strike data
@@ -27,17 +27,20 @@ set.seed(123)
 size.RF = 1000
 
 # covariates included in ModelVessel
-vessel.covariates = which(names(data.model)%in%c("calf.juv", "decline", "extensive.severe", "fluke.peduncle", "head", "healing", "laceration.deep","laceration.shallow", "pectoral", "VessSpd", "VessSz"))
+vessel.covariates = which(names(data.vessel)%in%c("calf.juv", "decline", "extensive.severe", "fluke.peduncle", "head", "healing", "laceration.deep","laceration.shallow", "pectoral", "VessSpd", "VessSz"))
 
 # balance sample size for each health class; we are equally-interested in correctly      
 #  predicting non-serious and serious injuries
  
 sampsize = balancedSampsize(data.vessel$Health.status)
 
+# RF Vessel Strike model
+
 ModelVessel = rfPermute(data.vessel$Health.status ~ .,
- data.vessel, sampsize=sampsize, ntree=size.RF, 
+ data.vessel[,c(vessel.covariates)], sampsize=sampsize, ntree=size.RF, 
   replace=FALSE, importance=TRUE, proximity=TRUE)
 
+# RF Vessel Strike model Confusion Matrix
 ModelVessel
 ```
 

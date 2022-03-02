@@ -6,4 +6,4 @@
 #
 ### Whale Injuries categorized as serious (*DEAD.DECLINE*) or non-serious (*RECOVERED*)
 #
-### Package includes data frame 'WhaleInjuryData'
+### Package includes data frame 'WhaleData'

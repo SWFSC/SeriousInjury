@@ -280,8 +280,8 @@ $(document).ready(function () {
 
 
 <hr />
-<div id="the-vessel-strike-model-modelvessel-is-an-object-of-class-rfpermute-that-includes-x-observations-of-known-outcome-injury-cases-representing-y-species.-vessel-injury-cases-are-included-as-the-data.frame-vesseldata-in-the-r-package-seriousinjury." class="section level4">
-<h4>The Vessel Strike Model (ModelVessel) is an object of class <em>rfPermute</em> that includes x observations of known-outcome injury cases, representing y species. Vessel injury cases are included as the data.frame <em>VesselData</em> in the R-Package <em>SeriousInjury</em>.</h4>
+<div id="the-vessel-strike-model-modelvessel-is-an-object-of-class-rfpermute-that-includes-known-outcome-vessel-injury-cases-included-as-the-data.frame-data.vessel-in-the-r-package-seriousinjury." class="section level4">
+<h4>The Vessel Strike Model (ModelVessel) is an object of class <em>rfPermute</em> that includes known-outcome vessel injury cases, included as the data.frame <em>data.vessel</em> in the R-Package <em>SeriousInjury</em>.</h4>
 <pre><code># Create randomForest model (using R-Package rfPermute) using known-outcome vessel strike data
 
 # make sure you have devtools installed
@@ -299,17 +299,20 @@ set.seed(123)
 size.RF = 1000
 
 # covariates included in ModelVessel
-vessel.covariates = which(names(data.model)%in%c(&quot;calf.juv&quot;, &quot;decline&quot;, &quot;extensive.severe&quot;, &quot;fluke.peduncle&quot;, &quot;head&quot;, &quot;healing&quot;, &quot;laceration.deep&quot;,&quot;laceration.shallow&quot;, &quot;pectoral&quot;, &quot;VessSpd&quot;, &quot;VessSz&quot;))
+vessel.covariates = which(names(data.vessel)%in%c(&quot;calf.juv&quot;, &quot;decline&quot;, &quot;extensive.severe&quot;, &quot;fluke.peduncle&quot;, &quot;head&quot;, &quot;healing&quot;, &quot;laceration.deep&quot;,&quot;laceration.shallow&quot;, &quot;pectoral&quot;, &quot;VessSpd&quot;, &quot;VessSz&quot;))
 
 # balance sample size for each health class; we are equally-interested in correctly      
 #  predicting non-serious and serious injuries
  
 sampsize = balancedSampsize(data.vessel$Health.status)
 
+# RF Vessel Strike model
+
 ModelVessel = rfPermute(data.vessel$Health.status ~ .,
- data.vessel, sampsize=sampsize, ntree=size.RF, 
+ data.vessel[,c(vessel.covariates)], sampsize=sampsize, ntree=size.RF, 
   replace=FALSE, importance=TRUE, proximity=TRUE)
 
+# RF Vessel Strike model Confusion Matrix
 ModelVessel</code></pre>
 </div>
 

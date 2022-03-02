@@ -11,9 +11,15 @@
 #' data frame 'vessel.data' includes cases used in RF vessel strike model
 #'
 #' @usage data(WhaleData)
+#' data(data.entangle)
+#' data(data.vessel)
 #'
 #' @format WhaleData an object of class 'data.frame'
 #'
 #' @examples WhaleData
+#' data.entangle
+#' data.vessel
 #'
 "WhaleData"
+"data.entangle"
+"data.vessel"

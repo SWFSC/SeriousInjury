@@ -7,7 +7,7 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 ***
-#### The Entanglement Model (ModelEntangle) is an object of class rfPermute that includes x observations of known-outcome injury cases, representing y species. Entanglement injury cases are included as the data.frame "EntangleData" in the R-Package SeriousInjury.
+#### The Entanglement Model (ModelEntangle) is an object of class *rfPermute* that includes known-outcome entanglement injury cases, included as the data.frame *data.entangle* in the R-Package *SeriousInjury*.
 
 ```
 # Create randomForest model (using R-Package rfPermute) using known-outcome entanglement strike data
@@ -27,7 +27,8 @@ set.seed(123)
 size.RF = 1000
 
 # covariates included in ModelEntangle
-entangle.covariates = which(names(data.model)%in%c("anchored", "calf.juv", "constricting", "decline", "extensive.severe", "fluke.peduncle", "gear.free", "head", "healing", "laceration.deep",
+
+entangle.covariates = which(names(data.entangle)%in%c("anchored", "calf.juv", "constricting", "decline", "extensive.severe", "fluke.peduncle", "gear.free", "head", "healing", "laceration.deep",
                                                     "laceration.shallow", "pectoral", "swim.dive", "trailing", "wraps.multi", "wraps.no"))
 
 # balance sample size for each class; we are equally-interested in correctly      
@@ -35,10 +36,13 @@ entangle.covariates = which(names(data.model)%in%c("anchored", "calf.juv", "cons
  
 sampsize = balancedSampsize(data.entangle$Health.status)
 
-ModelEntanglement = rfPermute(data.entangle$Health.status ~ .,
- data.entangle, sampsize=sampsize, ntree=size.RF, 
-  replace=FALSE, importance=TRUE, proximity=TRUE)
+# RF Entanglement model
 
+ModelEntanglement = rfPermute(data.entangle$Health.status ~ .,
+ data.entangle[,entangle.covariates], sampsize=sampsize, ntree=size.RF, 
+  replace=FALSE, importance=TRUE, proximity=TRUE)
+  
+# RF Entanglement model Confusion Matrix
 ModelEntanglement
  
 ```
