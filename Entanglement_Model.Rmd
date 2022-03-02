@@ -26,13 +26,17 @@ set.seed(123)
 # how many RF trees to build
 size.RF = 1000
 
+# covariates included in ModelEntangle
+entangle.covariates = which(names(data.model)%in%c("anchored", "calf.juv", "constricting", "decline", "extensive.severe", "fluke.peduncle", "gear.free", "head", "healing", "laceration.deep",
+                                                    "laceration.shallow", "pectoral", "swim.dive", "trailing", "wraps.multi", "wraps.no"))
+
 # balance sample size for each class; we are equally-interested in correctly      
 #  predicting non-serious and serious injuries
  
 sampsize = balancedSampsize(data.entangle$Health.status)
 
 ModelEntanglement = rfPermute(data.entangle$Health.status ~ .,
- EntanglementData, sampsize=sampsize, ntree=size.RF, 
+ data.entangle, sampsize=sampsize, ntree=size.RF, 
   replace=FALSE, importance=TRUE, proximity=TRUE)
 
 ModelEntanglement

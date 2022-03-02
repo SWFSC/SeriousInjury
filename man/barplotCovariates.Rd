@@ -14,14 +14,11 @@ Create barplot of injury covariates, stratified by health status ("DEAD.DECLINE"
 Covariates must be appended to data frame using function WhaleInjuryCovariates()
 }
 \examples{
-InjuryData <- read.csv(system.file("extdata", "WhaleData.csv", package="SeriousInjury", mustWork=TRUE))
+# Generate barplot of covariates by health status
 
-# append injury covariates to InjuryData
+WhaleDataCov <- InjuryCovariates(WhaleData)
 
-InjuryDataCov <- InjuryCovariates(InjuryData)
-
-# show barplot of injury covariates by health status
- barplotCovariates(InjuryDataCov)
+barplotCovariates(WhaleDataCov)
 
 }
 \author{

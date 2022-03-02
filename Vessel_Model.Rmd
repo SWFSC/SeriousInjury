@@ -26,13 +26,16 @@ set.seed(123)
 # how many RF trees to build
 size.RF = 1000
 
-# balance sample size for each class; we are equally-interested in correctly      
+# covariates included in ModelVessel
+vessel.covariates = which(names(data.model)%in%c("calf.juv", "decline", "extensive.severe", "fluke.peduncle", "head", "healing", "laceration.deep","laceration.shallow", "pectoral", "VessSpd", "VessSz"))
+
+# balance sample size for each health class; we are equally-interested in correctly      
 #  predicting non-serious and serious injuries
  
 sampsize = balancedSampsize(data.vessel$Health.status)
 
 ModelVessel = rfPermute(data.vessel$Health.status ~ .,
- VesselData, sampsize=sampsize, ntree=size.RF, 
+ data.vessel, sampsize=sampsize, ntree=size.RF, 
   replace=FALSE, importance=TRUE, proximity=TRUE)
 
 ModelVessel

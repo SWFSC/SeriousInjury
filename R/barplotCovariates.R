@@ -11,14 +11,11 @@
 #' @author Jim Carretta <jim.carretta@noaa.gov>
 #'
 #' @examples
-#' InjuryData <- read.csv(system.file("extdata", "WhaleData.csv", package="SeriousInjury", mustWork=TRUE))
+#' # Generate barplot of covariates by health status
 #'
-#' # append injury covariates to InjuryData
+#' WhaleDataCov <- InjuryCovariates(WhaleData)
 #'
-#' InjuryDataCov <- InjuryCovariates(InjuryData)
-#'
-#' # show barplot of injury covariates by health status
-#'  barplotCovariates(InjuryDataCov)
+#' barplotCovariates(WhaleDataCov)
 #'
 #' @export
 #'
