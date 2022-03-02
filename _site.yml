@@ -10,13 +10,13 @@ navbar:
     - text: "Data"
       href: data.html
     - text: "Covariates"
-      href: Covariate-Descriptions.html
+      href: Covariates.html
     - text: "Entanglement Model"
-      href: Entanglement-Model.html
+      href: Entanglement_Model.html
     - text: "Vessel Model"
-      href: Vessel-Model.html
+      href: Vessel_Model.html
     - text: "Predict New Data"
-      href: Predict-New-Data.html
+      href: Predict_New_Data.html
 
 output:
   html_document:

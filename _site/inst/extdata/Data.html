@@ -13,8 +13,8 @@
 
 <title>Injury Narratives</title>
 
-<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
-<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="site_libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/darkly.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
@@ -242,7 +242,7 @@ $(document).ready(function () {
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="index.html">R-Package Serious Injury</a>
+  <a href="index.html">Package Serious Injury</a>
 </li>
 <li>
   <a href="about.html">About</a>
@@ -280,20 +280,21 @@ $(document).ready(function () {
 
 
 <hr />
-<div
-id="the-data.frame-whaledata-is-included-with-the-r-package-seriousinjury.-whaledata-includes-all-whale-injury-cases-used-to-develop-classification-tree-models-to-assess-injury-severity.-injury-descriptions-are-included-in-the-narrative-field-of-whaledata.-covariates-are-defined-and-identified-as-presence-absence-values-or-factors-vessel-size-and-speed-covariates-for-each-row-of-whaledata-using-the-function-whaleinjurycovariates."
-class="section level4">
-<h4>The data.frame <em>WhaleData</em> is included with the R-Package
-<em>SeriousInjury</em>. <em>WhaleData</em> includes all whale injury
-cases used to develop classification tree models to assess injury
-severity. Injury descriptions are included in the ‘Narrative’ field of
-<em>WhaleData</em>. Covariates are defined and identified as presence /
-absence values or factors (Vessel size and speed covariates) for each
-row of <em>WhaleData</em>, using the function
-WhaleInjuryCovariates().</h4>
+<div id="the-seriousinjury-package-includes-the-following-data-frames" class="section level4">
+<h4>The SeriousInjury package includes the following data frames:</h4>
+<div id="whaledata-is-raw-data-for-all-whale-injury-cases-with-injury-descriptions-in-the-narrative-field." class="section level5">
+<h5><em>WhaleData</em> is raw data for all whale injury cases, with injury descriptions in the ‘Narrative’ field.</h5>
+</div>
+<div id="data-used-in-random-forest-rf-models-includes-known-outcome-cases-health.statusdead.decline-or-recovered-excluding" class="section level5">
+<h5>Data used in Random Forest (RF) models includes known-outcome cases (Health.status=“DEAD.DECLINE” or “RECOVERED”), excluding</h5>
+<p>cases where human intervention to remove entanglements occurred. Model data includes two data frames; <em>data.entangle</em> and <em>data.vessel</em>, used in RF models.</p>
+</div>
+<div id="the-data-frame-data.test.entangle-includes-cases-with-health.statusunknown-and-is-used-with-the-predict-function-and-the-rf-object" class="section level5">
+<h5>The data frame <em>data.test.entangle</em> includes cases with Health.status=“UNKNOWN” and is used with the predict() function and the RF object</h5>
+<p>‘ModelEntangle’ to assign each case to “DEAD.DECLINE” or “RECOVERED”.</p>
 <pre><code># Example code to identify the covariate &#39;decline&#39; from injury narratives in data.frame &#39;WhaleData&#39;.
-#   function WhaleInjuryCovariates() applied to data.frame &#39;WhaleData&#39;
-#    data.frame narrative field must be named &#39;Narrative&#39; for use with WhaleInjuryCovariates().
+#   function InjuryCovariates() applied to data.frame &#39;WhaleData&#39;
+#    data.frame narrative field must be named &#39;Narrative&#39; for use with InjuryCovariates().
 #     use function &#39;grepl&#39; to search for words/phrases in &#39;Narrative&#39;.
 #      code covariates numerically as 1/0, aligned with their TRUE/FALSE (=presence/absence) state.
 
@@ -309,13 +310,14 @@ WhaleInjuryCovariates().</h4>
     decline &lt;- as.numeric(lapply(decline, as.numeric))
      decline
     
-# Use WhaleInjuryCovariates() to append all covariates to each row of &#39;WhaleData&#39; 
+# Use InjuryCovariates() to append all covariates to each row of &#39;WhaleData&#39; 
     
     head(WhaleData)
 
-    new.data.frame &lt;- WhaleInjuryCovariates(WhaleData)
+    new.data.frame &lt;- InjuryCovariates(WhaleData)
 
     head(new.data.frame)</code></pre>
+</div>
 </div>
 
 

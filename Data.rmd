@@ -11,8 +11,7 @@ output: html_document
 cases where human intervention to remove entanglements occurred. Model data includes two data frames; *data.entangle* and *data.vessel*,
 used in RF models.
 
-##### The data frame *data.test.entangle* includes cases with Health.status="UNKNOWN" and is used with the predict() function and the RF object
-'ModelEntangle' to assign each case to "DEAD.DECLINE" or "RECOVERED".
+##### The data frame *data.test.entangle* includes cases with Health.status="UNKNOWN" and is used with the predict() function and the RF object 'ModelEntanglement' to assign each case to "DEAD.DECLINE" or "RECOVERED".
 
 ```
 # Example code to identify the covariate 'decline' from injury narratives in data.frame 'WhaleData'.

@@ -11,7 +11,7 @@
 
 
 
-<title>Package SeriousInjury: Estimate Probability of Non-Serious vs Serious Injuries for Large Whales</title>
+<title>Entanglement Model</title>
 
 <script src="site_libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
@@ -274,22 +274,49 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Package <em>SeriousInjury</em>: Estimate Probability of Non-Serious vs Serious Injuries for Large Whales</h1>
+<h1 class="title toc-ignore">Entanglement Model</h1>
 
 </div>
 
 
 <hr />
-<div id="the-r-package-seriousinjury-uses-random-forest-rf-classification-trees-to-assess-injury-severity-of-large-whale-entanglements-and-vessel-strikes.-models-are-built-using-the-r-package-rfpermute." class="section level4">
-<h4>The R-Package <em>SeriousInjury</em> uses Random Forest (RF) classification trees to assess injury severity of large whale entanglements and vessel strikes. Models are built using the R-Package <em>rfPermute</em>.</h4>
-<div class="figure">
-<img src="Tree%20Examples%20(2).PNG" alt="" />
-<p class="caption">Figure 1. Example decision tree used to classify whale injuries as serious or non-serious. Data are based on known-outcome entanglement and vessel strike cases, where a known-outcome is a documented death, health decline, or recovery 1 year or more post-interaction. Deaths and health declines are considered serious injuries and recoveries are considered non-serious injuries.</p>
-</div>
-<div class="figure">
-<img src="Tree%20Examples%20(1).PNG" alt="" />
-<p class="caption">Figure 2. Multiple bootstrap trees (<em>a random forest</em>) are used to classify OOB or novel cases. The fraction of trees ‘voting’ for a particular class represents the probability of that case belonging to the class <em>Dead.Decline</em> or <em>Recovered</em>.</p>
-</div>
+<div id="the-entanglement-model-modelentangle-is-an-object-of-class-rfpermute-that-includes-known-outcome-entanglement-injury-cases-included-as-the-data.frame-data.entangle-in-the-r-package-seriousinjury." class="section level4">
+<h4>The Entanglement Model (ModelEntangle) is an object of class <em>rfPermute</em> that includes known-outcome entanglement injury cases, included as the data.frame <em>data.entangle</em> in the R-Package <em>SeriousInjury</em>.</h4>
+<pre><code># Create randomForest model (using R-Package rfPermute) using known-outcome entanglement strike data
+
+# make sure you have devtools installed
+if (!require(&#39;devtools&#39;)) install.packages(&#39;devtools&#39;)
+
+# install from GitHub
+devtools::install_github(&#39;EricArcher/rfPermute&#39;)
+
+library(rfPermute)
+
+# set.seed for reproducibility
+set.seed(123)
+
+# how many RF trees to build
+size.RF = 1000
+
+# covariates included in ModelEntangle
+
+entangle.covariates = which(names(data.entangle)%in%c(&quot;anchored&quot;, &quot;calf.juv&quot;, &quot;constricting&quot;, &quot;decline&quot;, &quot;extensive.severe&quot;, &quot;fluke.peduncle&quot;, &quot;gear.free&quot;, &quot;head&quot;, &quot;healing&quot;, &quot;laceration.deep&quot;,
+                                                    &quot;laceration.shallow&quot;, &quot;pectoral&quot;, &quot;swim.dive&quot;, &quot;trailing&quot;, &quot;wraps.multi&quot;, &quot;wraps.no&quot;))
+
+# balance sample size for each class; we are equally-interested in correctly      
+#  predicting non-serious and serious injuries
+ 
+sampsize = balancedSampsize(data.entangle$Health.status)
+
+# RF Entanglement model
+
+ModelEntanglement = rfPermute(data.entangle$Health.status ~ .,
+ data.entangle[,entangle.covariates], sampsize=sampsize, ntree=size.RF, 
+  replace=FALSE, importance=TRUE, proximity=TRUE)
+  
+# RF Entanglement model Confusion Matrix
+ModelEntanglement
+ </code></pre>
 </div>
 
 
