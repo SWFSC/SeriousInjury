@@ -11,7 +11,7 @@
 
 
 
-<title>Injury Narratives</title>
+<title>Data &amp; Injury Narratives</title>
 
 <script src="site_libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
@@ -237,12 +237,12 @@ $(document).ready(function () {
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html"></a>
+      <a class="navbar-brand" href="index.html">Package SeriousInjury</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="index.html">Package Serious Injury</a>
+  <a href="index.html">Package SeriousInjury</a>
 </li>
 <li>
   <a href="about.html">About</a>
@@ -254,13 +254,13 @@ $(document).ready(function () {
   <a href="Covariates.html">Covariates</a>
 </li>
 <li>
-  <a href="Entanglement_Model.html">Entanglement Model</a>
+  <a href="Entanglement-Model.html">Entanglement Model</a>
 </li>
 <li>
-  <a href="Vessel_Model.html">Vessel Model</a>
+  <a href="Vessel-Model.html">Vessel Model</a>
 </li>
 <li>
-  <a href="Predict_New_Data.html">Predict New Data</a>
+  <a href="Predict-New-Data.html">Predict New Data</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -274,23 +274,30 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Injury Narratives</h1>
+<h1 class="title toc-ignore">Data &amp; Injury Narratives</h1>
 
 </div>
 
 
 <hr />
-<div id="the-seriousinjury-package-includes-the-following-data-frames" class="section level4">
-<h4>The SeriousInjury package includes the following data frames:</h4>
-<div id="whaledata-is-raw-data-for-all-whale-injury-cases-with-injury-descriptions-in-the-narrative-field." class="section level5">
-<h5><em>WhaleData</em> is raw data for all whale injury cases, with injury descriptions in the ‘Narrative’ field.</h5>
+<div id="the-seriousinjury-package-includes-five-data-frames" class="section level3">
+<h3>The SeriousInjury package includes five data frames:<br><br></h3>
+<div id="whaledata-is-raw-data-for-all-whale-injury-cases.-injury-descriptions-are-in-the-narrative-field-and-assessed-health-status-are-in-the-health.status-field." class="section level4">
+<h4>‘<strong>WhaleData</strong>’ is raw data for all whale injury cases. Injury descriptions are in the ‘Narrative’ field and assessed health status are in the ‘Health.status’ field.<br><br></h4>
 </div>
-<div id="data-used-in-random-forest-rf-models-includes-known-outcome-cases-health.statusdead.decline-or-recovered-excluding-cases-where-human-intervention-to-remove-entanglements-occurred.-model-data-includes-two-data-frames-data.entangle-and-data.vessel-used-in-rf-models." class="section level5">
-<h5>Data used in Random Forest (RF) models includes known-outcome cases (Health.status=“DEAD.DECLINE” or “RECOVERED”), excluding cases where human intervention to remove entanglements occurred. Model data includes two data frames; <em>data.entangle</em> and <em>data.vessel</em>, used in RF models.</h5>
+<div id="data.entangle-and-data.vessel-are-known-outcome-entanglements-and-vessel-strikes-used-to-build-random-forest-rf-models.-these-include-cases-assigned-a-health.statusdead.decline-or-recovered.-these-data-exclude-cases-where-human-intervention-to-remove-entanglements-occurred." class="section level4">
+<h4>‘<strong>data.entangle</strong>’ and ‘<strong>data.vessel</strong>’ are known-outcome entanglements and vessel strikes used to build Random Forest (RF) models. These include cases assigned a ‘Health.status’=“DEAD.DECLINE” or “RECOVERED”. These data exclude cases where human intervention to remove entanglements occurred.<br><br></h4>
 </div>
-<div id="the-data-frame-data.test.entangle-includes-cases-with-health.statusunknown-and-is-used-with-the-predict-function-and-the-rf-object-modelentanglement-to-assign-each-case-to-dead.decline-or-recovered." class="section level5">
-<h5>The data frame <em>data.test.entangle</em> includes cases with Health.status=“UNKNOWN” and is used with the predict() function and the RF object ‘ModelEntanglement’ to assign each case to “DEAD.DECLINE” or “RECOVERED”.</h5>
-<pre><code># Example code to identify the covariate &#39;decline&#39; from injury narratives in data.frame &#39;WhaleData&#39;.
+<div id="data.test.entangle-and-data.test.vessel-include-cases-with-health.statusunknown-and-are-used-with-the-predict-function-and-the-rf-objects-modelentanglement-and-modelvessel-to-assign-cases-to-dead.decline-or-recovered." class="section level4">
+<h4>‘<strong>data.test.entangle</strong>’ and ‘<strong>data.test.vessel</strong>’ include cases with ‘Health.status’=“UNKNOWN” and are used with the predict() function and the RF objects ‘ModelEntanglement’ and ‘ModelVessel’ to assign cases to “DEAD.DECLINE” or “RECOVERED”.<br><br></h4>
+</div>
+<div id="example-narrative-from-which-model-covariates-are-derived.-some-key-words-and-phrases-in-the-narrative-that-are-coded-as-presence-absence-covariates-include-cyamids-fluke-peduncle-grey-skin-poor." class="section level4">
+<h4>Example ‘Narrative’ from which model covariates are derived. Some key words and phrases in the narrative that are coded as presence / absence covariates include ‘cyamids’, ‘fluke’, ‘peduncle’, ‘grey skin’, ‘poor’. <br><br></h4>
+</div>
+<div id="entanglement-injuries-at-fluke-insertions-and-peduncle-with-associated-cyamids-at-injured-areas-and-on-head.-grey-skin-and-overal-poor-appearance." class="section level4">
+<h4>“Entanglement injuries at fluke insertions and peduncle with associated cyamids at injured areas and on head. Grey skin and overal poor appearance.”<br><br></h4>
+<pre><code>
+# Example code to identify the covariate &#39;decline&#39; from injury narratives in data.frame &#39;WhaleData&#39;.
 #   function InjuryCovariates() applied to data.frame &#39;WhaleData&#39;
 #    data.frame narrative field must be named &#39;Narrative&#39; for use with InjuryCovariates().
 #     use function &#39;grepl&#39; to search for words/phrases in &#39;Narrative&#39;.

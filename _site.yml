@@ -1,9 +1,9 @@
-name: "SeriousInjuryPages"
+name: "SeriousInjury Tutorial"
 navbar:
-  title:
+  title: "Package SeriousInjury"
   output_dir: "_site"
   left:
-    - text: "Package Serious Injury"
+    - text: "Package SeriousInjury"
       href: index.html
     - text: "About"
       href: about.html
@@ -20,4 +20,4 @@ navbar:
 
 output:
   html_document:
-   theme: darkly
+    theme: darkly

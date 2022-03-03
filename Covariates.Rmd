@@ -49,11 +49,11 @@ output: html_document
 #### <b>*trailing*</b>			
 <p>Was the whale trailing gear or other entangling material?</p>
 
-#### <b>*vessel.fast*</b>
-<p>Narrative includes reference to vessel speeds < 10 kts.</p>
+#### <b>*VessSpd*</b>
+<p>Vessel Speed, coded as a factor with 3 possible states: unknown=VSpdUnk, slow=VSpdSlow, fast=VSpdFast.  Based on speed references or inferences from 'Narrative'.  Speeds <=10 kts are considered slow, >10 kts are fast. </p>
 
-#### <b>*vessel.large*</b>
-<p>Narrative includes reference to large vessels such as military vessels, ferries, container ships, or vessel >65 ft in length.</p>
+#### <b>*VessSz*</b>
+<p>Vessel Size, coded as a factor with 3 possible states: unknown=VSzUnk, small=VSzSmall, large=VSzLarge.  Based on size references or inferences from 'Narrative'.  Sizes <=65 ft are considered 'small', unless the vessel is much larger than whale. Sizes > 65 ft are considered 'large'.</p> 
 
 #### <b>*vessel.slow*</b>
 <p>Narrative includes reference to vessel speeds >= 10 kts.</p>

@@ -11,12 +11,12 @@
 
 <meta name="author" content="Jim Carretta jim.carretta@noaa.gov" />
 
-<meta name="date" content="2022-02-25" />
+<meta name="date" content="2022-03-02" />
 
-<title>R-Package SeriousInjury</title>
+<title>Background</title>
 
-<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
-<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="site_libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/darkly.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
@@ -321,12 +321,12 @@ div.tocify {
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html"></a>
+      <a class="navbar-brand" href="index.html">Package SeriousInjury</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="index.html">R-Package Serious Injury</a>
+  <a href="index.html">Package SeriousInjury</a>
 </li>
 <li>
   <a href="about.html">About</a>
@@ -335,7 +335,7 @@ div.tocify {
   <a href="data.html">Data</a>
 </li>
 <li>
-  <a href="Covariate-Descriptions.html">Covariates</a>
+  <a href="Covariates.html">Covariates</a>
 </li>
 <li>
   <a href="Entanglement-Model.html">Entanglement Model</a>
@@ -358,73 +358,43 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">R-Package <em>SeriousInjury</em></h1>
-<h3 class="subtitle">Assess Whale Injuries with Classification
-Trees</h3>
-<h4 class="author">Jim Carretta <a href="mailto:jim.carretta@noaa.gov"
-class="email">jim.carretta@noaa.gov</a></h4>
-<h4 class="date">25 February 2022</h4>
+<h1 class="title toc-ignore">Background</h1>
+<h3 class="subtitle">Assess Whale Injuries with Classification Trees</h3>
+<h4 class="author">Jim Carretta <a href="mailto:jim.carretta@noaa.gov" class="email">jim.carretta@noaa.gov</a></h4>
+<h4 class="date">02 March 2022</h4>
 
 </div>
 
 
 <hr />
-<div
-id="under-the-marine-mammal-protection-act-mmpa-noaa-assesses-human-caused-injuries-and-mortalities-of-marine-mammals-through-a-serious-injury-policy-and-procedural-directive.-injuries-are-defined-as-non-serious-or-serious-where-the-latter-is-defined-as-any-injury-that-is-more-likely-than-not-to-result-in-mortality-or-any-injury-that-presents-a-greater-than-50-percent-chance-of-death-to-a-marine-mammal."
-class="section level4">
-<h4>Under the Marine Mammal Protection Act (MMPA), NOAA assesses
-human-caused injuries and mortalities of marine mammals through a
-<a href="https://media.fisheries.noaa.gov/dam-migration/02-238.pdf">Serious
-Injury Policy</a> and
-<a href="https://media.fisheries.noaa.gov/dam-migration/02-238-01.pdf">Procedural
-Directive</a>. Injuries are defined as ‘non-serious’ or ‘serious’, where
-the latter is defined as <em><b>“any injury that is more likely than not
-to result in mortality, or any injury that presents a greater than 50
-percent chance of death to a marine mammal”</b></em>.</h4>
+<div id="noaa-assesses-anthropogenic-injuries-and-deaths-under-the-marine-mammal-protection-act-mmpa-through-a-serious-injury-policy-and-procedural-directive.-injuries-are-defined-as-non-serious-or-serious-where-the-latter-is-defined-as-any-injury-that-is-more-likely-than-not-to-result-in-mortality-or-any-injury-that-presents-a-greater-than-50-percent-chance-of-death-to-a-marine-mammal." class="section level4">
+<h4>NOAA assesses anthropogenic injuries and deaths under the Marine Mammal Protection Act (MMPA) through a <a href="https://media.fisheries.noaa.gov/dam-migration/02-238.pdf">Serious Injury Policy</a> and <a href="https://media.fisheries.noaa.gov/dam-migration/02-238-01.pdf">Procedural Directive</a>. Injuries are defined as ‘Non-Serious’ or ‘Serious’, where the latter is defined as <em><b>“any injury that is more likely than not to result in mortality, or any injury that presents a greater than 50 percent chance of death to a marine mammal”</b></em>.</h4>
 </div>
-<div
-id="noaa-is-reviewing-the-serious-injury-policy-and-procedures-for-large-whales-with-new-data-and-assessing-a-new-random-forest-method-to-estimate-individual-probabilities-of-a-health-decline-death-or-recovery-for-entanglements-and-vessel-strikes."
-class="section level4">
-<h4>NOAA is reviewing the Serious Injury policy and procedures for large
-whales with new data and assessing a new Random Forest method to
-estimate individual probabilities of a health decline, death, or
-recovery for entanglements and vessel strikes.</h4>
+<div id="noaa-is-reviewing-the-serious-injury-policy-and-procedures-for-large-whales-with-new-data-and-assessing-a-new-random-forest-method-to-estimate-individual-probabilities-of-a-health-decline-death-or-recovery-for-entanglements-and-vessel-strikes." class="section level4">
+<h4>NOAA is reviewing the Serious Injury policy and procedures for large whales with new data and assessing a new Random Forest method to estimate individual probabilities of a health decline, death, or recovery for entanglements and vessel strikes.</h4>
 </div>
-<div
-id="the-major-proposed-change-is-that-current-serious-injury-procedures-requiring-biologists-to-assess-a-series-of-conditions-e.g."
-class="section level4">
-<h4>The major proposed change is that current serious injury procedures
-requiring biologists to assess a series of conditions , e.g. </h4>
+<div id="the-major-proposed-change-is-that-current-serious-injury-procedures-requiring-biologists-to-assess-a-series-of-conditions-e.g." class="section level4">
+<h4>The major proposed change is that current serious injury procedures requiring biologists to assess a series of conditions , e.g. </h4>
 </div>
-<div id="was-entangling-gear-constricting-or-loose"
-class="section level4">
+<div id="was-entangling-gear-constricting-or-loose" class="section level4">
 <h4><b><em>“Was entangling gear constricting or loose?”</em></b></h4>
 </div>
-<div
-id="could-be-automated-using-a-random-forest-rf-algorithm.-the-rf-model-uses-covariates-derived-from-key-words-and-phrases-in-injury-narratives-known-to-be-good-predictors-of-non-serious-vs-serious-injuries."
-class="section level4">
-<h4>could be automated using a Random Forest (RF) algorithm. The RF
-model uses covariates derived from key words and phrases in injury
-narratives known to be good predictors of non-serious vs serious
-injuries.</h4>
+<div id="could-be-automated-using-a-random-forest-rf-algorithm.-the-rf-model-uses-covariates-derived-from-key-words-and-phrases-in-injury-narratives-known-to-be-good-predictors-of-non-serious-vs-serious-injuries." class="section level4">
+<h4>could be automated using a Random Forest (RF) algorithm. The RF model uses covariates derived from key words and phrases in injury narratives known to be good predictors of non-serious vs serious injuries.</h4>
 </div>
-<div
-id="methods-r-functions-and-application-examples-for-large-whale-data-are-summarized-in-the-r-package-seriousinjury-and-are-summarized-on-this-website."
-class="section level4">
-<h4>Methods, R functions, and application examples for large whale data
-are summarized in the R-Package
-<em><a href="https://github.com/JimCarretta/SeriousInjury">SeriousInjury</a></em>
-and are summarized on this website.</h4>
+<div id="methods-r-functions-and-application-examples-for-large-whale-data-are-summarized-in-the-r-package-seriousinjury-and-are-summarized-on-this-website." class="section level4">
+<h4>Methods, R functions, and application examples for large whale data are summarized in the R-Package <em><a href="https://github.com/JimCarretta/SeriousInjury">SeriousInjury</a></em> and are summarized on this website.</h4>
 </div>
-<div id="to-install-the-latest-seriousinjury-version-from-github"
-class="section level4">
-<h4>To install the latest <em>SeriousInjury</em> version from
-GitHub:</h4>
+<div id="to-install-the-latest-seriousinjury-version-from-github" class="section level4">
+<h4>To install the latest <em>SeriousInjury</em> version from GitHub:</h4>
 <pre><code># make sure you have devtools installed
 if (!require(&#39;devtools&#39;)) install.packages(&#39;devtools&#39;)
 
 # install from GitHub
 devtools::install_github(&#39;JimCarretta/SeriousInjury&#39;)</code></pre>
+</div>
+<div id="installing-the-seriousinjury-package-will-also-install-the-package-rfpermute-which-is-used-to-build-random-forest-models." class="section level4">
+<h4>Installing the ‘SeriousInjury’ package will also install the package ‘rfPermute’, which is used to build Random Forest models.</h4>
 </div>
 
 
