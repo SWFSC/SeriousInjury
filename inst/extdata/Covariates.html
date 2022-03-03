@@ -251,7 +251,7 @@ $(document).ready(function () {
   <a href="data.html">Data</a>
 </li>
 <li>
-  <a href="Covariate-Descriptions.html">Covariates</a>
+  <a href="Covariates.html">Covariates</a>
 </li>
 <li>
   <a href="Entanglement-Model.html">Entanglement Model</a>
@@ -370,16 +370,16 @@ Evidence that the whale is swimming, feeding, or diving normally.
 Was the whale trailing gear or other entangling material?
 </p>
 </div>
-<div id="vessel.fast" class="section level4">
-<h4><b><em>vessel.fast</em></b></h4>
+<div id="vessspd" class="section level4">
+<h4><b><em>VessSpd</em></b></h4>
 <p>
-Narrative includes reference to vessel speeds &lt; 10 kts.
+Vessel Speed, coded as a factor with 3 possible states: unknown=VSpdUnk, slow=VSpdSlow, fast=VSpdFast. Based on speed references or inferences from ‘Narrative’. Speeds &lt;=10 kts are considered slow, &gt;10 kts are fast.
 </p>
 </div>
-<div id="vessel.large" class="section level4">
-<h4><b><em>vessel.large</em></b></h4>
+<div id="vesssz" class="section level4">
+<h4><b><em>VessSz</em></b></h4>
 <p>
-Narrative includes reference to large vessels such as military vessels, ferries, container ships, or vessel &gt;65 ft in length.
+Vessel Size, coded as a factor with 3 possible states: unknown=VSzUnk, small=VSzSmall, large=VSzLarge. Based on size references or inferences from ‘Narrative’. Sizes &lt;=65 ft are considered ‘small’, unless the vessel is much larger than whale. Sizes &gt; 65 ft are considered ‘large’.
 </p>
 </div>
 <div id="vessel.slow" class="section level4">
