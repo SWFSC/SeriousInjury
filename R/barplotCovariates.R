@@ -2,7 +2,7 @@
 #'
 #' @description
 #' Create barplot of injury covariates, stratified by health status ("DEAD.DECLINE" vs "RECOVERED").
-#' Covariates must be appended to data frame using function WhaleInjuryCovariates()
+#' Covariates must be appended to data frame using function InjuryCovariates()
 #'
 #' @usage barplotCovariates(df)
 #'
