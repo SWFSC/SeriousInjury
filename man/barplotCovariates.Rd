@@ -11,7 +11,7 @@ barplotCovariates(df)
 }
 \description{
 Create barplot of injury covariates, stratified by health status ("DEAD.DECLINE" vs "RECOVERED").
-Covariates must be appended to data frame using function WhaleInjuryCovariates()
+Covariates must be appended to data frame using function InjuryCovariates()
 }
 \examples{
 # Generate barplot of covariates by health status
