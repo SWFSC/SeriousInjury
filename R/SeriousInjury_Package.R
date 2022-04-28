@@ -17,7 +17,7 @@
 #' @export
 #'
 SeriousInjuryTutorial <- function() {
-  browseURL(system.file("extdata", "SeriousInjuryTutorial.pdf", package="SeriousInjury", mustWork=TRUE))
+  browseURL(system.file("extdata", "SeriousInjuryTutorial.html", package="SeriousInjury", mustWork=TRUE))
 }
 
 .onAttach <- function(libname, pkgname) {
