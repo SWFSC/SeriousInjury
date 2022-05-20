@@ -1,7 +1,8 @@
 ---
-title: "R-Package *SeriousInjury*: Assess Severity of Large Whale Injuries with Random Forests"
+title: "R-Package [*SeriousInjury*](https://github.com/JimCarretta/SeriousInjury):"
+subtitle: "Assess Severity of Large Whale Injuries with Random Forests"
 author: "Jim.Carretta@noaa.gov"
-date: "4/27/2022"
+date: "May 19, 2022"
 output:
   html_document:
     toc: true
@@ -12,9 +13,10 @@ output:
 
 ## Background
 
-The R-Package *SeriousInjury* applies Random Forest (RF) classification trees to assess injury severity of large whale entanglements and vessel strikes. Models are built using the R-Package *rfPermute*, which employs the R-package *randomForest*. Installing the package *SeriousInjury* will also install the *rfPermute* and *randomForest* packages.
+The R-Package *SeriousInjury* uses Random Forest (RF) classification trees to assess injury severity of large whale entanglements and vessel strikes. Models are built using the R-Package *rfPermute*, which employs the R-package *randomForest*. Installing the package *SeriousInjury* will also install the *rfPermute* and *randomForest* packages. The method 
+is based on [Carretta and Henry 2022.](https://www.frontiersin.org/articles/10.3389/fmars.2022.863070/abstract)
 
-To install the latest SeriousInjury version from GitHub:
+To install the latest *SeriousInjury* version from GitHub:
 ```
 # make sure you have devtools installed
 if (!require('devtools')) install.packages('devtools')
@@ -94,7 +96,7 @@ Covariates are derived from injury narratives with the function ‘InjuryCovaria
 
 Two models are used in the package SeriousInjury, an entanglement and a vessel strike model. Each is based on n = 1,000 RF classification trees. 
 
-![Figure 1. Example tree used to classify whale injuries as serious or non-serious. Data are based on known-outcome entanglement and vessel strike cases, where a known-outcome is a documented death, health decline or recovery. Health declines are considered serious injuries and recoveries are considered non-serious.](Tree Examples (2).PNG)
+![Figure 1. Example tree used to classify whale injuries as serious (*Dead.Decline*) or non-serious (*Recovered*). Data are based on known-outcome entanglement and vessel strike cases, where a known-outcome is a documented death, health decline or recovery. Health declines are considered serious injuries and recoveries are considered non-serious.](Tree Examples (2).PNG)
 
 ![Figure 2. Models consist of multiple bootstrap trees (a random forest) used to classify ‘out-of-bag’ (OOB) or novel cases. Samples not used in individual tree construction are considered OOB and are used to assess model accuracy through cross-validation. Novel cases represent new data or cases not included in models, for which health status is unknown.  The fraction of trees ‘voting’ for a particular class represents the probability of that case belonging to the class Dead.Decline or Recovered.](Tree Examples (1).PNG)
 
