@@ -1570,7 +1570,12 @@ this document.</p>
 <strong>data.test.vessel</strong>.</p>
 <p><strong>WhaleData</strong> is raw data for whale injury cases. Injury
 descriptions are in the ‘Narrative’ field and assessed health status in
-the ‘Health.status’ field.</p>
+the ‘Health.status’ field. Additionally, there is a field (‘CAUSE’) that
+attributes the main cause of injury (entanglement = “EN”, entrapment =
+“ET”, and vessel strike = “VS”). These 3 fields of type=‘character’
+(‘Narrative’, ‘Health.status’, and ‘CAUSE’) are case-sensitive and
+required to generate injury covariates and build random forest
+models.</p>
 <p><strong>data.entangle</strong> and <strong>data.vessel</strong> are
 known-outcome (“DEAD.DECLINE” or “RECOVERED”) entanglements and vessel
 strike cases used to build RF models. Model covariates are generated
@@ -1586,7 +1591,7 @@ words and phrases in the narrative that are coded as presence / absence
 covariates include ‘cyamids’, ‘fluke’, ‘peduncle’, ‘grey skin’,
 ‘poor’.</p>
 <p>“Entanglement injuries at fluke insertions and peduncle with
-associated cyamids at injured areas and on head. Grey skin and overal
+associated cyamids at injured areas and on head. Grey skin and overall
 poor appearance.”</p>
 <pre><code>head(WhaleData)
 </code></pre>

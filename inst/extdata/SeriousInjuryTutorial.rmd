@@ -37,7 +37,7 @@ NOAA is reviewing the Serious Injury policy and procedures for large whales with
 
 The *SeriousInjury* package includes five data frames: **WhaleData**, **data.entangle**, **data.vessel**, **data.test.entangle**, and **data.test.vessel**.
 
-**WhaleData** is raw data for whale injury cases. Injury descriptions are in the ‘Narrative’ field and assessed health status in the ‘Health.status’ field.
+**WhaleData** is raw data for whale injury cases. Injury descriptions are in the ‘Narrative’ field and assessed health status in the ‘Health.status’ field. Additionally, there is a field ('CAUSE') that attributes the main cause of injury (entanglement = "EN", entrapment = "ET", and vessel strike = "VS"). These 3 fields of type='character' ('Narrative', 'Health.status', and 'CAUSE') are case-sensitive and required to generate injury covariates and build random forest models.
 
 **data.entangle** and **data.vessel** are known-outcome (“DEAD.DECLINE” or “RECOVERED”) entanglements and vessel strike cases used to build RF models. Model covariates are generated with the function InjuryCovariates(). These data exclude cases where human intervention to remove entanglements occurred.
 
@@ -45,7 +45,7 @@ The *SeriousInjury* package includes five data frames: **WhaleData**, **data.ent
 
 Example ‘Narrative’ from which model covariates are derived. Key words and phrases in the narrative that are coded as presence / absence covariates include ‘cyamids’, ‘fluke’, ‘peduncle’, ‘grey skin’, ‘poor’.
 
-“Entanglement injuries at fluke insertions and peduncle with associated cyamids at injured areas and on head. Grey skin and overal poor appearance.”
+“Entanglement injuries at fluke insertions and peduncle with associated cyamids at injured areas and on head. Grey skin and overall poor appearance.”
 
 
 ```
