@@ -61,7 +61,7 @@ Key words and phrases in this example narrative that are coded as presence / abs
 
 ## Injury covariates
 
-Covariates are derived from injury narratives with the function ‘InjuryCovariates()’. Code to define, maintain, and extract covariates from narratives is found in the R-script InjuryCovariates.R. Covariates are defined below.
+Covariates defined below are derived from injury narratives with the function ‘InjuryCovariates()’. Code to define, maintain, and extract covariates from narratives is found in the R-script InjuryCovariates.R.
 
 **anchored** - evidence a whale was anchored or immobilized by entangling material or gear. Narrative mentions inability to dive or swim, may refer to a heavily-weighted whale with multiple pots/traps impeding normal movement. 
 
