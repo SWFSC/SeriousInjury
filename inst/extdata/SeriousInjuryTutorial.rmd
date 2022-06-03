@@ -31,21 +31,33 @@ devtools::install_github('JimCarretta/SeriousInjury')
 
 NOAA assesses anthropogenic injuries and deaths under the Marine Mammal Protection Act through a published [Serious Injury Process](https://media.fisheries.noaa.gov/dam-migration/02-238-01.pdf). Injuries are defined as ‘Non-Serious’ or ‘Serious’, where the latter is defined as “any injury that is more likely than not to result in mortality, or any injury that presents a greater than 50 percent chance of death to a marine mammal”.
 
-NOAA is reviewing the Serious Injury policy and procedures for large whales with new data and assessing a Random Forest (RF) method to estimate individual probabilities of a health decline, death, or recovery for entanglements and vessel strikes. Current serious injury procedures require biologists to manually assess a series of conditions such as: “Was entangling gear constricting or loose?” or “Was there a deep laceration?” Injury severity (non-serious vs serious) is determined based on threshold responses to such questions (a constricting entanglement is typically considered a serious injury, while a loose wrap is a non-serious injury). RF models would automate that process. RF model covariates are derived from key words and phrases in injury narratives known to be good predictors of non-serious vs serious injuries. Methods, R functions, and application examples for large whale data are summarized in the R-Package SeriousInjury and are summarized in this document.
+NOAA is reviewing the Serious Injury policy and procedures for large whales with new data and assessing a Random Forest (RF) method to estimate individual probabilities of a health decline, death, or recovery for entanglements and vessel strikes. Current serious injury procedures require biologists to manually assess a series of conditions such as: “Was entangling gear constricting or loose?” or “Was there a deep laceration?” Injury severity (non-serious vs serious) is determined based on threshold responses to such questions (a constricting entanglement is typically considered a serious injury, while a loose wrap is a non-serious injury). RF models automate that process. RF model covariates are derived from key words and phrases in injury narratives known to be good predictors of non-serious vs serious injuries. Methods, R functions, and application examples for large whale data are summarized in the R-Package SeriousInjury and are summarized in this document.
 
 ## Data 
 
 The *SeriousInjury* package includes five data frames: **WhaleData**, **data.entangle**, **data.vessel**, **data.test.entangle**, and **data.test.vessel**.
 
-**WhaleData** is raw data for whale injury cases. Injury descriptions are in the ‘Narrative’ field and assessed health status in the ‘Health.status’ field. Additionally, there is a field ('CAUSE') that attributes the main cause of injury (entanglement = "EN", entrapment = "ET", and vessel strike = "VS"). Entanglements and entrapments are both treated as forms of entanglements for purposes of injury modeling. These 3 fields of type='character' ('Narrative', 'Health.status', and 'CAUSE') are case-sensitive and required to generate injury covariates and build random forest models.
+**WhaleData** is raw data for whale injury cases. Three column fields of type='character' are required to generate covariates and build injury assessment models.
+
+1. ‘Narrative’ contains injury descriptions from which model covariates are generated.
+
+2. 'Health.status' contains one of three assessed conditions: a known death or health decline ('DEAD.DECLINE'), a whale that survives and recovers from its injuries ('RECOVERED'), and data-poor cases for which the final health status is undetermined ('UNKNOWN').
+
+3. 'CAUSE' attributes the main cause of injury to the following sources: entanglement = "EN", entrapment = "ET", and vessel strike = "VS"). Entanglements and entrapments are both treated as forms of entanglements for purposes of injury modeling.
+
+### Injury-Specific data frames
 
 **data.entangle** and **data.vessel** are known-outcome (“DEAD.DECLINE” or “RECOVERED”) entanglements and vessel strike cases used to build RF models. Model covariates are generated with the function InjuryCovariates(). These data exclude cases where human intervention to remove entanglements occurred.
 
-**data.test.entangle** and **data.test.vessel** include cases with ‘Health.status’ = “UNKNOWN” and are used with the predict() function and the RF objects ‘ModelEntangle’ and ‘ModelVessel’ to assign cases to “DEAD.DECLINE” or “RECOVERED”.
+**data.test.entangle** and **data.test.vessel** include cases where ‘Health.status’ = “UNKNOWN” and are used with the predict() function and the RF objects ‘ModelEntangle’ and ‘ModelVessel’ to assign cases to “DEAD.DECLINE” or “RECOVERED”.
 
-Example ‘Narrative’ from which model covariates are derived. Key words and phrases in the narrative that are coded as presence / absence covariates include ‘cyamids’, ‘fluke’, ‘peduncle’, ‘grey skin’, ‘poor’.
+### Narrative
 
-“Entanglement injuries at fluke insertions and peduncle with associated cyamids at injured areas and on head. Grey skin and overall poor appearance.”
+Example ‘Narrative’ from which model covariates are derived: 
+
+***Entanglement injuries at fluke insertions and peduncle with associated cyamids at injured areas and on head. Grey skin and overall poor appearance.***
+
+Key words and phrases in this example narrative that are coded as presence / absence covariates include ‘cyamids’, ‘fluke’, ‘peduncle’, ‘grey skin’, ‘poor’: 
 
 ## Injury covariates
 
