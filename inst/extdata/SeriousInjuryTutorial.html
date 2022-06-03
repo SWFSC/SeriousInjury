@@ -1594,8 +1594,6 @@ covariates include ‘cyamids’, ‘fluke’, ‘peduncle’, ‘grey skin’,
 <p>“Entanglement injuries at fluke insertions and peduncle with
 associated cyamids at injured areas and on head. Grey skin and overall
 poor appearance.”</p>
-<pre><code># Examine WhaleData fields
-head(WhaleData)</code></pre>
 </div>
 <div id="injury-covariates" class="section level2">
 <h2>Injury covariates</h2>
@@ -1653,6 +1651,10 @@ Sizes &gt; 65 ft are considered ‘large’.</p>
 with multiple wraps of line or gear around body or appendage.</p>
 <p><strong>wraps.no</strong> - Narrative includes reference to a whale
 without any wraps of line or gear around body or appendage.</p>
+<pre><code># Generate covariates from case narratives. Append to WhaleData.
+names(WhaleData)
+WhaleDataCovs &lt;- InjuryCovariates(WhaleData)
+names(WhaleDataCovs)</code></pre>
 </div>
 <div id="random-forest-rf-models" class="section level2">
 <h2>Random Forest (RF) Models</h2>

@@ -47,11 +47,6 @@ Example ‘Narrative’ from which model covariates are derived. Key words and p
 
 “Entanglement injuries at fluke insertions and peduncle with associated cyamids at injured areas and on head. Grey skin and overall poor appearance.”
 
-```
-# Examine WhaleData fields
-head(WhaleData)
-```
-
 ## Injury covariates
 
 Covariates are derived from injury narratives with the function ‘InjuryCovariates()’. Code to define, maintain, and extract covariates from narratives is found in the R-script InjuryCovariates.R. Covariates are defined below.
@@ -92,6 +87,12 @@ Covariates are derived from injury narratives with the function ‘InjuryCovaria
 
 **wraps.no** - Narrative includes reference to a whale without any wraps of line or gear around body or appendage.
 
+```
+# Generate covariates from case narratives. Append to WhaleData.
+names(WhaleData)
+WhaleDataCovs <- InjuryCovariates(WhaleData)
+names(WhaleDataCovs)
+```
 
 ## Random Forest (RF) Models
 
