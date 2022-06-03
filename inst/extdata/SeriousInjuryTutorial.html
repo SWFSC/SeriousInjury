@@ -11,7 +11,7 @@
 
 <meta name="author" content="Jim.Carretta@noaa.gov" />
 
-<meta name="date" content="2022-05-19" />
+<meta name="date" content="2022-06-02" />
 
 <title>R-Package SeriousInjury</title>
 
@@ -1514,7 +1514,7 @@ div.tocify {
 <h3 class="subtitle">Assess Severity of Large Whale Injuries with Random
 Forests</h3>
 <h4 class="author"><a href="mailto:Jim.Carretta@noaa.gov" class="email">Jim.Carretta@noaa.gov</a></h4>
-<h4 class="date">May 19, 2022</h4>
+<h4 class="date">June 2, 2022</h4>
 
 </div>
 
@@ -1572,10 +1572,11 @@ this document.</p>
 descriptions are in the ‘Narrative’ field and assessed health status in
 the ‘Health.status’ field. Additionally, there is a field (‘CAUSE’) that
 attributes the main cause of injury (entanglement = “EN”, entrapment =
-“ET”, and vessel strike = “VS”). These 3 fields of type=‘character’
-(‘Narrative’, ‘Health.status’, and ‘CAUSE’) are case-sensitive and
-required to generate injury covariates and build random forest
-models.</p>
+“ET”, and vessel strike = “VS”). Entanglements and entrapments are both
+treated as forms of entanglements for purposes of injury modeling. These
+3 fields of type=‘character’ (‘Narrative’, ‘Health.status’, and ‘CAUSE’)
+are case-sensitive and required to generate injury covariates and build
+random forest models.</p>
 <p><strong>data.entangle</strong> and <strong>data.vessel</strong> are
 known-outcome (“DEAD.DECLINE” or “RECOVERED”) entanglements and vessel
 strike cases used to build RF models. Model covariates are generated
@@ -1593,8 +1594,8 @@ covariates include ‘cyamids’, ‘fluke’, ‘peduncle’, ‘grey skin’,
 <p>“Entanglement injuries at fluke insertions and peduncle with
 associated cyamids at injured areas and on head. Grey skin and overall
 poor appearance.”</p>
-<pre><code>head(WhaleData)
-</code></pre>
+<pre><code># Examine WhaleData fields
+head(WhaleData)</code></pre>
 </div>
 <div id="injury-covariates" class="section level2">
 <h2>Injury covariates</h2>

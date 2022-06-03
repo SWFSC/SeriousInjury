@@ -2,7 +2,7 @@
 title: "R-Package [*SeriousInjury*](https://github.com/JimCarretta/SeriousInjury)"
 subtitle: "Assess Severity of Large Whale Injuries with Random Forests"
 author: "Jim.Carretta@noaa.gov"
-date: "May 19, 2022"
+date: "June 2, 2022"
 output:
   html_document:
     toc: true
@@ -37,7 +37,7 @@ NOAA is reviewing the Serious Injury policy and procedures for large whales with
 
 The *SeriousInjury* package includes five data frames: **WhaleData**, **data.entangle**, **data.vessel**, **data.test.entangle**, and **data.test.vessel**.
 
-**WhaleData** is raw data for whale injury cases. Injury descriptions are in the ‘Narrative’ field and assessed health status in the ‘Health.status’ field. Additionally, there is a field ('CAUSE') that attributes the main cause of injury (entanglement = "EN", entrapment = "ET", and vessel strike = "VS"). These 3 fields of type='character' ('Narrative', 'Health.status', and 'CAUSE') are case-sensitive and required to generate injury covariates and build random forest models.
+**WhaleData** is raw data for whale injury cases. Injury descriptions are in the ‘Narrative’ field and assessed health status in the ‘Health.status’ field. Additionally, there is a field ('CAUSE') that attributes the main cause of injury (entanglement = "EN", entrapment = "ET", and vessel strike = "VS"). Entanglements and entrapments are both treated as forms of entanglements for purposes of injury modeling. These 3 fields of type='character' ('Narrative', 'Health.status', and 'CAUSE') are case-sensitive and required to generate injury covariates and build random forest models.
 
 **data.entangle** and **data.vessel** are known-outcome (“DEAD.DECLINE” or “RECOVERED”) entanglements and vessel strike cases used to build RF models. Model covariates are generated with the function InjuryCovariates(). These data exclude cases where human intervention to remove entanglements occurred.
 
@@ -47,10 +47,9 @@ Example ‘Narrative’ from which model covariates are derived. Key words and p
 
 “Entanglement injuries at fluke insertions and peduncle with associated cyamids at injured areas and on head. Grey skin and overall poor appearance.”
 
-
 ```
+# Examine WhaleData fields
 head(WhaleData)
-
 ```
 
 ## Injury covariates
