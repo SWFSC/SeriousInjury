@@ -75,7 +75,7 @@ InjuryCovariates = function(df) {
  decline = as.numeric(lapply(decline, as.numeric))
 
 # 'Extensive or Severe' case resulting from entanglement or vessel strike?
- extensive.severe = paste(c("extensive","severe","severed","substantial","massive","amputat","major","missing fluke"), collapse="|")
+ extensive.severe = paste(c("amputat", "extensive", "substantial","massive","major", "moderate", "missing fluke", "severe", "severed"), collapse="|")
      extensive.severe = grepl(extensive.severe, df$Narrative, ignore.case=TRUE)
       extensive.severe = as.numeric(lapply(extensive.severe, as.numeric))
 
@@ -125,7 +125,7 @@ InjuryCovariates = function(df) {
  laceration.shallow[deep.lac.pos] = 0
 
 # Evidence whale is | was healing | recovering?
- healing = paste(c("healing","healed","healthy.*resight","resight.*healthy","good health",
+ healing = paste(c("healing","healed","healthy.*resight","resight.*healthy","good health", "minor",
                     "no visible injur","no injur", "no noticeable injuries", " normal behavior"), collapse="|")
 
  healing = grepl(healing, df$Narrative, ignore.case=TRUE)
