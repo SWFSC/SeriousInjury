@@ -389,8 +389,8 @@ ModelEntangle</code></pre>
 ##                      Number of trees: 1000 
 ## No. of variables tried at each split: 4 
 ##        No. of permutation replicates: 100 
-##                           Start time: 2022-07-10 22:31:33 
-##                             End time: 2022-07-10 22:32:36 
+##                           Start time: 2022-07-10 22:40:31 
+##                             End time: 2022-07-10 22:41:34 
 ##                             Run time: 1.05 mins 
 ## 
 ##              DEAD.DECLINE RECOVERED pct.correct LCI_0.95 UCI_0.95
@@ -601,7 +601,7 @@ example.df</code></pre>
 ## 1              0         1    0       0               0                  0
 ##   pectoral swim.dive trailing VessSpd   VessSz wraps.multi wraps.no
 ## 1        0         1        1 VSpdUnk VSzLarge           0        0</code></pre>
-<pre class="r"><code># Apply existing RF model (&#39;ModelEntangle&#39;) to example.df to generate majority and probabilistic predictions of health status. The majority prediction (&quot;DEAD.DECLINE&quot; vs &quot;RECOVERED&quot;) is determined by which class is predicted in &gt;50% of RF trees. The number of trees (from a random forest of 1,000 trees) assigning the narrative to each respective health class is reflected in the &quot;DEAD.DECLINE&quot; and &quot;RECOVERED&quot; fractions returned.
+<pre class="r"><code># Apply existing RF model (&#39;ModelEntangle&#39;) to example.df to generate majority and probabilistic predictions of health status. The majority prediction (&quot;DEAD.DECLINE&quot; vs &quot;RECOVERED&quot;) is determined by which class is predicted in &gt;50% of 1,000 RF trees. The number of trees assigning the narrative to each respective health class is reflected in the &quot;DEAD.DECLINE&quot; and &quot;RECOVERED&quot; fractions returned.
 
 majority.prediction = predict(ModelEntangle, example.df, type=&quot;response&quot;)
 prob.prediction = predict(ModelEntangle, example.df, type=&quot;prob&quot;)

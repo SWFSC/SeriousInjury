@@ -207,7 +207,7 @@ example.df <- cbind.data.frame(Narrative, Health.status)
 example.df <- InjuryCovariates(example.df)
 example.df
 
-# Apply existing RF model ('ModelEntangle') to example.df to generate majority and probabilistic predictions of health status. The majority prediction ("DEAD.DECLINE" vs "RECOVERED") is determined by which class is predicted in >50% of RF trees. The number of trees (from a random forest of 1,000 trees) assigning the narrative to each respective health class is reflected in the "DEAD.DECLINE" and "RECOVERED" fractions returned.
+# Apply existing RF model ('ModelEntangle') to example.df to generate majority and probabilistic predictions of health status. The majority prediction ("DEAD.DECLINE" vs "RECOVERED") is determined by which class is predicted in >50% of 1,000 RF trees. The number of trees assigning the narrative to each respective health class is reflected in the "DEAD.DECLINE" and "RECOVERED" fractions returned.
 
 majority.prediction = predict(ModelEntangle, example.df, type="response")
 prob.prediction = predict(ModelEntangle, example.df, type="prob")
