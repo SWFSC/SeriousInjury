@@ -2,7 +2,7 @@
 title: "R-Package [*SeriousInjury*](https://github.com/JimCarretta/SeriousInjury)"
 subtitle: "Assess Severity of Large Whale Injuries with Random Forests"
 author: "Jim.Carretta@noaa.gov"
-date: "July 8, 2022"
+date: "July 10, 2022"
 output:
   html_document:
     toc: true
@@ -100,9 +100,9 @@ Covariates defined below are derived from injury narratives with the function â€
 ```{r message=FALSE, warning=FALSE}
 # Generate covariates from case narratives. Append to WhaleData.
 library(SeriousInjury)
-names(WhaleData)
 WhaleDataCovs <- InjuryCovariates(WhaleData)
-names(WhaleDataCovs)
+# View a portion of WhaleDataCovs
+head(WhaleDataCovs[,c(3:6,28,31:49)])
 ```
 
 ## Random Forest (RF) Models
@@ -118,7 +118,7 @@ The entanglement (ModelEntangle) and vessel strike (ModelVessel) models are obje
 
 ### Entanglement Model
 
-```
+```{r}
 # Create randomForest model (using R-Package rfPermute) using known-outcome entanglement strike data
 # set.seed for reproducibility
 set.seed(123)
@@ -172,10 +172,8 @@ ModelVessel
 
 Use existing RF models to predict probability of a death, health decline or recovery for cases where the outcome is unknown. Deaths and health declines are considered serious injuries and recoveries are non-serious. Both Dead.Decline and Recovered probabilities are estimated, based on the fraction of RF tree assignments to each class. A binary prediction (either Dead.Decline or Recovered) is also returned, based on the majority class assignment (>50% of trees). In case of ties, which are rare, the model randomly assigns a class.
 
-```
-# Estimate injury classes for entanglements with unknown outcomes.
-
-# 'data.test.entangle' data frame with required field name 'Narrative' and appended covariates.
+```{r}
+# Estimate injury classes for entanglements with unknown outcomes, based on data frame 'data.test.entangle'.
 
 head(data.test.entangle)
 
@@ -193,11 +191,9 @@ head(predictions.df)
 
 ### Your Own Data
 
-Apply RF entanglement and vessel strike models to your own injury narratives. Narratives must be part of a data frame, with the field named 'Narrative'.
-The data frame must also include a field for the whale's health status, named 'Health.status', in this case 'UNKNOWN'. The 'Health.status' field value may 
-contain any character string, such as 'UNK'.
+You may have injury narratives not included in the *SeriousInjury* package for which you want to predict health status and estimate the "DEAD.DECLINE" vs "RECOVERED" probability. This example uses a single entanglement narrative and the existing entanglement model to do that. Narratives must be part of a data frame, where the field name = 'Narrative'. The data frame must also include a field for health status, named 'Health.status', in this case 'UNKNOWN'. The 'Health.status' field value may contain any character string, e.g. 'UNK' can be replaced for 'UNKNOWN'.
 
-Start with a single injury narrative for an unknown outcome stored in a data frame:
+Start with a single injury narrative for an unknown health status outcome stored in a data frame:
 
 ```{r}
 Narrative <- c("Free swimming with trailing line and small (6 inch) red buoy. Partial disentanglement - gear recovered - 700' of 1/2 inch lead line w/ balloon buoy + 100' of 1/2 inch line & small 7 inch buoy; Believe all gear removed, but unable to confirm. Animal looked thin and was having trouble getting to the surface, but no photos to show health status.")
@@ -205,23 +201,16 @@ Narrative <- c("Free swimming with trailing line and small (6 inch) red buoy. Pa
 Health.status <- "UNKNOWN"
 
 example.df <- cbind.data.frame(Narrative, Health.status)
-```
 
-Data-mine Narrative text and append injury covariates
+# Data-mine Narrative text and append injury covariates
 
-```{r} 
 example.df <- InjuryCovariates(example.df)
 example.df
-```
 
-Apply existing RF model ('ModelEntangle') to example data frame to generate majority and probabilistic predictions of health status
+# Apply existing RF model ('ModelEntangle') to example.df to generate majority and probabilistic predictions of health status. The majority prediction ("DEAD.DECLINE" vs "RECOVERED") is determined by which class is predicted in >50% of RF trees. The number of trees (from a random forest of 1,000 trees) assigning the narrative to each respective health class is reflected in the "DEAD.DECLINE" and "RECOVERED" fractions returned.
 
-The 'majority prediction' (>50% of RF trees assigned a health status) =
-```{r}
-predict(ModelEntangle, example.df, type='response')
-```
-
-The respective probabilities of the health class assignment =
-```{r}
-predict(ModelEntangle, example.df, type='prob')
+majority.prediction = predict(ModelEntangle, example.df, type="response")
+prob.prediction = predict(ModelEntangle, example.df, type="prob")
+example.df.with.predictions <- cbind.data.frame(majority.prediction, prob.prediction, example.df)
+example.df.with.predictions
 ```

@@ -11,7 +11,7 @@
 
 <meta name="author" content="Jim.Carretta@noaa.gov" />
 
-<meta name="date" content="2022-07-08" />
+<meta name="date" content="2022-07-10" />
 
 <title>R-Package SeriousInjury</title>
 
@@ -244,7 +244,7 @@ div.tocify {
 <h1 class="title toc-ignore">R-Package <a href="https://github.com/JimCarretta/SeriousInjury"><em>SeriousInjury</em></a></h1>
 <h3 class="subtitle">Assess Severity of Large Whale Injuries with Random Forests</h3>
 <h4 class="author"><a href="mailto:Jim.Carretta@noaa.gov" class="email">Jim.Carretta@noaa.gov</a></h4>
-<h4 class="date">July 8, 2022</h4>
+<h4 class="date">July 10, 2022</h4>
 
 </div>
 
@@ -309,89 +309,44 @@ devtools::install_github(&#39;JimCarretta/SeriousInjury&#39;)
 <p><strong>wraps.no</strong> - Narrative includes reference to a whale without any wraps of line or gear around body or appendage.</p>
 <pre class="r"><code># Generate covariates from case narratives. Append to WhaleData.
 library(SeriousInjury)
-names(WhaleData)</code></pre>
-<pre><code>##  [1] &quot;Region&quot;                                          
-##  [2] &quot;Case.1st.Observed.Date&quot;                          
-##  [3] &quot;Narrative&quot;                                       
-##  [4] &quot;CAUSE&quot;                                           
-##  [5] &quot;DETERMINED.FATE&quot;                                 
-##  [6] &quot;Health.status&quot;                                   
-##  [7] &quot;DISENTANGLEMENT.STATUS&quot;                          
-##  [8] &quot;Seen..1yr.&quot;                                      
-##  [9] &quot;Breeding..Feeding..Migratory.corridor..or.Other.&quot;
-## [10] &quot;INITIAL..National.Cause.Criteria..L1.L12&quot;        
-## [11] &quot;FINAL.National.Cause.Criteria..L1.L12&quot;           
-## [12] &quot;L1&quot;                                              
-## [13] &quot;L2&quot;                                              
-## [14] &quot;L3&quot;                                              
-## [15] &quot;L4&quot;                                              
-## [16] &quot;L5a&quot;                                             
-## [17] &quot;L5b&quot;                                             
-## [18] &quot;L6a&quot;                                             
-## [19] &quot;L6b&quot;                                             
-## [20] &quot;L6c&quot;                                             
-## [21] &quot;L7a&quot;                                             
-## [22] &quot;L7b&quot;                                             
-## [23] &quot;L8&quot;                                              
-## [24] &quot;L9&quot;                                              
-## [25] &quot;L10&quot;                                             
-## [26] &quot;L11&quot;                                             
-## [27] &quot;L12&quot;                                             
-## [28] &quot;PBR..Value&quot;                                      
-## [29] &quot;Gear..Type&quot;                                      
-## [30] &quot;Trailing.&quot;                                       
-## [31] &quot;Species&quot;</code></pre>
-<pre class="r"><code>WhaleDataCovs &lt;- InjuryCovariates(WhaleData)
-names(WhaleDataCovs)</code></pre>
-<pre><code>##  [1] &quot;Region&quot;                                          
-##  [2] &quot;Case.1st.Observed.Date&quot;                          
-##  [3] &quot;Narrative&quot;                                       
-##  [4] &quot;CAUSE&quot;                                           
-##  [5] &quot;DETERMINED.FATE&quot;                                 
-##  [6] &quot;Health.status&quot;                                   
-##  [7] &quot;DISENTANGLEMENT.STATUS&quot;                          
-##  [8] &quot;Seen..1yr.&quot;                                      
-##  [9] &quot;Breeding..Feeding..Migratory.corridor..or.Other.&quot;
-## [10] &quot;INITIAL..National.Cause.Criteria..L1.L12&quot;        
-## [11] &quot;FINAL.National.Cause.Criteria..L1.L12&quot;           
-## [12] &quot;L1&quot;                                              
-## [13] &quot;L2&quot;                                              
-## [14] &quot;L3&quot;                                              
-## [15] &quot;L4&quot;                                              
-## [16] &quot;L5a&quot;                                             
-## [17] &quot;L5b&quot;                                             
-## [18] &quot;L6a&quot;                                             
-## [19] &quot;L6b&quot;                                             
-## [20] &quot;L6c&quot;                                             
-## [21] &quot;L7a&quot;                                             
-## [22] &quot;L7b&quot;                                             
-## [23] &quot;L8&quot;                                              
-## [24] &quot;L9&quot;                                              
-## [25] &quot;L10&quot;                                             
-## [26] &quot;L11&quot;                                             
-## [27] &quot;L12&quot;                                             
-## [28] &quot;PBR..Value&quot;                                      
-## [29] &quot;Gear..Type&quot;                                      
-## [30] &quot;Trailing.&quot;                                       
-## [31] &quot;Species&quot;                                         
-## [32] &quot;anchored&quot;                                        
-## [33] &quot;calf.juv&quot;                                        
-## [34] &quot;constricting&quot;                                    
-## [35] &quot;decline&quot;                                         
-## [36] &quot;extensive.severe&quot;                                
-## [37] &quot;fluke.peduncle&quot;                                  
-## [38] &quot;gear.free&quot;                                       
-## [39] &quot;head&quot;                                            
-## [40] &quot;healing&quot;                                         
-## [41] &quot;laceration.deep&quot;                                 
-## [42] &quot;laceration.shallow&quot;                              
-## [43] &quot;pectoral&quot;                                        
-## [44] &quot;swim.dive&quot;                                       
-## [45] &quot;trailing&quot;                                        
-## [46] &quot;VessSpd&quot;                                         
-## [47] &quot;VessSz&quot;                                          
-## [48] &quot;wraps.multi&quot;                                     
-## [49] &quot;wraps.no&quot;</code></pre>
+WhaleDataCovs &lt;- InjuryCovariates(WhaleData)
+# View a portion of WhaleDataCovs
+head(WhaleDataCovs[,c(3:6,28,31:49)])</code></pre>
+<pre><code>##                                                                                                                                  Narrative
+## 1 Not reported until Feb 2006. Very little detail. M/V struck whale while traveling between Germany &amp; Charleston, SC. 795 feet @ unk speed
+## 2                                                                                                Free swimming with unknown configuration.
+## 3                          CONTAINER SHIP REPORTED STRIKING A WHALE. ASSUME VESSEL SPEED EXCEEDED 10 KTS AND SIZE MUCH GREATER THAN WHALE.
+## 4                                                                                                               CARCASS FLOATING IN HARBOR
+## 5 CARCASS; VERTEBRAL COLUMN SEVERED IN LUMBAR/CAUDAL REGION; LARGE HEMATOMA EXTENDING FROM DORSAL FIN TO PECTORAL FIN ON LEFT LATERAL SIDE
+## 6                                                                       CARCASS; CRANIAL RIBS, THORACIC VERTEBRAE &amp; CAUDAL SKULL FRACTURED
+##   CAUSE DETERMINED.FATE Health.status PBR..Value Species anchored calf.juv
+## 1    VS              MT  DEAD.DECLINE       1.00    BLWH        0        0
+## 2    EN              PR       UNKNOWN       0.75    BLWH        0        0
+## 3    VS              MT  DEAD.DECLINE       1.00    BLWH        0        0
+## 4    VS              MT  DEAD.DECLINE       1.00    BLWH        0        0
+## 5    VS              MT  DEAD.DECLINE       1.00    BLWH        0        0
+## 6    VS              MT  DEAD.DECLINE       1.00    BLWH        0        0
+##   constricting decline extensive.severe fluke.peduncle gear.free head healing
+## 1            0       0                0              1         0    0       0
+## 2            0       0                0              0         0    0       0
+## 3            0       0                0              0         0    0       0
+## 4            0       0                0              0         0    0       0
+## 5            1       0                1              0         0    0       0
+## 6            0       0                0              0         0    0       0
+##   laceration.deep laceration.shallow pectoral swim.dive trailing  VessSpd
+## 1               0                  0        0         0        0  VSpdUnk
+## 2               0                  0        0         1        0  VSpdUnk
+## 3               0                  0        0         0        0 VSpdSlow
+## 4               0                  0        0         0        0  VSpdUnk
+## 5               0                  0        1         0        0  VSpdUnk
+## 6               0                  0        0         0        0  VSpdUnk
+##     VessSz wraps.multi wraps.no
+## 1 VSzLarge           0        0
+## 2   VSzUnk           0        0
+## 3 VSzLarge           0        0
+## 4   VSzUnk           0        0
+## 5   VSzUnk           0        0
+## 6   VSzUnk           0        0</code></pre>
 </div>
 <div id="random-forest-rf-models" class="section level2">
 <h2>Random Forest (RF) Models</h2>
@@ -407,7 +362,7 @@ names(WhaleDataCovs)</code></pre>
 <p>The entanglement (ModelEntangle) and vessel strike (ModelVessel) models are objects of class rfPermute. They include known-outcome entanglement and vessel strike injury cases, included as the data frames <strong>data.entangle</strong> and <strong>data.vessel</strong> in the R-Package <em>SeriousInjury</em>.</p>
 <div id="entanglement-model" class="section level3">
 <h3>Entanglement Model</h3>
-<pre><code># Create randomForest model (using R-Package rfPermute) using known-outcome entanglement strike data
+<pre class="r"><code># Create randomForest model (using R-Package rfPermute) using known-outcome entanglement strike data
 # set.seed for reproducibility
 set.seed(123)
 
@@ -428,6 +383,20 @@ ModelEntangle = rfPermute(data.entangle$Health.status ~ .,
   
 # RF Entanglement model Confusion Matrix
 ModelEntangle</code></pre>
+<pre><code>## An rfPermute model
+## 
+##                Type of random forest: classification 
+##                      Number of trees: 1000 
+## No. of variables tried at each split: 4 
+##        No. of permutation replicates: 100 
+##                           Start time: 2022-07-10 22:31:33 
+##                             End time: 2022-07-10 22:32:36 
+##                             Run time: 1.05 mins 
+## 
+##              DEAD.DECLINE RECOVERED pct.correct LCI_0.95 UCI_0.95
+## DEAD.DECLINE          127         7        94.8     89.5     97.9
+## RECOVERED               3       138        97.9     93.9     99.6
+## Overall                NA        NA        96.4     93.4     98.2</code></pre>
 </div>
 <div id="vessel-model" class="section level3">
 <h3>Vessel Model</h3>
@@ -458,13 +427,80 @@ ModelVessel</code></pre>
 <div id="predictions" class="section level2">
 <h2>Predictions</h2>
 <p>Use existing RF models to predict probability of a death, health decline or recovery for cases where the outcome is unknown. Deaths and health declines are considered serious injuries and recoveries are non-serious. Both Dead.Decline and Recovered probabilities are estimated, based on the fraction of RF tree assignments to each class. A binary prediction (either Dead.Decline or Recovered) is also returned, based on the majority class assignment (&gt;50% of trees). In case of ties, which are rare, the model randomly assigns a class.</p>
-<pre><code># Estimate injury classes for entanglements with unknown outcomes.
+<pre class="r"><code># Estimate injury classes for entanglements with unknown outcomes, based on data frame &#39;data.test.entangle&#39;.
 
-# &#39;data.test.entangle&#39; data frame with required field name &#39;Narrative&#39; and appended covariates.
-
-head(data.test.entangle)
-
-# Apply RF model (&#39;ModelEntangle&#39;) to data.test.entangle to generate binary and probabilistic model predictions
+head(data.test.entangle)</code></pre>
+<pre><code>##    Region Case.1st.Observed.Date
+## 2     ATL              31-Aug-02
+## 13    PAC               9/4/2015
+## 14    PAC              6/26/2016
+## 15    PAC              7/14/2016
+## 16    PAC              8/15/2016
+## 17    PAC              8/28/2016
+##                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   Narrative
+## 2                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 Free swimming with unknown configuration.
+## 13                                                                            OVERHEAD CAMERA FOOTAGE INDICATES THAT GEAR ORIGINATES FROM MOUTH OR RIGHT PECTORAL AND RUNS ALONG BODY, POSSIBLY TWO LINES, ONE OVER THE FLUKES AND ANOTHER UNDER THE FLUKES THEN APPROX 40 FT BEHIND WHALE, THEN WRAPS/TWISTS TOGETHER AND GOES BACK 400+ FEET; CDFW CONCURS IS CONSISTENT WITH DEEP SET TRAP, POSSIBLY HAGFISH, SABLEFISH, OR SPOT PRAWN. CONFIGURATION OF GEAR UNKNOWN AND CANNOT TELL IF GEAR IS CONSTRICTING OR LOOSELY WRAPPED. WHALE REPORTED AS SWIMMING AND DIVING, BUT NOT ENOUGH TO SUBMERGE BODY. WHALE APPEARS SLIGHTLY THIN, IMPLYING A DECLINE IN HEALTH STATUS DUE TO THE TRAILING GEAR.  SERIOUS INJURY PRORATION VALUE IS ASSIGNED AS = 1 FOR THIS REASON.
+## 14                                                                                                                                                                                                                                                                                        35 MILES WEST OF PT. LOMA. TRAILING 2 RED BULLET BUOYS WITH PURPLE T6 CDFW DUNGENESS CRAB BUOY TAG; LINE WRAPPED THROUGH MOUTH OR AROUND PECTORAL FIN. GEAR WAS ORIGINALLY SET OFF SAN LUIS OBISPO IN 40 - 70 FATHOMS OF WATER. WHALE SEEN NEXT DAY, LOGGING AT SURFACE, WHICH IS ABNORMAL BEHAVIOR FOR A BLUE WHALE. UNSUCCESSFUL ATTEMPT AT DISENTANGLING WHALE. FULL CONFIGURATION OF GEAR UNKNOWN. THIS IS A SERIOUS INJURY BECAUSE OF THE NOTED HEALTH DECLINE OF THE WHALE.
+## 15 SEEN OFF LOS ANGELES TRAILING BUOYS AND LINE. MULTIPLE RESIGHTS AS FAR NORTH AS SANTA CRUZ COUNTY. SEEN ACTIVELY FEEDING WITH OTHER BLUE WHALES THROUGH EARLY OCTOBER. FINAL SIGHTING WAS IN OCTOBER OFF OF LOS ANGELES. WHALE BODY CONDITION WAS DESCRIBED AS &#39;EMACIATED&#39; IN AUGUST AND &#39;FAIR&#39; IN OCTOBER. LINE WRAPPED AROUND BODY, 2 YELLOW BUOYS WITH BLUE TIPS, TRAILING 30 FEET BEHIND WHALE, SPACED 1 FM APART, PURPLE CDFW DUNGENESS CRAB BUOY TAG VISIBLE, VIDEO SHOWS ALGAE AND BARNACLE GROWTH ON ROPE AND BUOYS, COMPRESSION OF BUOYS. UNCERTAINTY OVER WHETHER LINE EXTENDS THROUGH MOUTH OR JUST OVER PECTORAL FLIPPERS. HEALTH DECLINE AND TWO CRISS-CROSSED CONSTRICTING MULTIPLE WRAPS OF LINE POSTERIOR OF DORSAL AROUND BODY WARRANTS SERIOUS INJURY.
+## 16                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                REPORT OF AN ENTANGLED WHALE FROM POINT BLUE CONSERVATION GROUP NEAR THE FARALLON ISLANDS. NO PHOTOS OR ADDITIONAL INFORMATION. AMOUNT OF GEAR AND CONFIGURATION UNKNOWN.
+## 17                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       TWO BLACK OR GREEN BUOYS WITH ABUNDANT MARINE GROWTH TRAILING BEHIND WHALE ABOUT 20-30 FEET, FLUKES NOT ENTANGLED, BUT POSSIBLY PECTORAL FIN. AMOUNT AND CONFIGURATION OF GEAR UNKNOWN. NO PHOTOS.
+##    CAUSE DETERMINED.FATE Health.status DISENTANGLEMENT.STATUS Seen..1yr.
+## 2     EN              PR       UNKNOWN                      -          0
+## 13    EN              PR       UNKNOWN                                 0
+## 14    EN              SI       UNKNOWN                                 0
+## 15    EN              SI       UNKNOWN                                 0
+## 16    EN              PR       UNKNOWN                                 0
+## 17    EN              PR       UNKNOWN                                 0
+##    Breeding..Feeding..Migratory.corridor..or.Other.
+## 2                                             FALSE
+## 13                                             &lt;NA&gt;
+## 14                                             &lt;NA&gt;
+## 15                                             &lt;NA&gt;
+## 16                                             &lt;NA&gt;
+## 17                                             &lt;NA&gt;
+##    INITIAL..National.Cause.Criteria..L1.L12
+## 2                                       L10
+## 13                                         
+## 14                                         
+## 15                                         
+## 16                                         
+## 17                                         
+##    FINAL.National.Cause.Criteria..L1.L12 L1   L2 L3 L4  L5a L5b L6a L6b L6c L7a
+## 2                                    L10 NA &lt;NA&gt; NA NA &lt;NA&gt;  NA  NA  NA  NA  NA
+## 13                                   L10 NA &lt;NA&gt; NA NA &lt;NA&gt;  NA  NA  NA  NA  NA
+## 14                                   L10 NA &lt;NA&gt; NA NA &lt;NA&gt;  NA  NA  NA  NA  NA
+## 15                                    L2 NA &lt;NA&gt; NA NA &lt;NA&gt;  NA  NA  NA  NA  NA
+## 16                                   L10 NA &lt;NA&gt; NA NA &lt;NA&gt;  NA  NA  NA  NA  NA
+## 17                                   L10 NA &lt;NA&gt; NA NA &lt;NA&gt;  NA  NA  NA  NA  NA
+##    L7b L8 L9  L10 L11 L12 PBR..Value Gear..Type Trailing. Species anchored
+## 2   NA NA NA    1  NA  NA       0.75          -         -    BLWH        0
+## 13  NA NA NA &lt;NA&gt;  NA  NA       1.00                         BLWH        0
+## 14  NA NA NA &lt;NA&gt;  NA  NA       1.00                         BLWH        0
+## 15  NA NA NA &lt;NA&gt;  NA  NA       1.00                         BLWH        0
+## 16  NA NA NA &lt;NA&gt;  NA  NA       0.75                         BLWH        0
+## 17  NA NA NA &lt;NA&gt;  NA  NA       0.75                         BLWH        0
+##    calf.juv constricting decline extensive.severe fluke.peduncle gear.free head
+## 2         0            0       0                0              0         0    0
+## 13        0            1       0                0              1         0    1
+## 14        0            0       1                0              0         0    1
+## 15        0            1       1                0              0         0    1
+## 16        0            0       0                0              0         0    0
+## 17        0            0       0                0              1         0    0
+##    healing laceration.deep laceration.shallow pectoral swim.dive trailing
+## 2        0               0                  0        0         1        0
+## 13       0               0                  0        1         1        1
+## 14       0               0                  0        1         0        1
+## 15       0               0                  0        1         0        1
+## 16       0               0                  0        0         0        0
+## 17       0               0                  0        1         0        1
+##    VessSpd VessSz wraps.multi wraps.no
+## 2  VSpdUnk VSzUnk           0        0
+## 13 VSpdUnk VSzUnk           0        0
+## 14 VSpdUnk VSzUnk           0        0
+## 15 VSpdUnk VSzUnk           1        0
+## 16 VSpdUnk VSzUnk           0        0
+## 17 VSpdUnk VSzUnk           0        0</code></pre>
+<pre class="r"><code># Apply RF model (&#39;ModelEntangle&#39;) to data.test.entangle to generate binary and probabilistic model predictions
 
 majority.prediction &lt;- predict(ModelEntangle, data.test.entangle, type=&#39;response&#39;)
 
@@ -472,19 +508,90 @@ prob.prediction &lt;- predict(ModelEntangle, data.test.entangle, type=&#39;prob&
 
 predictions.df &lt;- cbind.data.frame(majority.prediction, prob.prediction, data.test.entangle)
 
-head(predictions.df)
-</code></pre>
+head(predictions.df)</code></pre>
+<pre><code>##    majority.prediction DEAD.DECLINE RECOVERED Region Case.1st.Observed.Date
+## 2         DEAD.DECLINE        0.630     0.370    ATL              31-Aug-02
+## 13        DEAD.DECLINE        0.824     0.176    PAC               9/4/2015
+## 14        DEAD.DECLINE        0.925     0.075    PAC              6/26/2016
+## 15        DEAD.DECLINE        0.943     0.057    PAC              7/14/2016
+## 16        DEAD.DECLINE        0.993     0.007    PAC              8/15/2016
+## 17        DEAD.DECLINE        0.829     0.171    PAC              8/28/2016
+##                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   Narrative
+## 2                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 Free swimming with unknown configuration.
+## 13                                                                            OVERHEAD CAMERA FOOTAGE INDICATES THAT GEAR ORIGINATES FROM MOUTH OR RIGHT PECTORAL AND RUNS ALONG BODY, POSSIBLY TWO LINES, ONE OVER THE FLUKES AND ANOTHER UNDER THE FLUKES THEN APPROX 40 FT BEHIND WHALE, THEN WRAPS/TWISTS TOGETHER AND GOES BACK 400+ FEET; CDFW CONCURS IS CONSISTENT WITH DEEP SET TRAP, POSSIBLY HAGFISH, SABLEFISH, OR SPOT PRAWN. CONFIGURATION OF GEAR UNKNOWN AND CANNOT TELL IF GEAR IS CONSTRICTING OR LOOSELY WRAPPED. WHALE REPORTED AS SWIMMING AND DIVING, BUT NOT ENOUGH TO SUBMERGE BODY. WHALE APPEARS SLIGHTLY THIN, IMPLYING A DECLINE IN HEALTH STATUS DUE TO THE TRAILING GEAR.  SERIOUS INJURY PRORATION VALUE IS ASSIGNED AS = 1 FOR THIS REASON.
+## 14                                                                                                                                                                                                                                                                                        35 MILES WEST OF PT. LOMA. TRAILING 2 RED BULLET BUOYS WITH PURPLE T6 CDFW DUNGENESS CRAB BUOY TAG; LINE WRAPPED THROUGH MOUTH OR AROUND PECTORAL FIN. GEAR WAS ORIGINALLY SET OFF SAN LUIS OBISPO IN 40 - 70 FATHOMS OF WATER. WHALE SEEN NEXT DAY, LOGGING AT SURFACE, WHICH IS ABNORMAL BEHAVIOR FOR A BLUE WHALE. UNSUCCESSFUL ATTEMPT AT DISENTANGLING WHALE. FULL CONFIGURATION OF GEAR UNKNOWN. THIS IS A SERIOUS INJURY BECAUSE OF THE NOTED HEALTH DECLINE OF THE WHALE.
+## 15 SEEN OFF LOS ANGELES TRAILING BUOYS AND LINE. MULTIPLE RESIGHTS AS FAR NORTH AS SANTA CRUZ COUNTY. SEEN ACTIVELY FEEDING WITH OTHER BLUE WHALES THROUGH EARLY OCTOBER. FINAL SIGHTING WAS IN OCTOBER OFF OF LOS ANGELES. WHALE BODY CONDITION WAS DESCRIBED AS &#39;EMACIATED&#39; IN AUGUST AND &#39;FAIR&#39; IN OCTOBER. LINE WRAPPED AROUND BODY, 2 YELLOW BUOYS WITH BLUE TIPS, TRAILING 30 FEET BEHIND WHALE, SPACED 1 FM APART, PURPLE CDFW DUNGENESS CRAB BUOY TAG VISIBLE, VIDEO SHOWS ALGAE AND BARNACLE GROWTH ON ROPE AND BUOYS, COMPRESSION OF BUOYS. UNCERTAINTY OVER WHETHER LINE EXTENDS THROUGH MOUTH OR JUST OVER PECTORAL FLIPPERS. HEALTH DECLINE AND TWO CRISS-CROSSED CONSTRICTING MULTIPLE WRAPS OF LINE POSTERIOR OF DORSAL AROUND BODY WARRANTS SERIOUS INJURY.
+## 16                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                REPORT OF AN ENTANGLED WHALE FROM POINT BLUE CONSERVATION GROUP NEAR THE FARALLON ISLANDS. NO PHOTOS OR ADDITIONAL INFORMATION. AMOUNT OF GEAR AND CONFIGURATION UNKNOWN.
+## 17                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       TWO BLACK OR GREEN BUOYS WITH ABUNDANT MARINE GROWTH TRAILING BEHIND WHALE ABOUT 20-30 FEET, FLUKES NOT ENTANGLED, BUT POSSIBLY PECTORAL FIN. AMOUNT AND CONFIGURATION OF GEAR UNKNOWN. NO PHOTOS.
+##    CAUSE DETERMINED.FATE Health.status DISENTANGLEMENT.STATUS Seen..1yr.
+## 2     EN              PR       UNKNOWN                      -          0
+## 13    EN              PR       UNKNOWN                                 0
+## 14    EN              SI       UNKNOWN                                 0
+## 15    EN              SI       UNKNOWN                                 0
+## 16    EN              PR       UNKNOWN                                 0
+## 17    EN              PR       UNKNOWN                                 0
+##    Breeding..Feeding..Migratory.corridor..or.Other.
+## 2                                             FALSE
+## 13                                             &lt;NA&gt;
+## 14                                             &lt;NA&gt;
+## 15                                             &lt;NA&gt;
+## 16                                             &lt;NA&gt;
+## 17                                             &lt;NA&gt;
+##    INITIAL..National.Cause.Criteria..L1.L12
+## 2                                       L10
+## 13                                         
+## 14                                         
+## 15                                         
+## 16                                         
+## 17                                         
+##    FINAL.National.Cause.Criteria..L1.L12 L1   L2 L3 L4  L5a L5b L6a L6b L6c L7a
+## 2                                    L10 NA &lt;NA&gt; NA NA &lt;NA&gt;  NA  NA  NA  NA  NA
+## 13                                   L10 NA &lt;NA&gt; NA NA &lt;NA&gt;  NA  NA  NA  NA  NA
+## 14                                   L10 NA &lt;NA&gt; NA NA &lt;NA&gt;  NA  NA  NA  NA  NA
+## 15                                    L2 NA &lt;NA&gt; NA NA &lt;NA&gt;  NA  NA  NA  NA  NA
+## 16                                   L10 NA &lt;NA&gt; NA NA &lt;NA&gt;  NA  NA  NA  NA  NA
+## 17                                   L10 NA &lt;NA&gt; NA NA &lt;NA&gt;  NA  NA  NA  NA  NA
+##    L7b L8 L9  L10 L11 L12 PBR..Value Gear..Type Trailing. Species anchored
+## 2   NA NA NA    1  NA  NA       0.75          -         -    BLWH        0
+## 13  NA NA NA &lt;NA&gt;  NA  NA       1.00                         BLWH        0
+## 14  NA NA NA &lt;NA&gt;  NA  NA       1.00                         BLWH        0
+## 15  NA NA NA &lt;NA&gt;  NA  NA       1.00                         BLWH        0
+## 16  NA NA NA &lt;NA&gt;  NA  NA       0.75                         BLWH        0
+## 17  NA NA NA &lt;NA&gt;  NA  NA       0.75                         BLWH        0
+##    calf.juv constricting decline extensive.severe fluke.peduncle gear.free head
+## 2         0            0       0                0              0         0    0
+## 13        0            1       0                0              1         0    1
+## 14        0            0       1                0              0         0    1
+## 15        0            1       1                0              0         0    1
+## 16        0            0       0                0              0         0    0
+## 17        0            0       0                0              1         0    0
+##    healing laceration.deep laceration.shallow pectoral swim.dive trailing
+## 2        0               0                  0        0         1        0
+## 13       0               0                  0        1         1        1
+## 14       0               0                  0        1         0        1
+## 15       0               0                  0        1         0        1
+## 16       0               0                  0        0         0        0
+## 17       0               0                  0        1         0        1
+##    VessSpd VessSz wraps.multi wraps.no
+## 2  VSpdUnk VSzUnk           0        0
+## 13 VSpdUnk VSzUnk           0        0
+## 14 VSpdUnk VSzUnk           0        0
+## 15 VSpdUnk VSzUnk           1        0
+## 16 VSpdUnk VSzUnk           0        0
+## 17 VSpdUnk VSzUnk           0        0</code></pre>
 <div id="your-own-data" class="section level3">
 <h3>Your Own Data</h3>
-<p>Apply RF entanglement and vessel strike models to your own injury narratives. Narratives must be part of a data frame, with the field named ‘Narrative’. The data frame must also include a field for the whale’s health status, named ‘Health.status’, in this case ‘UNKNOWN’. The ‘Health.status’ field value may contain any character string, such as ‘UNK’.</p>
-<p>Start with a single injury narrative for an unknown outcome stored in a data frame:</p>
+<p>You may have injury narratives not included in the <em>SeriousInjury</em> package for which you want to predict health status and estimate the “DEAD.DECLINE” vs “RECOVERED” probability. This example uses a single entanglement narrative and the existing entanglement model to do that. Narratives must be part of a data frame, where the field name = ‘Narrative’. The data frame must also include a field for health status, named ‘Health.status’, in this case ‘UNKNOWN’. The ‘Health.status’ field value may contain any character string, e.g. ‘UNK’ can be replaced for ‘UNKNOWN’.</p>
+<p>Start with a single injury narrative for an unknown health status outcome stored in a data frame:</p>
 <pre class="r"><code>Narrative &lt;- c(&quot;Free swimming with trailing line and small (6 inch) red buoy. Partial disentanglement - gear recovered - 700&#39; of 1/2 inch lead line w/ balloon buoy + 100&#39; of 1/2 inch line &amp; small 7 inch buoy; Believe all gear removed, but unable to confirm. Animal looked thin and was having trouble getting to the surface, but no photos to show health status.&quot;)
 
 Health.status &lt;- &quot;UNKNOWN&quot;
 
-example.df &lt;- cbind.data.frame(Narrative, Health.status)</code></pre>
-<p>Data-mine Narrative text and append injury covariates</p>
-<pre class="r"><code>example.df &lt;- InjuryCovariates(example.df)
+example.df &lt;- cbind.data.frame(Narrative, Health.status)
+
+# Data-mine Narrative text and append injury covariates
+
+example.df &lt;- InjuryCovariates(example.df)
 example.df</code></pre>
 <pre><code>##                                                                                                                                                                                                                                                                                                                                                  Narrative
 ## 1 Free swimming with trailing line and small (6 inch) red buoy. Partial disentanglement - gear recovered - 700&#39; of 1/2 inch lead line w/ balloon buoy + 100&#39; of 1/2 inch line &amp; small 7 inch buoy; Believe all gear removed, but unable to confirm. Animal looked thin and was having trouble getting to the surface, but no photos to show health status.
@@ -494,18 +601,22 @@ example.df</code></pre>
 ## 1              0         1    0       0               0                  0
 ##   pectoral swim.dive trailing VessSpd   VessSz wraps.multi wraps.no
 ## 1        0         1        1 VSpdUnk VSzLarge           0        0</code></pre>
-<p>Apply existing RF model (‘ModelEntangle’) to example data frame to generate majority and probabilistic predictions of health status</p>
-<p>The ‘majority prediction’ (&gt;50% of RF trees assigned a health status) =</p>
-<pre class="r"><code>predict(ModelEntangle, example.df, type=&#39;response&#39;)</code></pre>
-<pre><code>##         1 
-## RECOVERED 
-## Levels: DEAD.DECLINE RECOVERED</code></pre>
-<p>The respective probabilities of the health class assignment =</p>
-<pre class="r"><code>predict(ModelEntangle, example.df, type=&#39;prob&#39;)</code></pre>
-<pre><code>##   DEAD.DECLINE RECOVERED
-## 1        0.426     0.574
-## attr(,&quot;class&quot;)
-## [1] &quot;matrix&quot; &quot;array&quot;  &quot;votes&quot;</code></pre>
+<pre class="r"><code># Apply existing RF model (&#39;ModelEntangle&#39;) to example.df to generate majority and probabilistic predictions of health status. The majority prediction (&quot;DEAD.DECLINE&quot; vs &quot;RECOVERED&quot;) is determined by which class is predicted in &gt;50% of RF trees. The number of trees (from a random forest of 1,000 trees) assigning the narrative to each respective health class is reflected in the &quot;DEAD.DECLINE&quot; and &quot;RECOVERED&quot; fractions returned.
+
+majority.prediction = predict(ModelEntangle, example.df, type=&quot;response&quot;)
+prob.prediction = predict(ModelEntangle, example.df, type=&quot;prob&quot;)
+example.df.with.predictions &lt;- cbind.data.frame(majority.prediction, prob.prediction, example.df)
+example.df.with.predictions</code></pre>
+<pre><code>##   majority.prediction DEAD.DECLINE RECOVERED
+## 1           RECOVERED        0.437     0.563
+##                                                                                                                                                                                                                                                                                                                                                  Narrative
+## 1 Free swimming with trailing line and small (6 inch) red buoy. Partial disentanglement - gear recovered - 700&#39; of 1/2 inch lead line w/ balloon buoy + 100&#39; of 1/2 inch line &amp; small 7 inch buoy; Believe all gear removed, but unable to confirm. Animal looked thin and was having trouble getting to the surface, but no photos to show health status.
+##   Health.status anchored calf.juv constricting decline extensive.severe
+## 1       UNKNOWN        0        0            0       1                0
+##   fluke.peduncle gear.free head healing laceration.deep laceration.shallow
+## 1              0         1    0       0               0                  0
+##   pectoral swim.dive trailing VessSpd   VessSz wraps.multi wraps.no
+## 1        0         1        1 VSpdUnk VSzLarge           0        0</code></pre>
 </div>
 </div>
 
