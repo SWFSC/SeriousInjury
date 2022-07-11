@@ -260,7 +260,8 @@ if (!require(&#39;devtools&#39;)) install.packages(&#39;devtools&#39;)
 # install from GitHub
 devtools::install_github(&#39;JimCarretta/SeriousInjury&#39;)
 
-# see SeriousInjuryTutorial() for a guide to the package</code></pre>
+# see SeriousInjuryTutorial() for a guide to the package
+</code></pre>
 <p>NOAA assesses anthropogenic injuries and deaths under the Marine Mammal Protection Act through a published <a href="https://media.fisheries.noaa.gov/dam-migration/02-238-01.pdf">Serious Injury Process</a>. Injuries are defined as ‘Non-Serious’ or ‘Serious’, where the latter is defined as “any injury that is more likely than not to result in mortality, or any injury that presents a greater than 50 percent chance of death to a marine mammal”.</p>
 <p>NOAA is reviewing the Serious Injury policy and procedures for large whales with new data and assessing a Random Forest (RF) method to estimate individual probabilities of a health decline, death, or recovery for entanglements and vessel strikes. Current serious injury procedures require biologists to manually assess a series of conditions such as: “Was entangling gear constricting or loose?” or “Was there a deep laceration?” Injury severity (non-serious vs serious) is determined based on threshold responses to such questions (a constricting entanglement is typically considered a serious injury, while a loose wrap is a non-serious injury). RF models automate that process. RF model covariates are derived from key words and phrases in injury narratives known to be good predictors of non-serious vs serious injuries. Methods, R functions, and application examples for large whale data are summarized in the R-Package SeriousInjury and are summarized in this document.</p>
 </div>
@@ -306,10 +307,91 @@ devtools::install_github(&#39;JimCarretta/SeriousInjury&#39;)
 <p><strong>VessSz</strong> - Vessel Size, coded as a factor with 3 possible states: unknown = VSzUnk, small = VSzSmall, large = VSzLarge. Based on size references or inferences from ‘Narrative’. Sizes &lt;=65 ft are considered ‘small’, unless the vessel is much larger than whale. Sizes &gt; 65 ft are considered ‘large’.</p>
 <p><strong>wraps.multi</strong> - Narrative includes reference to whale with multiple wraps of line or gear around body or appendage.</p>
 <p><strong>wraps.no</strong> - Narrative includes reference to a whale without any wraps of line or gear around body or appendage.</p>
-<pre><code># Generate covariates from case narratives. Append to WhaleData.
-names(WhaleData)
-WhaleDataCovs &lt;- InjuryCovariates(WhaleData)
+<pre class="r"><code># Generate covariates from case narratives. Append to WhaleData.
+library(SeriousInjury)
+names(WhaleData)</code></pre>
+<pre><code>##  [1] &quot;Region&quot;                                          
+##  [2] &quot;Case.1st.Observed.Date&quot;                          
+##  [3] &quot;Narrative&quot;                                       
+##  [4] &quot;CAUSE&quot;                                           
+##  [5] &quot;DETERMINED.FATE&quot;                                 
+##  [6] &quot;Health.status&quot;                                   
+##  [7] &quot;DISENTANGLEMENT.STATUS&quot;                          
+##  [8] &quot;Seen..1yr.&quot;                                      
+##  [9] &quot;Breeding..Feeding..Migratory.corridor..or.Other.&quot;
+## [10] &quot;INITIAL..National.Cause.Criteria..L1.L12&quot;        
+## [11] &quot;FINAL.National.Cause.Criteria..L1.L12&quot;           
+## [12] &quot;L1&quot;                                              
+## [13] &quot;L2&quot;                                              
+## [14] &quot;L3&quot;                                              
+## [15] &quot;L4&quot;                                              
+## [16] &quot;L5a&quot;                                             
+## [17] &quot;L5b&quot;                                             
+## [18] &quot;L6a&quot;                                             
+## [19] &quot;L6b&quot;                                             
+## [20] &quot;L6c&quot;                                             
+## [21] &quot;L7a&quot;                                             
+## [22] &quot;L7b&quot;                                             
+## [23] &quot;L8&quot;                                              
+## [24] &quot;L9&quot;                                              
+## [25] &quot;L10&quot;                                             
+## [26] &quot;L11&quot;                                             
+## [27] &quot;L12&quot;                                             
+## [28] &quot;PBR..Value&quot;                                      
+## [29] &quot;Gear..Type&quot;                                      
+## [30] &quot;Trailing.&quot;                                       
+## [31] &quot;Species&quot;</code></pre>
+<pre class="r"><code>WhaleDataCovs &lt;- InjuryCovariates(WhaleData)
 names(WhaleDataCovs)</code></pre>
+<pre><code>##  [1] &quot;Region&quot;                                          
+##  [2] &quot;Case.1st.Observed.Date&quot;                          
+##  [3] &quot;Narrative&quot;                                       
+##  [4] &quot;CAUSE&quot;                                           
+##  [5] &quot;DETERMINED.FATE&quot;                                 
+##  [6] &quot;Health.status&quot;                                   
+##  [7] &quot;DISENTANGLEMENT.STATUS&quot;                          
+##  [8] &quot;Seen..1yr.&quot;                                      
+##  [9] &quot;Breeding..Feeding..Migratory.corridor..or.Other.&quot;
+## [10] &quot;INITIAL..National.Cause.Criteria..L1.L12&quot;        
+## [11] &quot;FINAL.National.Cause.Criteria..L1.L12&quot;           
+## [12] &quot;L1&quot;                                              
+## [13] &quot;L2&quot;                                              
+## [14] &quot;L3&quot;                                              
+## [15] &quot;L4&quot;                                              
+## [16] &quot;L5a&quot;                                             
+## [17] &quot;L5b&quot;                                             
+## [18] &quot;L6a&quot;                                             
+## [19] &quot;L6b&quot;                                             
+## [20] &quot;L6c&quot;                                             
+## [21] &quot;L7a&quot;                                             
+## [22] &quot;L7b&quot;                                             
+## [23] &quot;L8&quot;                                              
+## [24] &quot;L9&quot;                                              
+## [25] &quot;L10&quot;                                             
+## [26] &quot;L11&quot;                                             
+## [27] &quot;L12&quot;                                             
+## [28] &quot;PBR..Value&quot;                                      
+## [29] &quot;Gear..Type&quot;                                      
+## [30] &quot;Trailing.&quot;                                       
+## [31] &quot;Species&quot;                                         
+## [32] &quot;anchored&quot;                                        
+## [33] &quot;calf.juv&quot;                                        
+## [34] &quot;constricting&quot;                                    
+## [35] &quot;decline&quot;                                         
+## [36] &quot;extensive.severe&quot;                                
+## [37] &quot;fluke.peduncle&quot;                                  
+## [38] &quot;gear.free&quot;                                       
+## [39] &quot;head&quot;                                            
+## [40] &quot;healing&quot;                                         
+## [41] &quot;laceration.deep&quot;                                 
+## [42] &quot;laceration.shallow&quot;                              
+## [43] &quot;pectoral&quot;                                        
+## [44] &quot;swim.dive&quot;                                       
+## [45] &quot;trailing&quot;                                        
+## [46] &quot;VessSpd&quot;                                         
+## [47] &quot;VessSz&quot;                                          
+## [48] &quot;wraps.multi&quot;                                     
+## [49] &quot;wraps.no&quot;</code></pre>
 </div>
 <div id="random-forest-rf-models" class="section level2">
 <h2>Random Forest (RF) Models</h2>
@@ -392,6 +474,39 @@ predictions.df &lt;- cbind.data.frame(majority.prediction, prob.prediction, data
 
 head(predictions.df)
 </code></pre>
+<div id="your-own-data" class="section level3">
+<h3>Your Own Data</h3>
+<p>Apply RF entanglement and vessel strike models to your own injury narratives. Narratives must be part of a data frame, with the field named ‘Narrative’. The data frame must also include a field for the whale’s health status, named ‘Health.status’, in this case ‘UNKNOWN’. The ‘Health.status’ field value may contain any character string, such as ‘UNK’.</p>
+<p>Start with a single injury narrative for an unknown outcome stored in a data frame:</p>
+<pre class="r"><code>Narrative &lt;- c(&quot;Free swimming with trailing line and small (6 inch) red buoy. Partial disentanglement - gear recovered - 700&#39; of 1/2 inch lead line w/ balloon buoy + 100&#39; of 1/2 inch line &amp; small 7 inch buoy; Believe all gear removed, but unable to confirm. Animal looked thin and was having trouble getting to the surface, but no photos to show health status.&quot;)
+
+Health.status &lt;- &quot;UNKNOWN&quot;
+
+example.df &lt;- cbind.data.frame(Narrative, Health.status)</code></pre>
+<p>Data-mine Narrative text and append injury covariates</p>
+<pre class="r"><code>example.df &lt;- InjuryCovariates(example.df)
+example.df</code></pre>
+<pre><code>##                                                                                                                                                                                                                                                                                                                                                  Narrative
+## 1 Free swimming with trailing line and small (6 inch) red buoy. Partial disentanglement - gear recovered - 700&#39; of 1/2 inch lead line w/ balloon buoy + 100&#39; of 1/2 inch line &amp; small 7 inch buoy; Believe all gear removed, but unable to confirm. Animal looked thin and was having trouble getting to the surface, but no photos to show health status.
+##   Health.status anchored calf.juv constricting decline extensive.severe
+## 1       UNKNOWN        0        0            0       1                0
+##   fluke.peduncle gear.free head healing laceration.deep laceration.shallow
+## 1              0         1    0       0               0                  0
+##   pectoral swim.dive trailing VessSpd   VessSz wraps.multi wraps.no
+## 1        0         1        1 VSpdUnk VSzLarge           0        0</code></pre>
+<p>Apply existing RF model (‘ModelEntangle’) to example data frame to generate majority and probabilistic predictions of health status</p>
+<p>The ‘majority prediction’ (&gt;50% of RF trees assigned a health status) =</p>
+<pre class="r"><code>predict(ModelEntangle, example.df, type=&#39;response&#39;)</code></pre>
+<pre><code>##         1 
+## RECOVERED 
+## Levels: DEAD.DECLINE RECOVERED</code></pre>
+<p>The respective probabilities of the health class assignment =</p>
+<pre class="r"><code>predict(ModelEntangle, example.df, type=&#39;prob&#39;)</code></pre>
+<pre><code>##   DEAD.DECLINE RECOVERED
+## 1        0.426     0.574
+## attr(,&quot;class&quot;)
+## [1] &quot;matrix&quot; &quot;array&quot;  &quot;votes&quot;</code></pre>
+</div>
 </div>
 
 
