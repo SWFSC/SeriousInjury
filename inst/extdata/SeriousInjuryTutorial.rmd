@@ -2,7 +2,7 @@
 title: "R-Package [*SeriousInjury*](https://github.com/JimCarretta/SeriousInjury)"
 subtitle: "Assess Severity of Large Whale Injuries with Random Forests"
 author: "Jim.Carretta@noaa.gov"
-date: "July 10, 2022"
+date: "July 11, 2022"
 output:
   html_document:
     toc: true
@@ -98,12 +98,20 @@ Covariates defined below are derived from injury narratives with the function â€
 **wraps.no** - Narrative includes reference to a whale without any wraps of line or gear around body or appendage.
 
 ```{r message=FALSE, warning=FALSE}
-# Generate covariates from case narratives. Append to WhaleData.
 library(SeriousInjury)
+# Generate covariates from case narratives. Append to WhaleData.
 WhaleDataCovs <- InjuryCovariates(WhaleData)
-# View a portion of WhaleDataCovs
-head(WhaleDataCovs[,c(3:6,28,31:49)])
+# View a portion of WhaleDataCovs with appended covariates
+head(WhaleDataCovs)
 ```
+
+```{r, results='hide'}
+# Examine the distribution of injury covariates for health status 'DEAD.DECLINE' and 'RECOVERED'
+barplotCovariates(WhaleDataCovs)
+
+
+```
+
 
 ## Random Forest (RF) Models
 
@@ -121,13 +129,15 @@ The entanglement (ModelEntangle) and vessel strike (ModelVessel) models are obje
 ```{r}
 # Create randomForest model (using R-Package rfPermute) using known-outcome entanglement strike data
 # set.seed for reproducibility
-set.seed(123)
+set.seed(1234)
 
 # how many RF trees to build
 size.RF = 1000
 
 # covariates included in ModelEntangle
-entangle.covariates = which(names(data.entangle)%in%c("anchored", "calf.juv", "constricting", "decline", "extensive.severe", "fluke.peduncle", "gear.free", "head", "healing", "laceration.deep", "laceration.shallow", "pectoral", "swim.dive", "trailing", "wraps.multi", "wraps.no"))
+entangle.covariates = which(names(data.entangle)%in%c("anchored", "calf.juv", "constricting", "decline", 
+"extensive.severe", "fluke.peduncle", "gear.free", "head", "healing", "laceration.deep", "laceration.shallow", 
+"pectoral", "swim.dive", "trailing", "wraps.multi", "wraps.no"))
 
 # balance sample size for each class; we are equally-interested in correctly      
 #  predicting non-serious and serious injuries
@@ -143,15 +153,16 @@ ModelEntangle
 ```
 
 ### Vessel Model
-```
+```{r}
 # Create randomForest model (using R-Package rfPermute) using known-outcome vessel strike data
 # set.seed for reproducibility
-set.seed(123)
+set.seed(1234)
 
 # how many RF trees to build
 size.RF = 1000
 # covariates included in ModelVessel
-vessel.covariates = which(names(data.vessel)%in%c("calf.juv", "decline", "extensive.severe", "fluke.peduncle", "head", "healing", "laceration.deep","laceration.shallow", "pectoral", "VessSpd", "VessSz"))
+vessel.covariates = which(names(data.vessel)%in%c("calf.juv", "decline", "extensive.severe", "fluke.peduncle",
+"head", "healing", "laceration.deep","laceration.shallow", "pectoral", "VessSpd", "VessSz"))
 
 # balance sample size for each health class; we are equally-interested in correctly      
 #  predicting non-serious and serious injuries
@@ -173,9 +184,7 @@ ModelVessel
 Use existing RF models to predict probability of a death, health decline or recovery for cases where the outcome is unknown. Deaths and health declines are considered serious injuries and recoveries are non-serious. Both Dead.Decline and Recovered probabilities are estimated, based on the fraction of RF tree assignments to each class. A binary prediction (either Dead.Decline or Recovered) is also returned, based on the majority class assignment (>50% of trees). In case of ties, which are rare, the model randomly assigns a class.
 
 ```{r}
-# Estimate injury classes for entanglements with unknown outcomes, based on data frame 'data.test.entangle'.
-
-head(data.test.entangle)
+# Estimate injury classes for entanglements with unknown outcomes, using data frame 'data.test.entangle'.
 
 # Apply RF model ('ModelEntangle') to data.test.entangle to generate binary and probabilistic model predictions
 
@@ -196,7 +205,10 @@ You may have injury narratives not included in the *SeriousInjury* package for w
 Start with a single injury narrative for an unknown health status outcome stored in a data frame:
 
 ```{r}
-Narrative <- c("Free swimming with trailing line and small (6 inch) red buoy. Partial disentanglement - gear recovered - 700' of 1/2 inch lead line w/ balloon buoy + 100' of 1/2 inch line & small 7 inch buoy; Believe all gear removed, but unable to confirm. Animal looked thin and was having trouble getting to the surface, but no photos to show health status.")
+Narrative <- c("Free swimming with trailing line and small (6 inch) red buoy. Partial disentanglement - 
+gear recovered 700' of 1/2 inch lead line w/ balloon buoy + 100' of 1/2 inch line & small 7 inch buoy; 
+Believe all gear removed, but unable to confirm. Animal looked thin and was having trouble getting to the 
+surface, but no photos to show health status.")
 
 Health.status <- "UNKNOWN"
 
@@ -207,7 +219,11 @@ example.df <- cbind.data.frame(Narrative, Health.status)
 example.df <- InjuryCovariates(example.df)
 example.df
 
-# Apply existing RF model ('ModelEntangle') to example.df to generate majority and probabilistic predictions of health status. The majority prediction ("DEAD.DECLINE" vs "RECOVERED") is determined by which class is predicted in >50% of 1,000 RF trees. The number of trees assigning the narrative to each respective health class is reflected in the "DEAD.DECLINE" and "RECOVERED" fractions returned.
+# Apply existing RF model ('ModelEntangle') to example.df to generate majority and probabilistic predictions
+# of health status. The majority prediction ("DEAD.DECLINE" vs "RECOVERED") is determined by which class is 
+# predicted in >50% of 1,000 RF trees. The number of trees assigning the narrative to each respective health 
+# class is reflected in the "DEAD.DECLINE" and "RECOVERED" fractions returned. If you have a vessel strike 
+# narrative, simply apply the function 'ModelVessel' instead of 'ModelEntangle'.
 
 majority.prediction = predict(ModelEntangle, example.df, type="response")
 prob.prediction = predict(ModelEntangle, example.df, type="prob")
