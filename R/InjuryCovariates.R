@@ -75,7 +75,8 @@ InjuryCovariates = function(df) {
  decline = as.numeric(lapply(decline, as.numeric))
 
 # 'Extensive or Severe' case resulting from entanglement or vessel strike?
- extensive.severe = paste(c("amputat", "extensive", "substantial","massive","major", "moderate", "missing fluke", "severe", "severed"), collapse="|")
+ extensive.severe = paste(c("amputat", "extensive", "substantial","massive","major",
+                            "moderate", "missing fluke", "severe", "severed", "significant"), collapse="|")
      extensive.severe = grepl(extensive.severe, df$Narrative, ignore.case=TRUE)
       extensive.severe = as.numeric(lapply(extensive.severe, as.numeric))
 

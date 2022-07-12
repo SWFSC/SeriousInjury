@@ -69,7 +69,7 @@ Covariates defined below are derived from injury narratives with the function â€
 
 **constricting** - evidence of a constricting entanglement, including line cutting into whale, wrapped tightly around body or flippers.
 
-**decline** - narrative includes evidence of a health decline, such as the presence of cyamids, emaciation, discolored skin, deformities caused by a chronic entanglement or severe vessel strike incident.
+**decline** - narrative includes evidence of a health decline, such as the presence of cyamids, emaciation, lesions, discolored skin, deformities caused by a chronic entanglement or severe vessel strike incident.
 
 **extensive.severe** - a severe injury that can include amputation or necrosis of body parts due to a chronic entanglement or acute vessel strike injury.
 
