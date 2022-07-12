@@ -23,6 +23,8 @@ if (!require('devtools')) install.packages('devtools')
 # install from GitHub
 devtools::install_github('JimCarretta/SeriousInjury')
 
+library(SeriousInjury)
+
 # see SeriousInjuryTutorial() for a guide to the package
 
 ```
