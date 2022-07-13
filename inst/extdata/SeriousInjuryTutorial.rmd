@@ -2,7 +2,7 @@
 title: "R-Package [*SeriousInjury*](https://github.com/JimCarretta/SeriousInjury)"
 subtitle: "Assess Severity of Large Whale Injuries with Random Forests"
 author: "Jim.Carretta@noaa.gov"
-date: "July 11, 2022"
+date: "July 12, 2022"
 output:
   html_document:
     toc: true
@@ -104,20 +104,19 @@ library(SeriousInjury)
 # Generate covariates from case narratives. Append to WhaleData.
 WhaleDataCovs <- InjuryCovariates(WhaleData)
 # View a portion of WhaleDataCovs with appended covariates
-head(WhaleDataCovs)
+head(WhaleDataCovs[,c(1:3,6,31:49)])
 ```
 
 ```{r, results='hide'}
-# Examine the distribution of injury covariates for health status 'DEAD.DECLINE' and 'RECOVERED'
+# Examine the distribution of injury covariates by health status ('DEAD.DECLINE' and 'RECOVERED') for cases used to build injury models.
 barplotCovariates(WhaleDataCovs)
 
 
 ```
 
-
 ## Random Forest (RF) Models
 
-Two models are used in the package SeriousInjury, an entanglement and a vessel strike model. Each is based on n = 1,000 RF classification trees. 
+Two models are used in the package SeriousInjury, an entanglement and a vessel strike model. Each is based on n = 1,000 RF classification trees. Model concepts are shown in Figures 1 and 2 below.
 
 ![Figure 1. Example tree used to classify whale injuries as serious (*Dead.Decline*) or non-serious (*Recovered*). Data are based on known-outcome entanglement and vessel strike cases, where a known-outcome is a documented death, health decline or recovery. Health declines are considered serious injuries and recoveries are considered non-serious.](Tree Examples (2).PNG)
 
@@ -207,10 +206,7 @@ You may have injury narratives not included in the *SeriousInjury* package for w
 Start with a single injury narrative for an unknown health status outcome stored in a data frame:
 
 ```{r}
-Narrative <- c("Free swimming with trailing line and small (6 inch) red buoy. Partial disentanglement - 
-gear recovered 700' of 1/2 inch lead line w/ balloon buoy + 100' of 1/2 inch line & small 7 inch buoy; 
-Believe all gear removed, but unable to confirm. Animal looked thin and was having trouble getting to the 
-surface, but no photos to show health status.")
+Narrative <- c("Free swimming with trailing line and small (6 inch) red buoy. Partial disentanglement - gear recovered 700' of 1/2 inch lead line w/ balloon buoy + 100' of 1/2 inch line & small 7 inch buoy; Believe all gear removed, but unable to confirm. Animal looked thin and was having trouble getting to the surface, but no photos to show health status.")
 
 Health.status <- "UNKNOWN"
 
