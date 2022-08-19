@@ -69,7 +69,7 @@ InjuryCovariates = function(df) {
  decline = paste(c(" abnormal","chronic","deteriorat","fair cond","fair body","body condition fair","compromise",
                    "scoliosis","deform","cyamid","lice","lethargic","lesion","discolor","diatom","parasite","poor cond",
                    "poor health", "poor body", "poor over","poor skin","rake","discolored skin","skin discolor",
-                   "slough", "thin ", "emaciat", "malnourish", "underweight", "starv"), collapse="|")
+                   "slough", "thin ", "emaciat", "malnourish", "underweight", "unhealthy", "starv"), collapse="|")
 
  decline = grepl(decline, df$Narrative, ignore.case=TRUE)
  decline = as.numeric(lapply(decline, as.numeric))
@@ -126,7 +126,7 @@ InjuryCovariates = function(df) {
  laceration.shallow[deep.lac.pos] = 0
 
 # Evidence whale is | was healing | recovering?
- healing = paste(c("healing","healed","healthy.*resight","resight.*healthy","good health", "minor",
+ healing = paste(c(" healthy", "healing","healed","healthy.*resight","resight.*healthy","good health", "minor",
                     "no visible injur","no injur", "no noticeable injuries", " normal behavior"), collapse="|")
 
  healing = grepl(healing, df$Narrative, ignore.case=TRUE)
