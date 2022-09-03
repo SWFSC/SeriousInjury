@@ -41,15 +41,15 @@ The *SeriousInjury* package includes five data frames: **WhaleData**, **data.ent
 
 1. ‘Narrative’ contains injury descriptions from which model covariates are generated.
 
-2. 'Health.status' contains one of three assessed conditions: a known death or health decline ('DEAD.DECLINE'), a whale that survives and recovers from its injuries ('RECOVERED'), and data-poor cases for which the final health status is undetermined ('UNKNOWN').
+2. 'Health.status' includes one of three assessed conditions: a known death or health decline ('DEAD.DECLINE'), a whale that survives and recovers from its injuries >= 1 year post-interaction ('RECOVERED'), and data-poor cases for which the final health status is undetermined ('UNKNOWN').
 
-3. 'CAUSE' attributes the main cause of injury to the following sources: entanglement = "EN", entrapment = "ET", and vessel strike = "VS"). Entanglements and entrapments are both treated as forms of entanglements for purposes of injury modeling.
+3. 'CAUSE' attributes the main cause of injury to the following sources: entanglement = "EN", entrapment = "ET", and vessel strike = "VS"). Entanglements and entrapments (relatively rare) are both treated as forms of entanglements for purposes of injury modeling.
 
 ### Injury-Specific data frames
 
 **data.entangle** and **data.vessel** are known-outcome (“DEAD.DECLINE” or “RECOVERED”) entanglements and vessel strike cases used to build RF models. Model covariates are generated with the function InjuryCovariates(). These data exclude cases where human intervention to remove entanglements occurred.
 
-**data.test.entangle** and **data.test.vessel** include cases where ‘Health.status’ = “UNKNOWN” and are used with the predict() function and the RF objects ‘ModelEntangle’ and ‘ModelVessel’ to assign cases to “DEAD.DECLINE” or “RECOVERED”.
+**data.test.entangle** and **data.test.vessel** include cases where ‘Health.status’ = “UNKNOWN” and are used with the predict() function and the RF objects ‘ModelEntangle’ and ‘ModelVessel’ to assign cases to classes of “DEAD.DECLINE” or “RECOVERED”. The fraction of RF trees that assign a case to each class represent the respective probabilities of a death, health decline, or recovery [Carretta and Henry 2022](https://www.frontiersin.org/articles/10.3389/fmars.2022.863070/abstract).
 
 ### Narrative
 
@@ -57,7 +57,7 @@ Example ‘Narrative’ from which model covariates are derived:
 
 ***Entanglement injuries at fluke insertions and peduncle with associated cyamids at injured areas and on head. Grey skin and overall poor appearance.***
 
-Key words and phrases in this example narrative that are coded as presence / absence covariates include ‘cyamids’, ‘fluke’, ‘peduncle’, ‘grey skin’, ‘poor’: 
+Key words and phrases in the example narrative coded as presence / absence covariates include ‘cyamids’, ‘fluke’, ‘grey skin’, 'head', ‘peduncle’, ‘poor’: 
 
 ## Injury covariates
 
@@ -110,8 +110,6 @@ head(WhaleDataCovs[,c(1:3,6,31:49)])
 ```{r, results='hide'}
 # Examine the distribution of injury covariates by health status ('DEAD.DECLINE' and 'RECOVERED') for cases used to build injury models.
 barplotCovariates(WhaleDataCovs)
-
-
 ```
 
 ## Random Forest (RF) Models
@@ -225,6 +223,12 @@ example.df
 
 majority.prediction = predict(ModelEntangle, example.df, type="response")
 prob.prediction = predict(ModelEntangle, example.df, type="prob")
-example.df.with.predictions <- cbind.data.frame(majority.prediction, prob.prediction, example.df)
-example.df.with.predictions
+predictions <- cbind.data.frame(majority.prediction, prob.prediction)
+predictions
 ```
+
+Note the above Narrative involves an entanglement case. Yet, the data frame includes variables for vessel speed and size, 
+which are not used in the RF entanglement model. Inclusion of a vessel size and speed in the appended data frame is due to
+application of a text filter used to assign *all* covariates to *all records* initially, after which they are parsed out into
+separate entanglement and vessel strike data frames. To be clear, the vessel covariate fields are ignored with application of
+the entanglement model.
