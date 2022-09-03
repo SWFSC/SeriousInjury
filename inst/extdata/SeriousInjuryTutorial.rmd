@@ -227,8 +227,4 @@ predictions <- cbind.data.frame(majority.prediction, prob.prediction)
 predictions
 ```
 
-Note the above Narrative involves an entanglement case. Yet, the data frame includes variables for vessel speed and size, 
-which are not used in the RF entanglement model. Inclusion of a vessel size and speed in the appended data frame is due to
-application of a text filter used to assign *all* covariates to *all records* initially, after which they are parsed out into
-separate entanglement and vessel strike data frames. To be clear, the vessel covariate fields are ignored with application of
-the entanglement model.
+Note: the above example narrative is an entanglement case and the appended data frame **example.df** includes variables for vessel speed and size. This is due to applying a text filter to assign *all* covariates to *all records* initially, regardless if they are entanglements or vessel strikes, and prior to parsing records into separate data frames (**data.entangle** and **data.vessel**). In this narrative, the phrases **700'** and **100'** are interpreted as large vessel (> 65 ft) indicators, although they refer to rope lengths. Vessel covariates are ignored in the application of the entanglement model.
