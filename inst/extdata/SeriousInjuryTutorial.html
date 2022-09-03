@@ -396,8 +396,8 @@ ModelEntangle</code></pre>
 ##                      Number of trees: 1000 
 ## No. of variables tried at each split: 4 
 ##        No. of permutation replicates: 100 
-##                           Start time: 2022-09-02 21:08:56 
-##                             End time: 2022-09-02 21:09:59 
+##                           Start time: 2022-09-02 21:38:13 
+##                             End time: 2022-09-02 21:39:16 
 ##                             Run time: 1.05 mins 
 ## 
 ##              DEAD.DECLINE RECOVERED pct.correct LCI_0.95 UCI_0.95
@@ -436,9 +436,9 @@ ModelVessel</code></pre>
 ##                      Number of trees: 1000 
 ## No. of variables tried at each split: 3 
 ##        No. of permutation replicates: 100 
-##                           Start time: 2022-09-02 21:09:59 
-##                             End time: 2022-09-02 21:10:26 
-##                             Run time: 26.8 secs 
+##                           Start time: 2022-09-02 21:39:16 
+##                             End time: 2022-09-02 21:39:43 
+##                             Run time: 26.9 secs 
 ## 
 ##              DEAD.DECLINE RECOVERED pct.correct LCI_0.95 UCI_0.95
 ## DEAD.DECLINE          145        11        92.9     87.7     96.4
@@ -564,7 +564,7 @@ predictions &lt;- cbind.data.frame(majority.prediction, prob.prediction)
 predictions</code></pre>
 <pre><code>##   majority.prediction DEAD.DECLINE RECOVERED
 ## 1           RECOVERED        0.484     0.516</code></pre>
-<p>Note the above Narrative involves an entanglement case. Yet, the data frame includes variables for vessel speed and size, which are not used in the RF entanglement model. Inclusion of a vessel size and speed in the appended data frame is due to application of a text filter used to assign <em>all</em> covariates to <em>all records</em> initially, after which they are parsed out into separate entanglement and vessel strike data frames. To be clear, the vessel covariate fields are ignored with application of the entanglement model. fields.</p>
+<p>Note the above Narrative involves an entanglement case. Yet, the data frame includes variables for vessel speed and size, which are not used in the RF entanglement model. Inclusion of a vessel size and speed in the appended data frame is due to application of a text filter used to assign <em>all</em> covariates to <em>all records</em> initially, after which they are parsed out into separate entanglement and vessel strike data frames. To be clear, the vessel covariate fields are ignored with application of the entanglement model.</p>
 </div>
 </div>
 
