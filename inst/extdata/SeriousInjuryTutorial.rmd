@@ -194,18 +194,20 @@ prob.prediction <- predict(ModelEntangle, data.test.entangle, type='prob')
 predictions.df <- cbind.data.frame(majority.prediction, prob.prediction, data.test.entangle)
 
 head(predictions.df)
+```
 
-# Show condensed version, with covariate states summarized alongside predictions. If the covariate name appears this means it is represented in the field 'Narrative'. Covariates for vessel speed ('VessSpd') and size ('VessSz') include the following states:
+Show condensed version, with covariate states summarized alongside predictions. If the covariate name appears this means it is represented in the field 'Narrative'. Covariates for vessel speed ('VessSpd') and size ('VessSz') include the following states:
 
+```{r}
 table(data.test.vessel$VessSpd)
 table(data.test.vessel$VessSz)
 
 # VessSpd and VessSz are ignored in entanglement models.
 
-CovList <- CovariateStrings(data.test.vessel)
-VSprobs <- predict(ModelVessel, data.test.vessel, type="prob")
-VS.df.probs <- cbind.data.frame(CovList, VSprobs)
-head(VS.df.probs)
+CovList <- CovariateStrings(data.test.entangle)
+EN.probs <- predict(ModelEntangle, data.test.entangle, type="prob")
+EN.df.probs <- cbind.data.frame(CovList, EN.probs)
+head(EN.df.probs)
 
 ```
 
