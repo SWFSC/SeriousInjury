@@ -2,7 +2,7 @@
 title: "R-Package [*SeriousInjury*](https://github.com/JimCarretta/SeriousInjury)"
 subtitle: "Assess Severity of Large Whale Injuries with Random Forests"
 author: "Jim.Carretta@noaa.gov"
-date: "July 12, 2022"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
 output:
   html_document:
     toc: true
@@ -194,6 +194,18 @@ prob.prediction <- predict(ModelEntangle, data.test.entangle, type='prob')
 predictions.df <- cbind.data.frame(majority.prediction, prob.prediction, data.test.entangle)
 
 head(predictions.df)
+
+# Show condensed version, with covariate states summarized alongside predictions. If the covariate name appears this means it is represented in the field 'Narrative'. Covariates for vessel speed ('VessSpd') and size ('VessSz') include the following states:
+
+table(data.test.vessel$VessSpd)
+table(data.test.vessel$VessSz)
+
+# VessSpd and VessSz are ignored in entanglement models.
+
+CovList <- CovariateStrings(data.test.vessel)
+VSprobs <- predict(ModelVessel, data.test.vessel, type="prob")
+VS.df.probs <- cbind.data.frame(CovList, VSprobs)
+head(VS.df.probs)
 
 ```
 
