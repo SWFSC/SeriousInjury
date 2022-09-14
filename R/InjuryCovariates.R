@@ -170,7 +170,7 @@ InjuryCovariates = function(df) {
  wraps.no = grepl(wraps.no, df$Narrative, ignore.case=TRUE)
  wraps.no = as.numeric(lapply(wraps.no, as.numeric))
 
- wraps.multi = paste(c(".wraps", "wrapped several","wrapped multiple", "wrapped."), collapse="|")
+ wraps.multi = paste(c(".wraps", "wrapped several","wrapped multiple", "wrapped.", "wrapped twice", "wrapped three"), collapse="|")
  wraps.multi = grepl(wraps.multi, df$Narrative, ignore.case=TRUE)
  wraps.multi = as.numeric(lapply(wraps.multi, as.numeric))
 
