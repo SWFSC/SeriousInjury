@@ -395,14 +395,14 @@ ModelEntangle</code></pre>
 ##                      Number of trees: 1000 
 ## No. of variables tried at each split: 4 
 ##        No. of permutation replicates: 100 
-##                           Start time: 2022-09-13 18:00:00 
-##                             End time: 2022-09-13 18:01:03 
+##                           Start time: 2022-09-13 18:24:44 
+##                             End time: 2022-09-13 18:25:47 
 ##                             Run time: 1.06 mins 
 ## 
 ##              DEAD.DECLINE RECOVERED pct.correct LCI_0.95 UCI_0.95
-## DEAD.DECLINE          130         4        97.0     92.5     99.2
+## DEAD.DECLINE          126         8        94.0     88.6     97.4
 ## RECOVERED               3       138        97.9     93.9     99.6
-## Overall                NA        NA        97.5     94.8     99.0</code></pre>
+## Overall                NA        NA        96.0     93.0     98.0</code></pre>
 </div>
 <div id="vessel-model" class="section level3">
 <h3>Vessel Model</h3>
@@ -435,9 +435,9 @@ ModelVessel</code></pre>
 ##                      Number of trees: 1000 
 ## No. of variables tried at each split: 3 
 ##        No. of permutation replicates: 100 
-##                           Start time: 2022-09-13 18:01:03 
-##                             End time: 2022-09-13 18:01:30 
-##                             Run time: 26.9 secs 
+##                           Start time: 2022-09-13 18:25:47 
+##                             End time: 2022-09-13 18:26:15 
+##                             Run time: 27.2 secs 
 ## 
 ##              DEAD.DECLINE RECOVERED pct.correct LCI_0.95 UCI_0.95
 ## DEAD.DECLINE          145        11        92.9     87.7     96.4
@@ -460,12 +460,12 @@ predictions.df &lt;- cbind.data.frame(majority.prediction, prob.prediction, data
 
 head(predictions.df)</code></pre>
 <pre><code>##    majority.prediction DEAD.DECLINE RECOVERED Region Case.1st.Observed.Date
-## 2         DEAD.DECLINE        0.606     0.394    ATL              31-Aug-02
-## 13        DEAD.DECLINE        0.816     0.184    PAC               9/4/2015
-## 14        DEAD.DECLINE        0.932     0.068    PAC              6/26/2016
-## 15        DEAD.DECLINE        0.950     0.050    PAC              7/14/2016
-## 16        DEAD.DECLINE        0.991     0.009    PAC              8/15/2016
-## 17        DEAD.DECLINE        0.799     0.201    PAC              8/28/2016
+## 2         DEAD.DECLINE        0.637     0.363    ATL              31-Aug-02
+## 13        DEAD.DECLINE        0.792     0.208    PAC               9/4/2015
+## 14        DEAD.DECLINE        0.914     0.086    PAC              6/26/2016
+## 15        DEAD.DECLINE        0.937     0.063    PAC              7/14/2016
+## 16        DEAD.DECLINE        0.992     0.008    PAC              8/15/2016
+## 17        DEAD.DECLINE        0.767     0.233    PAC              8/28/2016
 ##                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   Narrative
 ## 2                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 Free swimming with unknown configuration.
 ## 13                                                                            OVERHEAD CAMERA FOOTAGE INDICATES THAT GEAR ORIGINATES FROM MOUTH OR RIGHT PECTORAL AND RUNS ALONG BODY, POSSIBLY TWO LINES, ONE OVER THE FLUKES AND ANOTHER UNDER THE FLUKES THEN APPROX 40 FT BEHIND WHALE, THEN WRAPS/TWISTS TOGETHER AND GOES BACK 400+ FEET; CDFW CONCURS IS CONSISTENT WITH DEEP SET TRAP, POSSIBLY HAGFISH, SABLEFISH, OR SPOT PRAWN. CONFIGURATION OF GEAR UNKNOWN AND CANNOT TELL IF GEAR IS CONSTRICTING OR LOOSELY WRAPPED. WHALE REPORTED AS SWIMMING AND DIVING, BUT NOT ENOUGH TO SUBMERGE BODY. WHALE APPEARS SLIGHTLY THIN, IMPLYING A DECLINE IN HEALTH STATUS DUE TO THE TRAILING GEAR.  SERIOUS INJURY PRORATION VALUE IS ASSIGNED AS = 1 FOR THIS REASON.
@@ -552,12 +552,12 @@ head(EN.df.probs)</code></pre>
 ## 16                                                                        + VSpdUnk + VSzUnk
 ## 17                                   fluke.peduncle + pectoral + trailing + VSpdUnk + VSzUnk
 ##    DEAD.DECLINE RECOVERED
-## 2         0.606     0.394
-## 13        0.816     0.184
-## 14        0.932     0.068
-## 15        0.950     0.050
-## 16        0.991     0.009
-## 17        0.799     0.201</code></pre>
+## 2         0.637     0.363
+## 13        0.792     0.208
+## 14        0.914     0.086
+## 15        0.937     0.063
+## 16        0.992     0.008
+## 17        0.767     0.233</code></pre>
 <div id="your-own-data" class="section level3">
 <h3>Your Own Data</h3>
 <p>You may have injury narratives not included in the <em>SeriousInjury</em> package for which you want to predict health status and estimate the “DEAD.DECLINE” vs “RECOVERED” probability. This example uses a single entanglement narrative and the existing entanglement model to do that. Narratives must be part of a data frame, where the field name = ‘Narrative’. The data frame must also include a field for health status, named ‘Health.status’, in this case ‘UNKNOWN’. The ‘Health.status’ field value may contain any character string, e.g. ‘UNK’ can be replaced for ‘UNKNOWN’.</p>
@@ -591,7 +591,7 @@ prob.prediction = predict(ModelEntangle, example.df, type=&quot;prob&quot;)
 predictions &lt;- cbind.data.frame(majority.prediction, prob.prediction)
 predictions</code></pre>
 <pre><code>##   majority.prediction DEAD.DECLINE RECOVERED
-## 1           RECOVERED        0.484     0.516</code></pre>
+## 1           RECOVERED        0.428     0.572</code></pre>
 <p>Note: the above example narrative is an entanglement case and the appended data frame <strong>example.df</strong> includes variables for vessel speed and size. This is due to applying a text filter to assign <em>all</em> covariates to <em>all records</em> initially, regardless of injury type (entanglement or vessel strike), and prior to parsing records into separate data frames (<strong>data.entangle</strong> and <strong>data.vessel</strong>). In this narrative, the phrases <strong>700’</strong> and <strong>100’</strong> are interpreted as large vessel (&gt; 65 ft) indicators, although they refer to rope lengths. Vessel covariates are ignored in the application of the entanglement model.</p>
 </div>
 </div>
