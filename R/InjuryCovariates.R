@@ -60,10 +60,24 @@ InjuryCovariates = function(df) {
 
 # Evidence of constricting entanglement?
  constricting = paste(c("constricting", "deep cut", "tight", "cutting", "impress", "embed", "pinn",
-                        "twisted", "necrotic", "amputat", "missing.*fluke", "fluke.*missing", "severed"), collapse="|")
+                        "twisted", "necrotic", "amputat", "missing.*fluke", "fluke.*missing", "severed",
+                        "tightly wrapped", "tight wraps"), collapse="|")
 
  constricting = grepl(constricting, df$Narrative, ignore.case=TRUE)
  constricting = as.numeric(lapply(constricting, as.numeric))
+
+# Some narratives reference 'constricting' in the negative, e.g. "no constricting wraps". Presence of the word 'constricting'
+# in these cases would erroneously lead to coding the covariate 'constricting' as present in the narrative. Identify those cases
+# where 'constricting' is used in the negative and reassign those cases with a 'constricting' value=0.
+
+  not.constricting = paste(c("no constricting wraps", "unlikely to become constricting", "loose or constricting",
+                             "constricting or loose", "doesn't look constricting", "non constricting",
+                             "non-constricting", "did not appear to be embedded or constricting",
+                             "Unable to confirm if wraps constricting"), collapse="|")
+
+  not.constricting.ind = grep(not.constricting, df$Narrative, ignore.case=TRUE)
+
+  constricting[not.constricting.ind]=0
 
 # Evidence of a health decline?
  decline = paste(c(" abnormal","chronic","deteriorat","fair cond","fair body","body condition fair","compromise",
@@ -88,7 +102,7 @@ InjuryCovariates = function(df) {
 #  Evidence that whale is now gear-free after initial sighting? Or is expected to shed loose gear?
  gear.free = paste(c("gear free", "shed", "gear-free", "no gear present", "complete removal of gear",
                       "free of gear", "self.*release", "disentangled", "removal of all gear",
-                       "no gear remaining", "all gear removed"), collapse="|")
+                       "no gear remaining", "all gear removed", "broke free"), collapse="|")
 
  gear.free = grepl(gear.free, df$Narrative, ignore.case=TRUE)
   gear.free = as.numeric(lapply(gear.free, as.numeric))
@@ -156,9 +170,16 @@ InjuryCovariates = function(df) {
  wraps.no = grepl(wraps.no, df$Narrative, ignore.case=TRUE)
  wraps.no = as.numeric(lapply(wraps.no, as.numeric))
 
- wraps.multi = paste(c("multiple wraps","several wraps","wrapped several","wrapped multiple"), collapse="|")
+ wraps.multi = paste(c(".wraps", "wrapped several","wrapped multiple", "wrapped."), collapse="|")
  wraps.multi = grepl(wraps.multi, df$Narrative, ignore.case=TRUE)
  wraps.multi = as.numeric(lapply(wraps.multi, as.numeric))
+
+# Some narratives use the phrase 'no wraps', which would be interpreted in 'wraps.multi' as multiple wraps,
+# due to the character string 'wraps'. Identify those cases with 'no wraps' in 'Narrative and overwrite erroneous
+# wraps.multi values with zero.
+
+ wraps.no.ind <- which(wraps.no==1)
+ wraps.multi[wraps.no.ind]=0
 
 # Begin vessel strike covariate section, append covariates to current data frame
 # Assign null Vessel Speed and Size factors as default filter to index from
