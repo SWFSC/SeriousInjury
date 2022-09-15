@@ -265,7 +265,7 @@ InjuryCovariates = function(df) {
        VSlow.strings <- paste(c(VSlow.strings, More.VSlow.strings), sep=",", collapse="|")
 
        VFast.strings <- paste(c(VFast1, VFast2, VFast3, VFast4, VFast5), sep=",", collapse="|")
-       More.VFast.strings <- c("wrapped around bow", "stuck on bow", "larger and faster than whale", "bow of a large ship", ">10kt", ">10 kt", ">10 knots")
+       More.VFast.strings <- c("wrapped around bow", "stuck on bow", "larger and faster than whale", "bow of a large ship", ">10kt", ">10 kt", ">10 knots", "exceeded 10 kts", "exceeded 10kts")
        VFast.strings <- paste(c(VFast.strings, More.VFast.strings), sep=",", collapse="|")
 
        VSlow.ind <- grep(VSlow.strings, df$Narrative, ignore.case=TRUE)

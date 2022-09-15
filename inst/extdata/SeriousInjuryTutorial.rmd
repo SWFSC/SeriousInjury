@@ -104,7 +104,8 @@ library(SeriousInjury)
 # Generate covariates from case narratives. Append to WhaleData.
 WhaleDataCovs <- InjuryCovariates(WhaleData)
 # View a portion of WhaleDataCovs with appended covariates
-head(WhaleDataCovs[,c(1:3,6,31:49)])
+partial.WhaleDataCovs <- cbind.data.frame(WhaleDataCovs$Narrative, WhaleDataCovs$anchored, WhaleDataCovs$calf.juv, WhaleDataCovs$constricting, WhaleDataCovs$decline, WhaleDataCovs$VessSpd, WhaleDataCovs$VessSz)
+head(partial.WhaleDataCovs)
 ```
 
 ```{r, results='hide'}
