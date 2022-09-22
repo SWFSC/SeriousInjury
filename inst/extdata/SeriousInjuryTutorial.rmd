@@ -205,7 +205,7 @@ table(data.test.vessel$VessSz)
 
 # VessSpd and VessSz are ignored in entanglement models.
 
-CovList <- CovariateStrings(data.test.entangle)
+CovList <- CovariatePresence(data.test.entangle)
 EN.probs <- predict(ModelEntangle, data.test.entangle, type="prob")
 EN.df.probs <- cbind.data.frame(CovList, EN.probs)
 head(EN.df.probs)

@@ -1,4 +1,4 @@
-#' @title CovariateStrings
+#' @title CovariatePresence
 #'
 #' @description
 #'
@@ -6,7 +6,7 @@
 #' that includes health status assignment probabilities ('DEAD.DECLINE' vs 'RECOVERED'),
 #' and covariate states / presence from the 'Narrative' field.
 #'
-#' @usage CovariateStrings(df)
+#' @usage CovariatePresence(df)
 #'
 #' @param df an object of class 'data.frame'
 #'
@@ -16,7 +16,7 @@
 #'
 #' # Show model predictions alongside covariate states
 #'
-#' CovList <- CovariateStrings(data.test.entangle)
+#' CovList <- CovariatePresence(data.test.entangle)
 #' ENprobs <- predict(ModelEntangle, data.test.entangle, type="prob")
 #' EN.df.probs <- cbind.data.frame(CovList, ENprobs)
 #' head(EN.df.probs)
@@ -25,7 +25,7 @@
 #'
 
 
-CovariateStrings <- function(df) {
+CovariatePresence <- function(df) {
 
     empty_list <- vector(mode ="list", length = nrow(df))
     empty_list

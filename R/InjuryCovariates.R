@@ -29,7 +29,7 @@
 
 InjuryCovariates = function(df) {
 
-# 02-27-2022
+# 09-21-2022
 # Covariates defined below, starting with covariate = 'anchored'
 # Multiple words/phrases may be pooled into a single covariate, e.g. the covariate 'decline'
 # includes narrative words/phrases 'cyamid', 'whale lice', 'emaciation', 'skin discoloration', etc.
@@ -81,7 +81,7 @@ InjuryCovariates = function(df) {
 
 # Evidence of a health decline?
  decline = paste(c(" abnormal","chronic","deteriorat","fair cond","fair body","body condition fair","compromise",
-                   "scoliosis","deform","cyamid","lice","lethargic","lesion","discolor","diatom","parasite","poor cond",
+                   "scoliosis","deform","cyamid","lice","lethargic","lesion","discolor","diatom","parasite","parasitic","poor cond",
                    "poor health", "poor body", "poor over","poor skin","rake","discolored skin","skin discolor",
                    "slough", "thin ", "emaciat", "malnourish", "underweight", "unhealthy", "starv"), collapse="|")
 
@@ -139,9 +139,9 @@ InjuryCovariates = function(df) {
  deep.lac.pos = which(laceration.deep==1)
  laceration.shallow[deep.lac.pos] = 0
 
-# Evidence whale is | was healing | recovering?
+# Evidence whale is | was healthy | healing | recovering?
  healing = paste(c(" healthy", "healing","healed","healthy.*resight","resight.*healthy","good health", "minor",
-                    "no visible injur","no injur", "no noticeable injuries", " normal behavior"), collapse="|")
+                    "no visible injur","no injur", "no noticeable injuries", " normal behavior", "good body condition"), collapse="|")
 
  healing = grepl(healing, df$Narrative, ignore.case=TRUE)
  healing = as.numeric(lapply(healing, as.numeric))
