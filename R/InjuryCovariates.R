@@ -60,7 +60,7 @@ InjuryCovariates = function(df) {
 
 # Evidence of constricting entanglement?
  constricting = paste(c("constricting", "deep cut", "tight", "cutting", "impress", "embed", "pinn",
-                        "twisted", "necrotic", "amputat", "missing.*fluke", "fluke.*missing", "severed",
+                        "twisted", "necrotic", "amputat", "missing.*fluke", "not using", "fluke.*missing", "severed",
                         "tightly wrapped", "tight wraps"), collapse="|")
 
  constricting = grepl(constricting, df$Narrative, ignore.case=TRUE)
@@ -89,8 +89,8 @@ InjuryCovariates = function(df) {
  decline = as.numeric(lapply(decline, as.numeric))
 
 # 'Extensive or Severe' case resulting from entanglement or vessel strike?
- extensive.severe = paste(c("amputat", "extensive", "substantial","massive","major",
-                            "moderate", "missing fluke", "severe", "severed", "significant"), collapse="|")
+ extensive.severe = paste(c("amputat", "extensive", "substantial","massive","major", "distorted",
+                             "missing fluke", "severe", "severed", "significant"), collapse="|")
      extensive.severe = grepl(extensive.severe, df$Narrative, ignore.case=TRUE)
       extensive.severe = as.numeric(lapply(extensive.severe, as.numeric))
 
@@ -100,7 +100,7 @@ InjuryCovariates = function(df) {
        fluke.peduncle = as.numeric(lapply(fluke.peduncle, as.numeric))
 
 #  Evidence that whale is now gear-free after initial sighting? Or is expected to shed loose gear?
- gear.free = paste(c("gear free", "shed", "gear-free", "no gear present", "complete removal of gear",
+ gear.free = paste(c("gear free", "shed", "gear-free", "no gear present", "no gear attached", "complete removal of gear",
                       "free of gear", "self.*release", "disentangled", "removal of all gear",
                        "no gear remaining", "all gear removed", "broke free"), collapse="|")
 
