@@ -59,7 +59,7 @@ InjuryCovariates = function(df) {
      calf.juv = as.numeric(lapply(calf.juv, as.numeric))
 
 # Evidence of constricting entanglement?
- constricting = paste(c("constricting", "deep cut", "tight", "cutting", "impress", "embed", "pinn",
+ constricting = paste(c("abcess", "abscess", "constricting", "deep cut", "tight", "cutting", "impress", "embed", "pinn",
                         "twisted", "necrotic", "amputat", "missing.*fluke", "not using", "fluke.*missing", "severed",
                         "tightly wrapped", "tight wraps"), collapse="|")
 
@@ -108,7 +108,7 @@ InjuryCovariates = function(df) {
   gear.free = as.numeric(lapply(gear.free, as.numeric))
 
 # Injury involved head, rostrum, or mouth?
- head = paste(c("head","baleen","mouth","rostrum","lips"," lip ", "jaw","blowhole","nares"), collapse="|")
+ head = paste(c("head","baleen","mouth","rostrum","lips"," lip ", "jaw","blowhole","nares", "gape", "throat"), collapse="|")
       head = grepl(head, df$Narrative, ignore.case=TRUE)
        head = as.numeric(lapply(head, as.numeric))
 
