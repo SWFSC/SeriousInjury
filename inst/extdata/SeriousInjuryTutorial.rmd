@@ -1,6 +1,6 @@
 ---
 title: "R-Package [*SeriousInjury*](https://github.com/JimCarretta/SeriousInjury)"
-subtitle: "Assess Severity of Large Whale Injuries with Random Forests"
+subtitle: "Classify Whale Injuries as Serious or Non-Serious with Classification Trees"
 author: "Jim.Carretta@noaa.gov"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 output:

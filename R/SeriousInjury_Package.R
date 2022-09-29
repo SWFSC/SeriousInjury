@@ -1,6 +1,6 @@
 #' @title Tutorial
 #'
-#' @description Assign whale injuries as Serious vs Non-Serious with Random Forests
+#' @description Classify Whale Injuries as Serious or Non-Serious with Classification Trees
 #'
 #' @usage SeriousInjuryTutorial()
 #'

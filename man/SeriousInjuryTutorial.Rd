@@ -7,7 +7,7 @@
 SeriousInjuryTutorial()
 }
 \description{
-Assign whale injuries as Serious vs Non-Serious with Random Forests
+Classify Whale Injuries as Serious or Non-Serious with Classification Trees
 }
 \examples{
 SeriousInjuryTutorial()
