@@ -15,7 +15,7 @@
 #'
 #' WhaleDataCov <- InjuryCovariates(WhaleData)
 #'
-#' barplotCovariates(WhaleDataCov)
+#' barplotCovariates(WhaleDataCovs)
 #'
 #' @export
 #'
