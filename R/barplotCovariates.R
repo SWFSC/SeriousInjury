@@ -13,7 +13,7 @@
 #' @examples
 #' # Generate barplot of covariates by health status
 #'
-#' WhaleDataCov <- InjuryCovariates(WhaleData)
+#' WhaleDataCovs <- InjuryCovariates(WhaleData)
 #'
 #' barplotCovariates(WhaleDataCovs)
 #'

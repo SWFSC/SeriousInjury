@@ -20,12 +20,12 @@ entanglements or vessel strikes. Package includes example data frame "WhaleData"
 
 # append injury covariates to WhaleData
 
-WhaleDataCov <- InjuryCovariates(WhaleData)
+WhaleDataCovs <- InjuryCovariates(WhaleData)
 
-head(WhaleDataCov)
+head(WhaleDataCovs)
 
 # show barplot of injury covariates by health status
- barplotCovariates(InjuryDataCov)
+ barplotCovariates(WhaleDataCovs)
 
 }
 \author{

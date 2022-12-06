@@ -16,9 +16,9 @@ Covariates must be appended to data frame using function InjuryCovariates()
 \examples{
 # Generate barplot of covariates by health status
 
-WhaleDataCov <- InjuryCovariates(WhaleData)
+WhaleDataCovs <- InjuryCovariates(WhaleData)
 
-barplotCovariates(WhaleDataCov)
+barplotCovariates(WhaleDataCovs)
 
 }
 \author{
