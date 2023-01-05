@@ -59,9 +59,9 @@ InjuryCovariates = function(df) {
      calf.juv = as.numeric(lapply(calf.juv, as.numeric))
 
 # Evidence of constricting entanglement?
- constricting = paste(c("abcess", "abscess", "artery", "arterial", "constricting", "deep cut", "tight", "cutting", "impress", "embed", "pinn",
-                        "twisted", "necrotic", "amputat", "missing.*fluke", "not using", "fluke.*missing", "severed",
-                        "tightly wrapped", "tight wraps"), collapse="|")
+ constricting = paste(c("abcess", "abscess", "artery", "arterial", "constricting", "deep cut", "tight", "cutting", "indent",
+                        "impression", "embed", "pinn", "twisted", "necrotic", "amputat", "missing.*fluke", "not using", "fluke.*missing",
+                        "severed", "tightly wrapped", "tight wrap"), collapse="|")
 
  constricting = grepl(constricting, df$Narrative, ignore.case=TRUE)
  constricting = as.numeric(lapply(constricting, as.numeric))
