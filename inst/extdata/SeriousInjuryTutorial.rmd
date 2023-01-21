@@ -127,7 +127,7 @@ The entanglement (ModelEntangle) and vessel strike (ModelVessel) models are obje
 ### Entanglement Model
 
 ```{r}
-# Create randomForest model (using R-Package rfPermute) using known-outcome entanglement strike data
+# Create randomForest model (using R-Package rfPermute) using known-outcome entanglement data
 # set.seed for reproducibility
 set.seed(1234)
 
