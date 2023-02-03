@@ -1488,25 +1488,25 @@ border-radius: 0px;
 <h3 class="subtitle">Classify Whale Injuries as Serious or Non-Serious
 with Classification Trees</h3>
 <h4 class="author"><a href="mailto:Jim.Carretta@noaa.gov" class="email">Jim.Carretta@noaa.gov</a></h4>
-<h4 class="date">20 January, 2023</h4>
+<h4 class="date">02 February, 2023</h4>
 
 </div>
 
 
 <div id="background" class="section level2">
 <h2>Background</h2>
-<p>The R-Package <em>SeriousInjury</em> uses Random Forest (RF)
+<p>The R-Package <em>SeriousInjury</em> uses Random Forest
 classification trees to assess injury severity of large whale
 entanglements and vessel strikes. Models are built using the R-Package
 <em>rfPermute</em>, which employs the R-package <em>randomForest</em>.
-Installing the package <em>SeriousInjury</em> will also install the
-<em>rfPermute</em> and <em>randomForest</em> packages. The method is
-based on the publication:</p>
+Installing <em>SeriousInjury</em> will also install the
+<em>rfPermute</em> and <em>randomForest</em> packages. Methods are based
+on the publication:</p>
 <p><a href="https://www.frontiersin.org/articles/10.3389/fmars.2022.863070/abstract">Carretta,
 J.V. and A. Henry 2022. Risk Assessment of Whale Entanglement and Vessel
 Strike Injuries from Case Narratives and Classification Trees. Frontiers
 In Marine Science</a>, although <em>SeriousInjury</em> includes data for
-several more large whale species not included in the publication.</p>
+several more species not included in the publication.</p>
 <p>To install the latest <em>SeriousInjury</em> version from GitHub:</p>
 <pre><code># make sure you have devtools installed
 if (!require(&#39;devtools&#39;)) install.packages(&#39;devtools&#39;)
@@ -1736,9 +1736,9 @@ ModelEntangle</code></pre>
 ##                      Number of trees: 1000 
 ## No. of variables tried at each split: 4 
 ##        No. of permutation replicates: 100 
-##                           Start time: 2023-01-20 21:29:59 
-##                             End time: 2023-01-20 21:31:09 
-##                             Run time: 1.17 mins 
+##                           Start time: 2023-02-02 18:11:15 
+##                             End time: 2023-02-02 18:11:53 
+##                             Run time: 37.5 secs 
 ## 
 ##              DEAD.DECLINE RECOVERED pct.correct LCI_0.95 UCI_0.95
 ## DEAD.DECLINE          124        10        92.5     86.7     96.4
@@ -1776,9 +1776,9 @@ ModelVessel</code></pre>
 ##                      Number of trees: 1000 
 ## No. of variables tried at each split: 3 
 ##        No. of permutation replicates: 100 
-##                           Start time: 2023-01-20 21:31:09 
-##                             End time: 2023-01-20 21:31:41 
-##                             Run time: 31.1 secs 
+##                           Start time: 2023-02-02 18:11:53 
+##                             End time: 2023-02-02 18:12:09 
+##                             Run time: 16.3 secs 
 ## 
 ##              DEAD.DECLINE RECOVERED pct.correct LCI_0.95 UCI_0.95
 ## DEAD.DECLINE          143        13        91.7     86.2     95.5
@@ -1940,13 +1940,15 @@ example.df</code></pre>
 ## 1              0         1    0       0               0                  0
 ##   pectoral swim.dive trailing VessSpd   VessSz wraps.multi wraps.no
 ## 1        0         1        1 VSpdUnk VSzLarge           0        0</code></pre>
-<pre class="r"><code># Apply existing RF model (&#39;ModelEntangle&#39;) to example.df to generate majority and probabilistic predictions
-# of health status. The majority prediction (&quot;DEAD.DECLINE&quot; vs &quot;RECOVERED&quot;) is determined by which class is 
-# predicted in &gt;50% of 1,000 RF trees. The number of trees assigning the narrative to each respective health 
-# class is reflected in the &quot;DEAD.DECLINE&quot; and &quot;RECOVERED&quot; fractions returned. If you have a vessel strike 
-# narrative, simply apply the function &#39;ModelVessel&#39; instead of &#39;ModelEntangle&#39;.
-
-majority.prediction = predict(ModelEntangle, example.df, type=&quot;response&quot;)
+<p>Apply existing RF model (‘ModelEntangle’) to example.df to generate
+majority and probabilistic predictions of health status. The majority
+prediction (“DEAD.DECLINE” vs “RECOVERED”) is determined by which class
+is predicted in &gt;50% of 1,000 RF trees. The number of trees assigning
+the narrative to each respective health class is reflected in the
+“DEAD.DECLINE” and “RECOVERED” fractions returned. If you have a vessel
+strike narrative, simply apply the function ‘ModelVessel’ instead of
+‘ModelEntangle’.</p>
+<pre class="r"><code>majority.prediction = predict(ModelEntangle, example.df, type=&quot;response&quot;)
 prob.prediction = predict(ModelEntangle, example.df, type=&quot;prob&quot;)
 predictions &lt;- cbind.data.frame(majority.prediction, prob.prediction)
 predictions</code></pre>
