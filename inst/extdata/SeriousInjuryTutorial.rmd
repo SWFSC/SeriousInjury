@@ -115,7 +115,7 @@ barplotCovariates(WhaleDataCovs)
 
 ## Random Forest (RF) Models
 
-Two models are used in the package SeriousInjury, an entanglement and a vessel strike model. Each is based on n = 1,000 RF classification trees. Model concepts are shown in Figures 1 and 2 below.
+Two models are used in the package SeriousInjury, an entanglement and a vessel strike model. Each is based on n = 1,000 RF classification trees. Model concepts are shown in Figures 1 and 2.
 
 ![Figure 1. Example tree used to classify whale injuries as serious (*Dead.Decline*) or non-serious (*Recovered*). Data are based on known-outcome entanglement and vessel strike cases, where a known-outcome is a documented death, health decline or recovery. Health declines are considered serious injuries and recoveries are considered non-serious.](Tree Examples (2).PNG)
 
