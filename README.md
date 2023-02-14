@@ -22,6 +22,6 @@ library(SeriousInjury)
 
 Two models are used in the package *SeriousInjury*, an entanglement and a vessel strike model. Each is based on n = 1,000 RF classification trees. Model concepts are shown in Figures 1 and 2.
 
-![Figure 1. Example tree used to classify whale injuries as serious (*Dead.Decline*) or non-serious (*Recovered*). Data are based on known-outcome entanglement and vessel strike cases, where a known-outcome is a documented death, health decline or recovery. Health declines are considered serious injuries and recoveries are considered non-serious.](inst/extdata/Tree Examples (2).PNG)
+![Figure 1. Example tree used to classify whale injuries as serious (*Dead.Decline*) or non-serious (*Recovered*). Data are based on known-outcome entanglement and vessel strike cases, where a known-outcome is a documented death, health decline or recovery. Health declines are considered serious injuries and recoveries are considered non-serious.](inst/extdata/"Tree Examples (2).PNG"")
 
 ![Figure 2. Models consist of multiple bootstrap trees (a random forest) used to classify ‘out-of-bag’ (OOB) or novel cases. Samples not used in individual tree construction are considered OOB and are used to assess model accuracy through cross-validation. Novel cases represent new data or cases not included in models, for which health status is unknown.  The fraction of trees ‘voting’ for a particular class represents the probability of that case belonging to the class Dead.Decline or Recovered.](inst/extdata/Tree Examples (1).PNG)
