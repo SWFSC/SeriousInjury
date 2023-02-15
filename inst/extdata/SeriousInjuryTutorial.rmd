@@ -33,17 +33,20 @@ NOAA assesses anthropogenic injuries and deaths under the Marine Mammal Protecti
 
 NOAA is reviewing the Serious Injury policy and procedures for large whales with new data and assessing a Random Forest (RF) method to estimate individual probabilities of a health decline, death, or recovery for entanglements and vessel strikes. Current serious injury procedures require biologists to manually assess a series of conditions such as: “Was entangling gear constricting or loose?” or “Was there a deep laceration?” Injury severity (non-serious vs serious) is determined based on threshold responses to such questions (a constricting entanglement is typically considered a serious injury, while a loose wrap is a non-serious injury). RF models automate that process. RF model covariates are derived from key words and phrases in injury narratives known to be good predictors of non-serious vs serious injuries. Methods, R functions, and application examples for large whale data are summarized in the [R-Package *SeriousInjury*](https://github.com/JimCarretta/SeriousInjury) and in this tutorial.
 
+---
+
+
 ## Data 
 
 The *SeriousInjury* package includes five data frames: **WhaleData**, **data.entangle**, **data.vessel**, **data.test.entangle**, and **data.test.vessel**.
 
 **WhaleData** is raw data for whale injury cases. Three column fields of type='character' are required to generate covariates and build injury assessment models.
 
-1. ‘Narrative’ contains injury descriptions from which model covariates are generated.
+‘Narrative’ contains injury descriptions from which model covariates are generated.
 
-2. 'Health.status' includes one of three assessed conditions: a known death or health decline ('DEAD.DECLINE'), a whale that survives and recovers from its injuries >= 1 year post-interaction ('RECOVERED'), and data-poor cases for which the final health status is undetermined ('UNKNOWN').
+'Health.status' includes one of three assessed conditions: a known death or health decline ('DEAD.DECLINE'), a whale that survives and recovers from its injuries >= 1 year post-interaction ('RECOVERED'), and data-poor cases for which the final health status is undetermined ('UNKNOWN').
 
-3. 'CAUSE' attributes the main cause of injury to the following sources: entanglement = "EN", entrapment = "ET", and vessel strike = "VS"). Entanglements and entrapments (relatively rare) are both treated as forms of entanglements for purposes of injury modeling.
+'CAUSE' attributes the main cause of injury to the following sources: entanglement = "EN", entrapment = "ET", and vessel strike = "VS"). Entanglements and entrapments (relatively rare) are both treated as forms of entanglements for purposes of injury modeling.
 
 ### Injury-Specific data frames
 
@@ -57,7 +60,10 @@ Example ‘Narrative’ from which model covariates are derived:
 
 ***Entanglement injuries at fluke insertions and peduncle with associated cyamids at injured areas and on head. Grey skin and overall poor appearance.***
 
-Key words and phrases in the example narrative coded as presence / absence covariates include ‘cyamids’, ‘fluke’, ‘grey skin’, 'head', ‘peduncle’, ‘poor’: 
+Key words and phrases in the example narrative coded as presence / absence covariates include ‘cyamids’, ‘fluke’, ‘grey skin’, 'head', ‘peduncle’, ‘poor’
+
+---
+
 
 ## Injury covariates
 
@@ -97,7 +103,12 @@ Covariates defined below are derived from injury narratives with the function �
 
 **wraps.multi** - Narrative includes reference to whale with multiple wraps of line or gear around body or appendage.
 
-**wraps.no** - Narrative includes reference to a whale without any wraps of line or gear around body or appendage.
+**wraps.no** - Narrative includes reference to a whale without any wraps of line or gear around body or appendage.  
+  
+  
+---  
+
+
 
 ```{r message=FALSE, warning=FALSE}
 library(SeriousInjury)
@@ -108,24 +119,36 @@ partial.WhaleDataCovs <- cbind.data.frame(WhaleDataCovs$Narrative, WhaleDataCovs
 head(partial.WhaleDataCovs)
 ```
 
+---  
+  
+  
+  
+
 ```{r, results='hide'}
 # Examine the distribution of injury covariates by health status ('DEAD.DECLINE' and 'RECOVERED') for cases used to build injury models.
 barplotCovariates(WhaleDataCovs)
 ```
 
+---  
+  
+  
+
 ## Random Forest (RF) Models
 
-Two models are used in the package *SeriousInjury*, an entanglement and a vessel strike model. Each is based on n = 1,000 RF classification trees. Model concepts are shown in Figures 1 and 2.
+Two models are used in the package *SeriousInjury*, an entanglement and a vessel strike model. Each is based on 1000 classification trees. Model concepts are shown in Figures 1 and 2.
 
 ![Figure 1. Example tree used to classify whale injuries as serious (*Dead.Decline*) or non-serious (*Recovered*). Data are based on known-outcome entanglement and vessel strike cases, where a known-outcome is a documented death, health decline or recovery. Health declines are considered serious injuries and recoveries are considered non-serious.](Tree Examples (2).PNG)
 
 ![Figure 2. Models consist of multiple bootstrap trees (a random forest) used to classify ‘out-of-bag’ (OOB) or novel cases. Samples not used in individual tree construction are considered OOB and are used to assess model accuracy through cross-validation. Novel cases represent new data or cases not included in models, for which health status is unknown.  The fraction of trees ‘voting’ for a particular class represents the probability of that case belonging to the class Dead.Decline or Recovered.](Tree Examples (1).PNG)
 
+---  
 
-The entanglement (ModelEntangle) and vessel strike (ModelVessel) models are objects of class rfPermute. They include known-outcome entanglement and vessel strike injury cases, included as the data frames **data.entangle** and **data.vessel** in the R-Package *SeriousInjury*.
+The entanglement (ModelEntangle) and vessel strike (ModelVessel) models are objects of class rfPermute. They include known-outcome entanglement and vessel strike injury cases, included as the data frames **data.entangle** and **data.vessel** in the R-Package *SeriousInjury*.  
+
 
 ### Entanglement Model
-
+  
+  
 ```{r}
 # Create randomForest model (using R-Package rfPermute) using known-outcome entanglement data
 # set.seed for reproducibility
@@ -152,7 +175,11 @@ ModelEntangle = rfPermute(data.entangle$Health.status ~ .,
 ModelEntangle
 ```
 
-### Vessel Model
+---  
+
+### Vessel Model  
+  
+  
 ```{r}
 # Create randomForest model (using R-Package rfPermute) using known-outcome vessel strike data
 # set.seed for reproducibility
@@ -179,6 +206,9 @@ ModelVessel = rfPermute(data.vessel$Health.status ~ .,
 ModelVessel
 ```  
 
+---
+  
+  
 ## Predictions
 
 Use existing RF models to predict probability of a death, health decline or recovery for cases where the outcome is unknown. Deaths and health declines are considered serious injuries and recoveries are non-serious. Both Dead.Decline and Recovered probabilities are estimated, based on the fraction of RF tree assignments to each class. A binary prediction (either Dead.Decline or Recovered) is also returned, based on the majority class assignment (>50% of trees). In case of ties, which are rare, the model randomly assigns a class.
@@ -212,6 +242,9 @@ head(EN.df.probs)
 
 ```
 
+---
+  
+  
 ### Your Own Data
 
 You may have injury narratives not included in the *SeriousInjury* package for which you want to predict health status and estimate the "DEAD.DECLINE" vs "RECOVERED" probability. This example uses a single entanglement narrative and the existing entanglement model to do that. Narratives must be part of a data frame, where the field name = 'Narrative'. The data frame must also include a field for health status, named 'Health.status', in this case 'UNKNOWN'. The 'Health.status' field value may contain any character string, e.g. 'UNK' can be replaced for 'UNKNOWN'.
