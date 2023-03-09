@@ -80,8 +80,8 @@ InjuryCovariates = function(df) {
   constricting[not.constricting.ind]=0
 
 # Evidence of a health decline?
- decline = paste(c(" abnormal","chronic","deteriorat","fair cond","fair body","body condition fair","compromise",
-                   "scoliosis","deform","cyamid","lice","lethargic","lesion","discolor","diatom","parasite","parasitic","poor cond",
+ decline = paste(c(" abnormal", "chronic", "deteriorat", "fair cond", "fair body", "body condition fair", "compromise",
+                   "scoliosis", "deform", "cyamid", "lice", "lethargic", "lesion", "discolor", "diatom", "parasite", "parasitic", "poor cond",
                    "poor health", "poor body", "poor over","poor skin","rake","discolored skin","skin discolor",
                    "slough", "thin ", "emaciat", "malnourish", "underweight", "unhealthy", "starv"), collapse="|")
 
@@ -89,13 +89,13 @@ InjuryCovariates = function(df) {
  decline = as.numeric(lapply(decline, as.numeric))
 
 # 'Extensive or Severe' case resulting from entanglement or vessel strike?
- extensive.severe = paste(c("amputat", "extensive", "substantial","massive","major", "distorted",
+ extensive.severe = paste(c("amputat", "extensive", "substantial", "massive", "major", "distorted",
                              "missing fluke", "severe", "severed", "significant"), collapse="|")
      extensive.severe = grepl(extensive.severe, df$Narrative, ignore.case=TRUE)
       extensive.severe = as.numeric(lapply(extensive.severe, as.numeric))
 
 # Did injury involve fluke or peduncle area?
- fluke.peduncle = paste(c("fluke","peduncle","tail"), collapse="|")
+ fluke.peduncle = paste(c("fluke", "peduncle", "tail"), collapse="|")
       fluke.peduncle = grepl(fluke.peduncle, df$Narrative, ignore.case=TRUE)
        fluke.peduncle = as.numeric(lapply(fluke.peduncle, as.numeric))
 
@@ -108,7 +108,7 @@ InjuryCovariates = function(df) {
   gear.free = as.numeric(lapply(gear.free, as.numeric))
 
 # Injury involved head, rostrum, or mouth?
- head = paste(c("head","baleen","mouth","rostrum","lips"," lip ", "jaw","blowhole","nares", "gape", "throat"), collapse="|")
+ head = paste(c("head", "baleen", "mouth", "rostrum", "lips", " lip ", "jaw", "blowhole", "nares", "gape", "throat"), collapse="|")
       head = grepl(head, df$Narrative, ignore.case=TRUE)
        head = as.numeric(lapply(head, as.numeric))
 
@@ -125,7 +125,7 @@ InjuryCovariates = function(df) {
  laceration.deep = as.numeric(lapply(laceration.deep, as.numeric))
 
 # Shallow laceration?
- laceration.shallow = paste(c("shallow.*laceration","laceration.*shallow","minor.*laceration",
+ laceration.shallow = paste(c("shallow.*laceration", "laceration.*shallow", "minor.*laceration",
                        "laceration.*minor", "superficial.*laceration", "laceration.*superficial", "heal.*laceration",
                        "laceration.*heal", "small.*laceration","laceration.*small"), collapse="|")
 
