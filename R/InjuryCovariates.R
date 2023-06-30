@@ -140,8 +140,8 @@ InjuryCovariates = function(df) {
  laceration.shallow[deep.lac.pos] = 0
 
 # Evidence whale is | was healthy | healing | recovering?
- healing = paste(c(" healthy", "healing","healed","healthy.*resight","resight.*healthy","good health", "minor",
-                    "no visible injur","no injur", "no noticeable injuries", " normal behavior", "good body condition"), collapse="|")
+ healing = paste(c("healthy", "healing","healed","healthy.*resight","resight.*healthy", "good body condition", "good condition", "good health", "minor",
+                    "no visible injur","no injur", "no noticeable injuries", " normal behavior", "no apparent inj"), collapse="|")
 
  healing = grepl(healing, df$Narrative, ignore.case=TRUE)
  healing = as.numeric(lapply(healing, as.numeric))
