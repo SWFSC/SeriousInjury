@@ -244,7 +244,6 @@ head(EN.df.probs)
 
 ---
   
-  
 ### Your Own Data
 
 You may have injury narratives not included in the *SeriousInjury* package for which you want to predict health status and estimate the "DEAD.DECLINE" vs "RECOVERED" probability. This example uses a single entanglement narrative and the existing entanglement model to do that. Narratives must be part of a data frame, where the field name = 'Narrative'. The data frame must also include a field for health status, named 'Health.status', in this case 'UNKNOWN'. The 'Health.status' field value may contain any character string, e.g. 'UNK' can be replaced for 'UNKNOWN'.
@@ -279,4 +278,10 @@ predictions
 
 Note: the above example narrative is an entanglement case and the appended data frame **example.df** includes variables for vessel speed and size. This is due to applying a text filter to assign *all* covariates to *all records* initially, regardless of injury type (entanglement or vessel strike), and prior to parsing records into separate data frames (**data.entangle** and **data.vessel**). In this narrative, the phrases **700'** and **100'** are interpreted as large vessel (> 65 ft) indicators, although they refer to rope lengths. Vessel covariates are ignored in the application of the entanglement model.
 
-Finally, injury narratives should include words and phrases related to the subject matter. Random snippets of text, such as "the quick brown fox jumps over the lazy dog", will return a health status prediction, but it is meaningless due to a lack of relevant variables. 
+Finally, injury narratives should include words and phrases related to the subject matter. Random snippets of text, such as "the quick brown fox jumps over the lazy dog", will return a health status prediction, but it is meaningless due to a lack of relevant variables.
+
+---
+
+### Shiny app
+
+As an alternative to predicting injury severity from narratives included in a data frame, the user may interactively enter single narratives into a user interface, by using the function 'run_shiny()'. This opens a window that allows direct entry of narratives, with a toggle for which injury model (entanglement or vessel strike) to apply. Using the 'Add' button will update the predicted probability of a death|health decline or recovery.
