@@ -285,3 +285,6 @@ Finally, injury narratives should include words and phrases related to the subje
 ### Shiny app
 
 As an alternative to predicting injury severity from narratives included in a data frame, the user may interactively enter single narratives into a user interface, by using the function 'run_shiny()'. This opens a window that allows direct entry of narratives, with a toggle for which injury model (entanglement or vessel strike) to apply. Using the 'Add' button will update the predicted probability of a death|health decline or recovery.
+
+![Example Shiny app user interface and data entry](ShinyUI.PNG)
+
