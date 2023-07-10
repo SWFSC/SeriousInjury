@@ -119,7 +119,7 @@ InjuryCovariates = function(df) {
                               "massive.*laceration", "laceration.*penetrat", "penetrat.*laceration",
                               "laceration.*necrotic", "necrotic.*laceration", "large.*laceration",
                               "laceration.*large", "laceration.*propell", "propell.*laceration",
-                              "deep.*propel", "propel.*deep"), collapse="|")
+                              "deep.*propel", "propel.*deep", "bleeding"), collapse="|")
 
  laceration.deep = grepl(laceration.deep, df$Narrative, ignore.case=TRUE)
  laceration.deep = as.numeric(lapply(laceration.deep, as.numeric))
@@ -140,8 +140,8 @@ InjuryCovariates = function(df) {
  laceration.shallow[deep.lac.pos] = 0
 
 # Evidence whale is | was healthy | healing | recovering?
- healing = paste(c("healthy", "healing","healed","healthy.*resight","resight.*healthy", "good body condition", "good condition", "good health", "minor",
-                    "no visible injur","no injur", "no noticeable injuries", " normal behavior", "no apparent inj"), collapse="|")
+ healing = paste(c("behavior appeared normal", "healthy", "healing","healed","healthy.*resight","resight.*healthy", "good body condition", "good condition", "good health", "minor",
+                    "no visible injur","no injur", "no noticeable injuries", " normal behavior", "no apparent inj", "not injured", "wound free"), collapse="|")
 
  healing = grepl(healing, df$Narrative, ignore.case=TRUE)
  healing = as.numeric(lapply(healing, as.numeric))
@@ -265,7 +265,7 @@ InjuryCovariates = function(df) {
        VSlow.strings <- paste(c(VSlow.strings, More.VSlow.strings), sep=",", collapse="|")
 
        VFast.strings <- paste(c(VFast1, VFast2, VFast3, VFast4, VFast5), sep=",", collapse="|")
-       More.VFast.strings <- c("wrapped around bow", "stuck on bow", "larger and faster than whale", "bow of a large ship", ">10kt", ">10 kt", ">10 knots", "exceeded 10 kts", "exceeded 10kts")
+       More.VFast.strings <- c("fast moving", "fast-moving", "high rate", "wrapped around bow", "stuck on bow", "larger and faster than whale", "bow of a large ship", ">10kt", ">10 kt", ">10 knots", "exceeded 10 kts", "exceeded 10kts")
        VFast.strings <- paste(c(VFast.strings, More.VFast.strings), sep=",", collapse="|")
 
        VSlow.ind <- grep(VSlow.strings, df$Narrative, ignore.case=TRUE)
