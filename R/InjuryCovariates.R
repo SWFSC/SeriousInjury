@@ -143,7 +143,7 @@ InjuryCovariates = function(df) {
 
 # Evidence whale is | was healthy | healing | recovering?
  healing = paste(c("behavior appeared normal", "healthy", "healing","healed","healthy.*resight","resight.*healthy", "good body condition", "good condition", "good health", "minor",
-                    "no visible injur","no injur", "no noticeable injuries", " normal behavior", "no apparent inj", "not injured", "wound free", "uninjur"), collapse="|")
+                    "no visible injur","no.inj", "not inj", "no noticeable injuries", "no discernable inj", "no apparent inj", "wound free", "uninj", "injury free"), collapse="|")
 
  healing = grepl(healing, df$Narrative, ignore.case=TRUE)
  healing = as.numeric(lapply(healing, as.numeric))
@@ -157,7 +157,7 @@ InjuryCovariates = function(df) {
  swim.dive = paste(c("free.*swimming", "observed feeding", "actively feeding", "swimming.*free", "swimming.*diving", "diving.*swimming",
                     "swimming.*dove", "dove.*swim", "swam", "swimming normal", "feeding normal", "moving around actively",
                     "feeding on", "feeding with", "feeding and swimming", "seen feeding", "appeared to be lunge feeding",
-                    "animal was diving", "skim feeding"), collapse = "|")
+                    "animal was diving", "skim feeding", "normal behavior"), collapse = "|")
 
  swim.dive = grepl(swim.dive, df$Narrative, ignore.case=TRUE)
  swim.dive = as.numeric(lapply(swim.dive, as.numeric))
