@@ -44,27 +44,28 @@ InjuryCovariates = function(df) {
 # while phrases as 'partially disentangled' and 'partial disentanglement' are handled by grepl("partial.*disentangl)
 
 # Evidence the whale was anchored or had limited mobility resulting from an entanglement?
- anchored = paste(c("anchor", "difficultly spending time at surface", "hog", "motionless",
+
+    anchored = paste(c("anchor", "difficultly spending time at surface", "hog", "motionless",
                     "mobility","unable to move","stationary whale", "entrap",
                     "whale was stationary", "animal was stationary", "stationary animal",
                     "weighted","using flippers only", "could not freely swim"), collapse="|")
 
- anchored = grepl(anchored, df$Narrative, ignore.case=TRUE)
+    anchored = grepl(anchored, df$Narrative, ignore.case=TRUE)
 
- anchored = as.numeric(lapply(anchored, as.numeric))
+    anchored = as.numeric(lapply(anchored, as.numeric))
 
-# Was a calf, juvenile or lactating mother involved in the case?
- calf.juv = paste(c("calf","juvenile","young","dependent"), collapse="|")
+# Was a calf, juvenile or lactating mother involved?
+    calf.juv = paste(c("calf","juvenile","young","dependent"), collapse="|")
     calf.juv = grepl(calf.juv, df$Narrative, ignore.case=TRUE)
-     calf.juv = as.numeric(lapply(calf.juv, as.numeric))
+    calf.juv = as.numeric(lapply(calf.juv, as.numeric))
 
 # Evidence of constricting entanglement?
- constricting = paste(c("abcess", "abscess", "artery", "arterial", "constricting", "deep cut", "tight", "cutting", "indent",
+    constricting = paste(c("abcess", "abscess", "artery", "arterial", "constricting", "deep cut", "tight", "cutting", "indent",
                         "impression", "embed", "pinn", "twisted", "necrotic", "amputat", "missing.*fluke", "not using", "fluke.*missing",
                         "severed", "tightly wrapped", "tight wrap"), collapse="|")
 
- constricting = grepl(constricting, df$Narrative, ignore.case=TRUE)
- constricting = as.numeric(lapply(constricting, as.numeric))
+    constricting = grepl(constricting, df$Narrative, ignore.case=TRUE)
+    constricting = as.numeric(lapply(constricting, as.numeric))
 
 # Some narratives reference 'constricting' in the negative, e.g. "no constricting wraps". Presence of the word 'constricting'
 # in these cases would erroneously lead to coding the covariate 'constricting' as present in the narrative. Identify those cases
@@ -99,10 +100,11 @@ InjuryCovariates = function(df) {
       fluke.peduncle = grepl(fluke.peduncle, df$Narrative, ignore.case=TRUE)
        fluke.peduncle = as.numeric(lapply(fluke.peduncle, as.numeric))
 
-#  Evidence that whale is now gear-free after initial sighting? Or is expected to shed loose gear?
+#  Evidence that whale is gear-free after initial sighting? Or is expected to shed loose gear?
  gear.free = paste(c("gear free", "shed", "gear-free", "no gear present", "no gear attached", "complete removal of gear",
                       "free of gear", "self.*release", "disentangled", "removal of all gear",
-                       "no gear remaining", "all gear removed", "broke free"), collapse="|")
+                        "no gear remaining", "all gear removed", "broke free", "removed all gear",
+                         "removal of all gear", "gear completely removed"), collapse="|")
 
  gear.free = grepl(gear.free, df$Narrative, ignore.case=TRUE)
   gear.free = as.numeric(lapply(gear.free, as.numeric))
@@ -134,14 +136,14 @@ InjuryCovariates = function(df) {
 
 # Deep vs Shallow laceration is hierarchical. A whale with both gets coded for a deep laceration.
 # A whale with a healing laceration may have initially had a deep laceration. It is coded as deep.
-# index cases with deep lacerations and recode previously-indexed shallow lacerations as zeroes
+# index cases with deep lacerations and re-code previously-indexed shallow lacerations as zeroes
 
  deep.lac.pos = which(laceration.deep==1)
  laceration.shallow[deep.lac.pos] = 0
 
 # Evidence whale is | was healthy | healing | recovering?
  healing = paste(c("behavior appeared normal", "healthy", "healing","healed","healthy.*resight","resight.*healthy", "good body condition", "good condition", "good health", "minor",
-                    "no visible injur","no injur", "no noticeable injuries", " normal behavior", "no apparent inj", "not injured", "wound free"), collapse="|")
+                    "no visible injur","no injur", "no noticeable injuries", " normal behavior", "no apparent inj", "not injured", "wound free", "uninjur"), collapse="|")
 
  healing = grepl(healing, df$Narrative, ignore.case=TRUE)
  healing = as.numeric(lapply(healing, as.numeric))
@@ -151,9 +153,11 @@ InjuryCovariates = function(df) {
    pectoral = grepl(pectoral, df$Narrative, ignore.case=TRUE)
     pectoral = as.numeric(lapply(pectoral, as.numeric))
 
-# Narrative includes reference to swimming and / or diving whale?
- swim.dive = paste(c("free.*swimming", "swimming.*free", "swimming.*diving", "diving.*swimming",
-                    "swimming.*dove", "dove.*swim", "swam"), collapse = "|")
+# Narrative includes reference to swimming | diving | feeding whale?
+ swim.dive = paste(c("free.*swimming", "observed feeding", "actively feeding", "swimming.*free", "swimming.*diving", "diving.*swimming",
+                    "swimming.*dove", "dove.*swim", "swam", "swimming normal", "feeding normal", "moving around actively",
+                    "feeding on", "feeding with", "feeding and swimming", "seen feeding", "appeared to be lunge feeding",
+                    "animal was diving", "skim feeding"), collapse = "|")
 
  swim.dive = grepl(swim.dive, df$Narrative, ignore.case=TRUE)
  swim.dive = as.numeric(lapply(swim.dive, as.numeric))
