@@ -69,7 +69,7 @@ Key words and phrases in the example narrative coded as presence / absence covar
 
 Covariates defined below are derived from injury narratives with the function ‘InjuryCovariates()’. Code to define, maintain, and extract covariates from narratives is found in the R-script InjuryCovariates.R.
 
-**anchored** - evidence a whale was anchored or immobilized by entangling material or gear. Narrative mentions inability to dive or swim, may refer to a heavily-weighted whale with multiple pots/traps impeding normal movement. 
+**mobility.limited** - evidence a whale was anchored or immobilized by entangling material or gear. Narrative mentions inability to dive or swim, may refer to a heavily-weighted whale with multiple pots/traps impeding normal movement. 
 
 **calf.juv** - narrative includes reference to an injured calf or juvenile or that the injury involves the mother of a dependent calf.
 
@@ -115,7 +115,7 @@ library(SeriousInjury)
 # Generate covariates from case narratives. Append to WhaleData.
 WhaleDataCovs <- InjuryCovariates(WhaleData)
 # View a portion of WhaleDataCovs with appended covariates
-partial.WhaleDataCovs <- cbind.data.frame(WhaleDataCovs$Narrative, WhaleDataCovs$anchored, WhaleDataCovs$calf.juv, WhaleDataCovs$constricting, WhaleDataCovs$decline, WhaleDataCovs$VessSpd, WhaleDataCovs$VessSz)
+partial.WhaleDataCovs <- cbind.data.frame(WhaleDataCovs$Narrative, WhaleDataCovs$mobility.limited, WhaleDataCovs$calf.juv, WhaleDataCovs$constricting, WhaleDataCovs$decline, WhaleDataCovs$VessSpd, WhaleDataCovs$VessSz)
 head(partial.WhaleDataCovs)
 ```
 
@@ -158,7 +158,7 @@ set.seed(1234)
 size.RF = 1000
 
 # covariates included in ModelEntangle
-entangle.covariates = which(names(data.entangle)%in%c("anchored", "calf.juv", "constricting", "decline", 
+entangle.covariates = which(names(data.entangle)%in%c("mobility.limited", "calf.juv", "constricting", "decline", 
 "extensive.severe", "fluke.peduncle", "gear.free", "head", "healing", "laceration.deep", "laceration.shallow", 
 "pectoral", "swim.dive", "trailing", "wraps.multi", "wraps.no"))
 
