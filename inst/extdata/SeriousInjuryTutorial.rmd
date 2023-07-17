@@ -69,7 +69,7 @@ Key words and phrases in the example narrative coded as presence / absence covar
 
 Covariates defined below are derived from injury narratives with the function ‘InjuryCovariates()’. Code to define, maintain, and extract covariates from narratives is found in the R-script InjuryCovariates.R.
 
-**mobility.limited** - evidence a whale was anchored or immobilized by entangling material or gear. Narrative mentions inability to dive or swim, may refer to a heavily-weighted whale with multiple pots/traps impeding normal movement or an injury that may impede feeding. 
+**mobility.limited** - evidence a whale was anchored or immobilized by entangling material or gear. Narrative mentions inability to dive or swim, may refer to a heavily-weighted whale with multiple pots/traps impeding normal movement or an injury that may impede feeding ability. 
 
 **calf.juv** - narrative includes reference to an injured calf or juvenile or that the injury involves the mother of a dependent calf.
 
