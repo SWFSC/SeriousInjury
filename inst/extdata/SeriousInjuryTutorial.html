@@ -1591,7 +1591,8 @@ InjuryCovariates.R.</p>
 <p><strong>mobility.limited</strong> - evidence a whale was anchored or
 immobilized by entangling material or gear. Narrative mentions inability
 to dive or swim, may refer to a heavily-weighted whale with multiple
-pots/traps impeding normal movement.</p>
+pots/traps impeding normal movement or an injury that may impede feeding
+ability.</p>
 <p><strong>calf.juv</strong> - narrative includes reference to an
 injured calf or juvenile or that the injury involves the mother of a
 dependent calf.</p>
@@ -1739,16 +1740,16 @@ ModelEntangle</code></pre>
 ## 
 ##                Type of random forest: classification 
 ##                      Number of trees: 1000 
-## No. of variables tried at each split: 3 
+## No. of variables tried at each split: 4 
 ##        No. of permutation replicates: 100 
-##                           Start time: 2023-07-17 11:33:07 
-##                             End time: 2023-07-17 11:33:51 
-##                             Run time: 44.2 secs 
+##                           Start time: 2023-07-17 13:30:43 
+##                             End time: 2023-07-17 13:31:21 
+##                             Run time: 38 secs 
 ## 
 ##              DEAD.DECLINE RECOVERED pct.correct LCI_0.95 UCI_0.95
 ## DEAD.DECLINE          125         9        93.3     87.6     96.9
-## RECOVERED               5       136        96.5     91.9     98.8
-## Overall                NA        NA        94.9     91.6     97.2</code></pre>
+## RECOVERED               3       138        97.9     93.9     99.6
+## Overall                NA        NA        95.6     92.5     97.7</code></pre>
 <hr />
 </div>
 <div id="vessel-model" class="section level3">
@@ -1782,14 +1783,14 @@ ModelVessel</code></pre>
 ##                      Number of trees: 1000 
 ## No. of variables tried at each split: 3 
 ##        No. of permutation replicates: 100 
-##                           Start time: 2023-07-17 11:33:51 
-##                             End time: 2023-07-17 11:34:10 
-##                             Run time: 18.8 secs 
+##                           Start time: 2023-07-17 13:31:21 
+##                             End time: 2023-07-17 13:31:37 
+##                             Run time: 16.3 secs 
 ## 
 ##              DEAD.DECLINE RECOVERED pct.correct LCI_0.95 UCI_0.95
 ## DEAD.DECLINE          141        15        90.4     84.6     94.5
-## RECOVERED               0        59       100.0     93.9    100.0
-## Overall                NA        NA        93.0     88.8     96.0</code></pre>
+## RECOVERED               1        58        98.3     90.9    100.0
+## Overall                NA        NA        92.6     88.2     95.7</code></pre>
 <hr />
 </div>
 </div>
@@ -1805,7 +1806,7 @@ based on the majority class assignment (&gt;50% of trees). In case of
 ties, which are rare, the model randomly assigns a class.</p>
 <pre class="r"><code># Estimate injury classes for entanglements with unknown outcomes, using data frame &#39;data.test.entangle&#39;.
 
-# Apply RF model (&#39;ModelEntangle&#39;) to data.test.entangle to generate binary and probabilistic model predictions
+# Apply RF model (&#39;ModelEntangle&#39;) to data.entangle to generate binary and probabilistic model predictions
 
 majority.prediction &lt;- predict(ModelEntangle, data.test.entangle, type=&#39;response&#39;)
 
@@ -1814,13 +1815,13 @@ prob.prediction &lt;- predict(ModelEntangle, data.test.entangle, type=&#39;prob&
 predictions.df &lt;- cbind.data.frame(majority.prediction, prob.prediction, data.test.entangle)
 
 head(predictions.df)</code></pre>
-<pre><code>##    majority.prediction DEAD.DECLINE RECOVERED Region Case.1st.Observed.Date
-## 2         DEAD.DECLINE        0.580     0.420    ATL              31-Aug-02
-## 13        DEAD.DECLINE        0.724     0.276    PAC               9/4/2015
-## 14        DEAD.DECLINE        0.930     0.070    PAC              6/26/2016
-## 15        DEAD.DECLINE        0.956     0.044    PAC              7/14/2016
-## 16        DEAD.DECLINE        0.961     0.039    PAC              8/15/2016
-## 17        DEAD.DECLINE        0.760     0.240    PAC              8/28/2016
+<pre><code>##    majority.prediction DEAD.DECLINE RECOVERED
+## 2         DEAD.DECLINE        0.623     0.377
+## 13        DEAD.DECLINE        0.754     0.246
+## 14        DEAD.DECLINE        0.877     0.123
+## 15        DEAD.DECLINE        0.925     0.075
+## 16        DEAD.DECLINE        0.983     0.017
+## 17        DEAD.DECLINE        0.782     0.218
 ##                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   Narrative
 ## 2                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 Free swimming with unknown configuration.
 ## 13                                                                            OVERHEAD CAMERA FOOTAGE INDICATES THAT GEAR ORIGINATES FROM MOUTH OR RIGHT PECTORAL AND RUNS ALONG BODY, POSSIBLY TWO LINES, ONE OVER THE FLUKES AND ANOTHER UNDER THE FLUKES THEN APPROX 40 FT BEHIND WHALE, THEN WRAPS/TWISTS TOGETHER AND GOES BACK 400+ FEET; CDFW CONCURS IS CONSISTENT WITH DEEP SET TRAP, POSSIBLY HAGFISH, SABLEFISH, OR SPOT PRAWN. CONFIGURATION OF GEAR UNKNOWN AND CANNOT TELL IF GEAR IS CONSTRICTING OR LOOSELY WRAPPED. WHALE REPORTED AS SWIMMING AND DIVING, BUT NOT ENOUGH TO SUBMERGE BODY. WHALE APPEARS SLIGHTLY THIN, IMPLYING A DECLINE IN HEALTH STATUS DUE TO THE TRAILING GEAR.  SERIOUS INJURY PRORATION VALUE IS ASSIGNED AS = 1 FOR THIS REASON.
@@ -1828,62 +1829,34 @@ head(predictions.df)</code></pre>
 ## 15 SEEN OFF LOS ANGELES TRAILING BUOYS AND LINE. MULTIPLE RESIGHTS AS FAR NORTH AS SANTA CRUZ COUNTY. SEEN ACTIVELY FEEDING WITH OTHER BLUE WHALES THROUGH EARLY OCTOBER. FINAL SIGHTING WAS IN OCTOBER OFF OF LOS ANGELES. WHALE BODY CONDITION WAS DESCRIBED AS &#39;EMACIATED&#39; IN AUGUST AND &#39;FAIR&#39; IN OCTOBER. LINE WRAPPED AROUND BODY, 2 YELLOW BUOYS WITH BLUE TIPS, TRAILING 30 FEET BEHIND WHALE, SPACED 1 FM APART, PURPLE CDFW DUNGENESS CRAB BUOY TAG VISIBLE, VIDEO SHOWS ALGAE AND BARNACLE GROWTH ON ROPE AND BUOYS, COMPRESSION OF BUOYS. UNCERTAINTY OVER WHETHER LINE EXTENDS THROUGH MOUTH OR JUST OVER PECTORAL FLIPPERS. HEALTH DECLINE AND TWO CRISS-CROSSED CONSTRICTING MULTIPLE WRAPS OF LINE POSTERIOR OF DORSAL AROUND BODY WARRANTS SERIOUS INJURY.
 ## 16                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   REPORT OF AN ENTANGLED WHALE NEAR THE FARALLON ISLANDS. NO PHOTOS OR ADDITIONAL INFORMATION. AMOUNT OF GEAR AND CONFIGURATION UNKNOWN.
 ## 17                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       TWO BLACK OR GREEN BUOYS WITH ABUNDANT MARINE GROWTH TRAILING BEHIND WHALE ABOUT 20-30 FEET, FLUKES NOT ENTANGLED, BUT POSSIBLY PECTORAL FIN. AMOUNT AND CONFIGURATION OF GEAR UNKNOWN. NO PHOTOS.
-##    CAUSE DETERMINED.FATE Health.status DISENTANGLEMENT.STATUS Seen..1yr.
-## 2     EN              PR       UNKNOWN                      -          0
-## 13    EN              PR       UNKNOWN                                 0
-## 14    EN              SI       UNKNOWN                                 0
-## 15    EN              SI       UNKNOWN                                 0
-## 16    EN              PR       UNKNOWN                                 0
-## 17    EN              PR       UNKNOWN                                 0
-##    Breeding..Feeding..Migratory.corridor..or.Other.
-## 2                                             FALSE
-## 13                                             &lt;NA&gt;
-## 14                                             &lt;NA&gt;
-## 15                                             &lt;NA&gt;
-## 16                                             &lt;NA&gt;
-## 17                                             &lt;NA&gt;
-##    INITIAL..National.Cause.Criteria..L1.L12
-## 2                                       L10
-## 13                                         
-## 14                                         
-## 15                                         
-## 16                                         
-## 17                                         
-##    FINAL.National.Cause.Criteria..L1.L12 L1   L2 L3 L4  L5a L5b L6a L6b L6c L7a
-## 2                                    L10 NA &lt;NA&gt; NA NA &lt;NA&gt;  NA  NA  NA  NA  NA
-## 13                                   L10 NA &lt;NA&gt; NA NA &lt;NA&gt;  NA  NA  NA  NA  NA
-## 14                                   L10 NA &lt;NA&gt; NA NA &lt;NA&gt;  NA  NA  NA  NA  NA
-## 15                                    L2 NA &lt;NA&gt; NA NA &lt;NA&gt;  NA  NA  NA  NA  NA
-## 16                                   L10 NA &lt;NA&gt; NA NA &lt;NA&gt;  NA  NA  NA  NA  NA
-## 17                                   L10 NA &lt;NA&gt; NA NA &lt;NA&gt;  NA  NA  NA  NA  NA
-##    L7b L8 L9  L10 L11 L12 PBR..Value Gear..Type Trailing. Species anchored
-## 2   NA NA NA    1  NA  NA       0.75          -         -    BLWH        0
-## 13  NA NA NA &lt;NA&gt;  NA  NA       1.00                         BLWH        0
-## 14  NA NA NA &lt;NA&gt;  NA  NA       1.00                         BLWH        0
-## 15  NA NA NA &lt;NA&gt;  NA  NA       1.00                         BLWH        0
-## 16  NA NA NA &lt;NA&gt;  NA  NA       0.75                         BLWH        0
-## 17  NA NA NA &lt;NA&gt;  NA  NA       0.75                         BLWH        0
-##    calf.juv constricting decline extensive.severe fluke.peduncle gear.free head
-## 2         0            0       0                0              0         0    0
-## 13        0            0       0                0              1         0    1
-## 14        0            0       1                0              0         0    1
-## 15        0            1       1                0              0         0    1
-## 16        0            0       0                0              0         0    0
-## 17        0            0       0                0              1         0    0
-##    healing laceration.deep laceration.shallow pectoral swim.dive trailing
-## 2        0               0                  0        0         1        0
-## 13       0               0                  0        1         1        1
-## 14       0               0                  0        1         0        1
-## 15       0               0                  0        1         0        1
-## 16       0               0                  0        0         0        0
-## 17       0               0                  0        1         0        1
-##    VessSpd VessSz wraps.multi wraps.no
-## 2  VSpdUnk VSzUnk           0        0
-## 13 VSpdUnk VSzUnk           1        0
-## 14 VSpdUnk VSzUnk           1        0
-## 15 VSpdUnk VSzUnk           1        0
-## 16 VSpdUnk VSzUnk           0        0
-## 17 VSpdUnk VSzUnk           0        0</code></pre>
+##    CAUSE Health.status mobility.limited calf.juv constricting decline
+## 2     EN       UNKNOWN                0        0            0       0
+## 13    EN       UNKNOWN                0        0            0       0
+## 14    EN       UNKNOWN                0        0            0       1
+## 15    EN       UNKNOWN                0        0            1       1
+## 16    EN       UNKNOWN                0        0            0       0
+## 17    EN       UNKNOWN                0        0            0       0
+##    extensive.severe fluke.peduncle gear.free head healing laceration.deep
+## 2                 0              0         0    0       0               0
+## 13                0              1         0    1       0               0
+## 14                0              0         0    1       0               0
+## 15                0              0         0    1       0               0
+## 16                0              0         0    0       0               0
+## 17                0              1         0    0       0               0
+##    laceration.shallow pectoral swim.dive trailing VessSpd VessSz wraps.multi
+## 2                   0        0         1        0 VSpdUnk VSzUnk           0
+## 13                  0        1         1        1 VSpdUnk VSzUnk           1
+## 14                  0        1         1        1 VSpdUnk VSzUnk           1
+## 15                  0        1         1        1 VSpdUnk VSzUnk           1
+## 16                  0        0         0        0 VSpdUnk VSzUnk           0
+## 17                  0        1         0        1 VSpdUnk VSzUnk           0
+##    wraps.no
+## 2         0
+## 13        0
+## 14        0
+## 15        0
+## 16        0
+## 17        0</code></pre>
 <p>Show condensed version, with covariate states summarized alongside
 predictions. If the covariate name appears this means it is represented
 in the field ‘Narrative’. Covariates for vessel speed (‘VessSpd’) and
@@ -1902,20 +1875,20 @@ CovList &lt;- CovariatePresence(data.test.entangle)
 EN.probs &lt;- predict(ModelEntangle, data.test.entangle, type=&quot;prob&quot;)
 EN.df.probs &lt;- cbind.data.frame(CovList, EN.probs)
 head(EN.df.probs)</code></pre>
-<pre><code>##                                                                                     CovList
-## 2                                                              swim.dive + VSpdUnk + VSzUnk
-## 13 fluke.peduncle + head + pectoral + swim.dive + trailing + wraps.multi + VSpdUnk + VSzUnk
-## 14                    decline + head + pectoral + trailing + wraps.multi + VSpdUnk + VSzUnk
-## 15     constricting + decline + head + pectoral + trailing + wraps.multi + VSpdUnk + VSzUnk
-## 16                                                                       + VSpdUnk + VSzUnk
-## 17                                  fluke.peduncle + pectoral + trailing + VSpdUnk + VSzUnk
+<pre><code>##                                                                                             CovList
+## 2                                                                      swim.dive + VSpdUnk + VSzUnk
+## 13         fluke.peduncle + head + pectoral + swim.dive + trailing + wraps.multi + VSpdUnk + VSzUnk
+## 14                decline + head + pectoral + swim.dive + trailing + wraps.multi + VSpdUnk + VSzUnk
+## 15 constricting + decline + head + pectoral + swim.dive + trailing + wraps.multi + VSpdUnk + VSzUnk
+## 16                                                                               + VSpdUnk + VSzUnk
+## 17                                          fluke.peduncle + pectoral + trailing + VSpdUnk + VSzUnk
 ##    DEAD.DECLINE RECOVERED
-## 2         0.580     0.420
-## 13        0.724     0.276
-## 14        0.930     0.070
-## 15        0.956     0.044
-## 16        0.961     0.039
-## 17        0.760     0.240</code></pre>
+## 2         0.623     0.377
+## 13        0.754     0.246
+## 14        0.877     0.123
+## 15        0.925     0.075
+## 16        0.983     0.017
+## 17        0.782     0.218</code></pre>
 <hr />
 <div id="your-own-data" class="section level3">
 <h3>Your Own Data</h3>
@@ -1961,7 +1934,7 @@ prob.prediction = predict(ModelEntangle, example.df, type=&quot;prob&quot;)
 predictions &lt;- cbind.data.frame(majority.prediction, prob.prediction)
 predictions</code></pre>
 <pre><code>##   majority.prediction DEAD.DECLINE RECOVERED
-## 1           RECOVERED        0.475     0.525</code></pre>
+## 1           RECOVERED        0.482     0.518</code></pre>
 <p>Note: the above example narrative is an entanglement case and the
 appended data frame <strong>example.df</strong> includes variables for
 vessel speed and size. This is due to applying a text filter to assign
