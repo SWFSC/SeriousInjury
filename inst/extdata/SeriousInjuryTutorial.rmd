@@ -216,7 +216,7 @@ Use existing RF models to predict probability of a death, health decline or reco
 ```{r}
 # Estimate injury classes for entanglements with unknown outcomes, using data frame 'data.test.entangle'.
 
-# Apply RF model ('ModelEntangle') to data.test.entangle to generate binary and probabilistic model predictions
+# Apply RF model ('ModelEntangle') to data.entangle to generate binary and probabilistic model predictions
 
 majority.prediction <- predict(ModelEntangle, data.test.entangle, type='response')
 
