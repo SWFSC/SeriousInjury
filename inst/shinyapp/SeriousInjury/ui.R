@@ -5,7 +5,7 @@ ui <- fluidPage(
     sidebarPanel(
         textAreaInput(inputId = "Narrative",
                       label = "Narrative",
-                      value = "Type or paste text here. Include words and phrases related to whale injuries. Random text, such as 'the quick brown fox jumps over the lazy dog', will return a health status prediction, but it is meaningless due to a lack of relevant variables.", width='400px', height='400px')),
+                      value = "Enter / paste text and click 'Add' button to update. Include words and phrases related to whale injuries. Random text, such as 'the quick brown fox jumps over the lazy dog', will return a meaningless prediction of health status due to a lack of relevant variables.", width='400px', height='400px')),
     selectInput("Injury.Type", "EN (entanglement) or VS (vessel strike)",
                 list(`Source` = list("EN", "VS"))),
     actionButton("Add", "Add"),
