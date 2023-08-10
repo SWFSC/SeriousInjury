@@ -121,7 +121,7 @@ InjuryCovariates = function(df) {
                               "massive.*laceration", "laceration.*penetrat", "penetrat.*laceration",
                               "laceration.*necrotic", "necrotic.*laceration", "large.*laceration",
                               "laceration.*large", "laceration.*propell", "propell.*laceration",
-                              "deep.*propel", "propel.*deep", "bleeding", "bone"), collapse="|")
+                              "deep.*propel", "propel.*deep", "bleeding", "bone", "open wound"), collapse="|")
 
  laceration.deep = grepl(laceration.deep, df$Narrative, ignore.case=TRUE)
  laceration.deep = as.numeric(lapply(laceration.deep, as.numeric))
