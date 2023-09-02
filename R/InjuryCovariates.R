@@ -122,7 +122,8 @@ InjuryCovariates = function(df) {
                               "massive.*laceration", "laceration.*penetrat", "penetrat.*laceration",
                               "laceration.*necrotic", "necrotic.*laceration", "large.*laceration",
                               "laceration.*large", "laceration.*propell", "propell.*laceration",
-                              "deep.*propel", "propel.*deep", "bleeding", "bone", "open wound"), collapse="|")
+                              "deep.*propel", "propel.*deep", "bleeding", "bone", "open wound",
+                              "major laceration"), collapse="|")
 
  laceration.deep = grepl(laceration.deep, df$Narrative, ignore.case=TRUE)
  laceration.deep = as.numeric(lapply(laceration.deep, as.numeric))
@@ -130,7 +131,7 @@ InjuryCovariates = function(df) {
 # Shallow laceration?
  laceration.shallow = paste(c("shallow.*laceration", "laceration.*shallow", "minor.*laceration",
                        "laceration.*minor", "superficial.*laceration", "laceration.*superficial", "heal.*laceration",
-                       "laceration.*heal", "small.*laceration","laceration.*small"), collapse="|")
+                       "laceration.*heal", "small.*laceration","laceration.*small", "superficial prop", "superficial skeg"), collapse="|")
 
  laceration.shallow = grepl(laceration.shallow, df$Narrative, ignore.case=TRUE)
  laceration.shallow = as.numeric(lapply(laceration.shallow, as.numeric))
@@ -283,7 +284,7 @@ InjuryCovariates = function(df) {
        |speed of vessel unknown|speed unk|unk speed")
 
        VSlow.strings <- paste(c(VSlow1, VSlow2, VSlow3, VSlow4, VSlow5, VSlow6, VSlow7, VSlow8, VSlow9), sep=",", collapse="|")
-       More.VSlow.strings <- paste("<10kt", "<10 kt", "<=10 kt", "<10 knots", "<10 kts", "stationary", "steerage", sep="", collapse="|")
+       More.VSlow.strings <- paste("<10kt", "<10 kt", "<=10 kt", "<10 knots", "<10 kts", "stationary", "steerage", "kayak", sep="", collapse="|")
        VSlow.strings <- paste(c(VSlow.strings, More.VSlow.strings), sep=",", collapse="|")
 
        VFast.strings <- paste(c(VFast1, VFast2, VFast3, VFast4, VFast5, VFast6, VFast7, VFast8, VFast9), sep=",", collapse="|")
