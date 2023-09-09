@@ -47,8 +47,9 @@ InjuryCovariates = function(df) {
 
     mobility.limited = paste(c("anchor", "difficultly spending time at surface", "exhausted", "hog", "motionless",
                     "mobility","unable to move","stationary whale", "entrap", "not using flukes", "inability to",
-                    "whale was stationary", "animal was stationary", "stationary animal",
-                    "weighted","using flippers only", "could not freely swim", "docile", "ability to"), collapse="|")
+                    "whale was stationary", "animal was stationary", "stationary animal", "forward progress",
+                    "weighted","using flippers only", "could not freely swim", "docile", "ability to", "unable to dive",
+                    "bobbing up and down to breathe"), collapse="|")
 
     mobility.limited = grepl(mobility.limited, df$Narrative, ignore.case=TRUE)
 
@@ -91,7 +92,7 @@ InjuryCovariates = function(df) {
 
 # 'Extensive or Severe' case resulting from entanglement or vessel strike?
  extensive.severe = paste(c("amputat", "extensive", "substantial", "massive", "major", "distorted",
-                             "missing fluke", "severe", "severed", "significant"), collapse="|")
+                             "missing fluke", "severe", "severed", "significant", "badly"), collapse="|")
      extensive.severe = grepl(extensive.severe, df$Narrative, ignore.case=TRUE)
       extensive.severe = as.numeric(lapply(extensive.severe, as.numeric))
 
@@ -105,7 +106,7 @@ InjuryCovariates = function(df) {
                       "free of gear", "self.*release", "disentangled", "removal of all gear",
                         "no gear remaining", "all gear removed", "broke free", "removed all gear",
                          "removal of all gear", "completely removed", "cut the gear", "removed lines",
-                           "line removed", "removed all", "removed gear"), collapse="|")
+                           "line removed", "removed all", "removed gear", "freeing it", "confirmed to be free of any entanglements"), collapse="|")
 
  gear.free = grepl(gear.free, df$Narrative, ignore.case=TRUE)
   gear.free = as.numeric(lapply(gear.free, as.numeric))
@@ -123,7 +124,7 @@ InjuryCovariates = function(df) {
                               "laceration.*necrotic", "necrotic.*laceration", "large.*laceration",
                               "laceration.*large", "laceration.*propell", "propell.*laceration",
                               "deep.*propel", "propel.*deep", "bleeding", "bone", "open wound",
-                              "major laceration"), collapse="|")
+                              "major laceration", "massive", "pool of blood"), collapse="|")
 
  laceration.deep = grepl(laceration.deep, df$Narrative, ignore.case=TRUE)
  laceration.deep = as.numeric(lapply(laceration.deep, as.numeric))
@@ -131,7 +132,10 @@ InjuryCovariates = function(df) {
 # Shallow laceration?
  laceration.shallow = paste(c("shallow.*laceration", "laceration.*shallow", "minor.*laceration",
                        "laceration.*minor", "superficial.*laceration", "laceration.*superficial", "heal.*laceration",
-                       "laceration.*heal", "small.*laceration","laceration.*small", "superficial prop", "superficial skeg"), collapse="|")
+                       "laceration.*heal", "small.*laceration","laceration.*small", "superficial prop", "superficial skeg",
+                       "small.*wounds", "no.*blood", "or visible injuries", "no visible wounds", "no visible injur",
+                       "no.inj", "not inj", "no noticeable inj", "no discernable inj", "no apparent inj", "wound free", "uninj",
+                       "no sign of injury", "unharmed"), collapse="|")
 
  laceration.shallow = grepl(laceration.shallow, df$Narrative, ignore.case=TRUE)
  laceration.shallow = as.numeric(lapply(laceration.shallow, as.numeric))
@@ -145,7 +149,7 @@ InjuryCovariates = function(df) {
 
 # Evidence whale is | was healthy | healing | recovering?
  healing = paste(c("behavior appeared normal", "healthy", "healing","healed","healthy.*resight","resight.*healthy", "good body condition", "good condition", "good health", "minor",
-                    "no visible injur","no.inj", "not inj", "no noticeable inj", "no discernable inj", "no apparent inj", "wound free", "uninj", "injury free"), collapse="|")
+                     "injury free", "full migration, returning with a healthy calf"), collapse="|")
 
  healing = grepl(healing, df$Narrative, ignore.case=TRUE)
  healing = as.numeric(lapply(healing, as.numeric))
@@ -159,7 +163,8 @@ InjuryCovariates = function(df) {
  swim.dive = paste(c("free.*swimming", "observed feeding", "actively feeding", "swimming.*free", "swimming.*diving", "diving.*swimming",
                     "swimming.*dove", "dove.*swim", "swam", "swimming normal", "feeding normal", "moving around actively",
                     "feeding on", "feeding with", "feeding and swimming", "seen feeding", "appeared to be lunge feeding",
-                    "animal was diving", "skim feeding", "normal behavior"), collapse = "|")
+                    "animal was diving", "skim feeding", "normal behavior", "saw the whale swimming away", "mobility did not appear to be impaired",
+                    "no apparent impacts to its mobility"), collapse = "|")
 
  swim.dive = grepl(swim.dive, df$Narrative, ignore.case=TRUE)
  swim.dive = as.numeric(lapply(swim.dive, as.numeric))
