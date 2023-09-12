@@ -106,7 +106,9 @@ InjuryCovariates = function(df) {
                       "free of gear", "self.*release", "disentangled", "removal of all gear",
                         "no gear remaining", "all gear removed", "broke free", "removed all gear",
                          "removal of all gear", "completely removed", "cut the gear", "removed lines",
-                           "line removed", "removed all", "removed gear", "freeing it", "confirmed to be free of any entanglements"), collapse="|")
+                           "line removed", "removed all", "removed gear", "freeing it",
+                             "confirmed to be free of any entanglements", " free of an active entanglement",
+                               "complete gear removal"), collapse="|")
 
  gear.free = grepl(gear.free, df$Narrative, ignore.case=TRUE)
   gear.free = as.numeric(lapply(gear.free, as.numeric))
@@ -149,7 +151,9 @@ InjuryCovariates = function(df) {
 
 # Evidence whale is | was healthy | healing | recovering?
  healing = paste(c("behavior appeared normal", "healthy", "healing","healed","healthy.*resight","resight.*healthy", "good body condition", "good condition", "good health", "minor",
-                     "injury free", "full migration, returning with a healthy calf"), collapse="|")
+                     "injury free", "full migration, returning with a healthy calf", "or visible injuries", "no visible wounds", "no visible injur",
+                   "no.inj", "not inj", "no noticeable inj", "no discernable inj", "no apparent inj", "wound free", "uninj",
+                   "no sign of injury", "unharmed"), collapse="|")
 
  healing = grepl(healing, df$Narrative, ignore.case=TRUE)
  healing = as.numeric(lapply(healing, as.numeric))
