@@ -61,7 +61,7 @@ InjuryCovariates = function(df) {
     calf.juv = as.numeric(lapply(calf.juv, as.numeric))
 
 # Evidence of constricting entanglement?
-    constricting = paste(c("abcess", "abscess", "artery", "arterial", "constricting", "deep cut", "tight", "cutting", "indent",
+    constricting = paste(c("abcess", "abscess", "artery", "arterial", "constricting", "deep cut", "imbed", "tight", "cutting", "indent",
                         "impression", "embed", "pinn", "twisted", "necrotic", "amputat", "missing.*fluke", "not using", "fluke.*missing",
                         "severed", "tightly wrapped", "tight wrap"), collapse="|")
 
