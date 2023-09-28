@@ -63,7 +63,7 @@ InjuryCovariates = function(df) {
 # Evidence of constricting entanglement?
     constricting = paste(c("abcess", "abscess", "artery", "arterial", "constricting", "deep cut", "imbed", "tight", "cutting", "indent",
                         "impression", "embed", "pinn", "twisted", "necrotic", "amputat", "missing.*fluke", "not using", "fluke.*missing",
-                        "severed", "tightly wrapped", "tight wrap"), collapse="|")
+                        "severed", "tightly wrapped", "tight wrap", "wrapped tight"), collapse="|")
 
     constricting = grepl(constricting, df$Narrative, ignore.case=TRUE)
     constricting = as.numeric(lapply(constricting, as.numeric))
@@ -153,7 +153,7 @@ InjuryCovariates = function(df) {
  healing = paste(c("behavior appeared normal", "healthy", "healing","healed","healthy.*resight","resight.*healthy", "good body condition", "good condition", "good health", "minor",
                      "injury free", "full migration, returning with a healthy calf", "or visible injuries", "no visible wounds", "no visible injur",
                    "no.inj", "not inj", "no noticeable inj", "no discernable inj", "no apparent inj", "wound free", "uninj",
-                   "no sign of injury", "unharmed"), collapse="|")
+                   "no sign of injury", "unharmed", "did not observe fresh blood or injuries"), collapse="|")
 
  healing = grepl(healing, df$Narrative, ignore.case=TRUE)
  healing = as.numeric(lapply(healing, as.numeric))
