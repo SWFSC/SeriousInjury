@@ -4,10 +4,10 @@
 #' Generate Random Forest (RF) entanglement and vessel strike injury models.
 #'
 #' @author Jim Carretta <jim.carretta@noaa.gov>
-#' 
+#'
 #' @examples ModelEntangle
 #' ModelVessel
-#' 
+#'
 #' @export
 #'
 
@@ -92,7 +92,7 @@ library(rlang)
 
  data.model = DataKnown
  data.test = DataUnknown
- 
+
  data.test.entangle <- data.test[data.test$CAUSE%in%c("EN", "ET"),]
  data.test.vessel <- data.test[data.test$CAUSE=="VS",]
 
@@ -124,7 +124,7 @@ library(rlang)
  sampsize = balancedSampsize(data.entangle$Health.status)
 
  ModelEntangle = rfPermute(data.entangle$Health.status ~ ., data.entangle[,c(entangle.covariates)], sampsize=sampsize, ntree=size.RF, replace=FALSE, importance=TRUE, proximity=TRUE)
- ModelEntangle
+ #ModelEntangle
 
 
  ###### Vessel Strike Model
@@ -132,13 +132,14 @@ library(rlang)
  sampsize = balancedSampsize(data.vessel$Health.status)
 
  ModelVessel = rfPermute(data.vessel$Health.status ~ ., data.vessel[,c(vessel.covariates)], sampsize=sampsize, ntree=size.RF, replace=FALSE, importance=TRUE, proximity=TRUE)
- ModelVessel
+ #ModelVessel
 
+ ModelEntangle
+ ModelVessel
 
 ### Save multiple objects to 'WhaleData.RData'
     save(WhaleData, data.entangle, data.vessel, data.test.entangle, data.test.vessel, entangle.covariates, vessel.covariates, data.model, ModelEntangle, ModelVessel, file="c:/carretta/GitHub/SeriousInjury/data/WhaleData.RData")
 
-  ModelEntangle
-  ModelVessel
+
 
 }
