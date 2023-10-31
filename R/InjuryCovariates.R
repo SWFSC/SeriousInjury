@@ -181,7 +181,7 @@ InjuryCovariates = function(df) {
  trailing = as.numeric(lapply(trailing, as.numeric))
 
 # Whale has wraps of gear (none or multiple?)
- wraps.no = paste(c("no wrap"), collapse="|")
+ wraps.no = paste(c("no wraps"), collapse="|")
  wraps.no = grepl(wraps.no, df$Narrative, ignore.case=TRUE)
  wraps.no = as.numeric(lapply(wraps.no, as.numeric))
 
