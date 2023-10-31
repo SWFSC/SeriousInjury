@@ -1,5 +1,5 @@
 ---
-title: "R-Package [*SeriousInjury*](https://github.com/JimCarretta/SeriousInjury)"
+title: "R-Package [*SeriousInjury*](https://github.com/JimCarretta/SeriousInjury) v1.2.2"
 subtitle: "Classify Whale Injuries as Serious or Non-Serious with Classification Trees"
 author: "Jim.Carretta@noaa.gov"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
