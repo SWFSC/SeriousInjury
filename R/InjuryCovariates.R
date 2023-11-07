@@ -29,7 +29,6 @@
 
 InjuryCovariates = function(df) {
 
-# 09-21-2022
 # Covariates defined below, starting with covariate = 'mobility.limited'
 # Multiple words/phrases may be pooled into a single covariate, e.g. the covariate 'decline'
 # includes narrative words/phrases 'cyamid', 'whale lice', 'emaciation', 'skin discoloration', etc.
@@ -180,14 +179,21 @@ InjuryCovariates = function(df) {
  trailing = grepl(trailing, df$Narrative, ignore.case=TRUE)
  trailing = as.numeric(lapply(trailing, as.numeric))
 
-# Whale has wraps of gear (none or present?)
+# Whale has wraps of gear (absent or present?)
  wraps.absent = paste(c("no wraps"), collapse="|")
  wraps.absent = grepl(wraps.absent, df$Narrative, ignore.case=TRUE)
  wraps.absent = as.numeric(lapply(wraps.absent, as.numeric))
 
- wraps.present = paste(c("wrap", "wrapped", "single wrap", "body wrap", "wrapping", "rostrum wrap", "peduncle wrap", "wrap had", "spiraled around"), collapse="|")
+# evidence of a constricting entanglement implies one or more wraps of material on whale
+
+ wraps.present = paste(c("encircling", "wrap", "wrapped", "single wrap", "body wrap", "wrapping", "rostrum wrap", "peduncle wrap",
+                         "wrap had", "spiraled around", "line through mouth and over rostrum", "line around", "constricting"), collapse="|")
  wraps.present = grepl(wraps.present, df$Narrative, ignore.case=TRUE)
  wraps.present = as.numeric(lapply(wraps.present, as.numeric))
+
+# add cases with constricting = 1 to also represent presence of wrap(s)
+
+ wraps.present <- c(unique(wraps.present, constricting))
 
 # Some narratives use the phrase 'no wraps', which could be interpreted in 'wraps.present' as multiple wraps,
 # due to the character string 'wraps'. Identify those cases with 'no wraps' in 'Narrative and overwrite erroneous
