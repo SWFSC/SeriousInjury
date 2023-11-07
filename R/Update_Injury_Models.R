@@ -141,5 +141,4 @@ library(rlang)
     save(WhaleData, data.entangle, data.vessel, data.test.entangle, data.test.vessel, entangle.covariates, vessel.covariates, data.model, ModelEntangle, ModelVessel, file="c:/carretta/GitHub/SeriousInjury/data/WhaleData.RData")
 
 
-
 }
