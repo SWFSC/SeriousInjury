@@ -1,7 +1,7 @@
 .libPaths(c("/usr/lib64/R/shiny_library",.libPaths()))
 
 ui <- fluidPage(
-    titlePanel("Assess Severity of Whale Injuries from Narratives"),
+    titlePanel("R-Package *SeriousInjury*: Assess Severity of Whale Injuries from Narratives with classification trees"),
     sidebarPanel(
         textAreaInput(inputId = "Narrative",
                       label = "Narrative",
