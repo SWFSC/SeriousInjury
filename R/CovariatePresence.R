@@ -32,7 +32,7 @@ CovariatePresence <- function(df) {
 
     cov.names <- c("mobility.limited", "calf.juv", "constricting", "decline", "extensive.severe", "fluke.peduncle",
                    "gear.free", "head", "healing", "laceration.deep", "laceration.shallow", "pectoral",
-                   "swim.dive", "trailing", "VessSpd", "VessSz", "wraps.multi", "wraps.no")
+                   "swim.dive", "trailing", "VessSpd", "VessSz", "wraps.present", "wraps.absent")
 
     cov.cols <- which(names(df) %in% cov.names)
 

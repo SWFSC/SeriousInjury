@@ -180,21 +180,21 @@ InjuryCovariates = function(df) {
  trailing = grepl(trailing, df$Narrative, ignore.case=TRUE)
  trailing = as.numeric(lapply(trailing, as.numeric))
 
-# Whale has wraps of gear (none or multiple?)
- wraps.no = paste(c("no wraps"), collapse="|")
- wraps.no = grepl(wraps.no, df$Narrative, ignore.case=TRUE)
- wraps.no = as.numeric(lapply(wraps.no, as.numeric))
+# Whale has wraps of gear (none or present?)
+ wraps.absent = paste(c("no wraps"), collapse="|")
+ wraps.absent = grepl(wraps.absent, df$Narrative, ignore.case=TRUE)
+ wraps.absent = as.numeric(lapply(wraps.absent, as.numeric))
 
- wraps.multi = paste(c("wraps", "wrapped several","wrapped multiple", "wrapped.", "wrapped twice", "wrapped three"), collapse="|")
- wraps.multi = grepl(wraps.multi, df$Narrative, ignore.case=TRUE)
- wraps.multi = as.numeric(lapply(wraps.multi, as.numeric))
+ wraps.present = paste(c("wrap", "wrapped", "single wrap", "body wrap", "wrapping", "rostrum wrap", "peduncle wrap", "wrap had", "spiraled around"), collapse="|")
+ wraps.present = grepl(wraps.present, df$Narrative, ignore.case=TRUE)
+ wraps.present = as.numeric(lapply(wraps.present, as.numeric))
 
-# Some narratives use the phrase 'no wraps', which would be interpreted in 'wraps.multi' as multiple wraps,
+# Some narratives use the phrase 'no wraps', which could be interpreted in 'wraps.present' as multiple wraps,
 # due to the character string 'wraps'. Identify those cases with 'no wraps' in 'Narrative and overwrite erroneous
-# wraps.multi values with zero.
+# wraps.present values with zero.
 
- wraps.no.ind <- which(wraps.no==1)
- wraps.multi[wraps.no.ind]=0
+ wraps.absent.ind <- which(wraps.absent==1)
+ wraps.present[wraps.absent.ind]=0
 
 # Begin vessel strike covariate section, append covariates to current data frame
 # Assign null Vessel Speed and Size factors as default filter to index from
@@ -326,7 +326,7 @@ InjuryCovariates = function(df) {
 
 
        df <- cbind.data.frame(df, mobility.limited, calf.juv, constricting, decline, extensive.severe, fluke.peduncle, gear.free, head, healing,
-                             laceration.deep, laceration.shallow, pectoral, swim.dive, trailing, VessSpd, VessSz, wraps.multi, wraps.no)
+                             laceration.deep, laceration.shallow, pectoral, swim.dive, trailing, VessSpd, VessSz, wraps.present, wraps.absent)
 
        df$VessSpd <- factor(df$VessSpd)
        df$VessSz <- factor(df$VessSz)

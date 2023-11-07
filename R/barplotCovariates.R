@@ -39,7 +39,7 @@
 
  numeric.covars <- c("mobility.limited", "calf.juv", "constricting", "decline", "extensive.severe", "fluke.peduncle",
                      "gear.free", "head", "healing", "laceration.deep", "laceration.shallow", "pectoral",
-                     "swim.dive", "trailing", "wraps.multi", "wraps.no")
+                     "swim.dive", "trailing", "wraps.present", "wraps.absent")
 
  numeric.covars.cols <- which(names(df) %in% numeric.covars)
 
