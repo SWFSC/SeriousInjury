@@ -1,5 +1,5 @@
 ---
-title: "R-Package [*SeriousInjury*](https://github.com/JimCarretta/SeriousInjury) v1.2.2"
+title: "R-Package [*SeriousInjury*](https://github.com/JimCarretta/SeriousInjury) v1.2.3"
 subtitle: "Classify Whale Injuries as Serious or Non-Serious with Classification Trees"
 author: "Jim.Carretta@noaa.gov"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
@@ -101,9 +101,9 @@ Covariates defined below are derived from injury narratives with the function �
 
 **VessSz** - Vessel Size, coded as a factor with 3 possible states: unknown = VSzUnk, small = VSzSmall, large = VSzLarge. Based on size references or inferences from ‘Narrative’. Sizes <=65 ft are considered ‘small’, unless the vessel is much larger than whale. Sizes > 65 ft are considered ‘large’.
 
-**wraps.multi** - Narrative includes reference to whale with multiple wraps of line or gear around body or appendage.
+**wraps.present** - Narrative includes reference to whale with multiple wraps of line or gear around body or appendage.
 
-**wraps.no** - Narrative includes reference to a whale without any wraps of line or gear around body or appendage.  
+**wraps.absent** - Narrative includes reference to a whale without any wraps of line or gear around body or appendage.  
   
   
 ---  
@@ -160,7 +160,7 @@ size.RF = 1000
 # covariates included in ModelEntangle
 entangle.covariates = which(names(data.entangle)%in%c("mobility.limited", "calf.juv", "constricting", "decline", 
 "extensive.severe", "fluke.peduncle", "gear.free", "head", "healing", "laceration.deep", "laceration.shallow", 
-"pectoral", "swim.dive", "trailing", "wraps.multi", "wraps.no"))
+"pectoral", "swim.dive", "trailing", "wraps.present", "wraps.absent"))
 
 # balance sample size for each class; we are equally-interested in correctly      
 #  predicting non-serious and serious injuries
