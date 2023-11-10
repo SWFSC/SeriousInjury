@@ -81,8 +81,8 @@ InjuryCovariates = function(df) {
   constricting[not.constricting.ind]=0
 
 # Evidence of a health decline?
- decline = paste(c(" abnormal", "chronic", "deteriorat", "fair cond", "fair body", "body condition fair", "compromise",
-                   "scoliosis", "deform", "cyamid", "lice", "lethargic", "lesion", "discolor", "diatom", "parasite", "parasitic", "poor cond",
+ decline = paste(c(" abnormal", "bad health", "chronic", "deteriorat", "fair cond", "fair body", "body condition fair", "compromise",
+                   "scoliosis", "deform", "cyamid", "lice", "lethargic", "lesion", "discolor", "diatom", "parasit", "poor cond",
                    "poor health", "poor body", "poor over","poor skin","rake","discolored skin","skin discolor",
                    "slough", "thin ", "emaciat", "malnourish", "underweight", "unhealthy", "starv"), collapse="|")
 
