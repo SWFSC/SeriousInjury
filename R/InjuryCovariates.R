@@ -202,6 +202,9 @@ InjuryCovariates = function(df) {
  wraps.absent.ind <- which(wraps.absent==1)
  wraps.present[wraps.absent.ind]=0
 
+
+##############################################
+# Longest vessel ever built was 1502 ft oil tanker named ʻSeawise Giantʻ
 # Begin vessel strike covariate section, append covariates to current data frame
 # Assign null Vessel Speed and Size factors as default filter to index from
   VessSpd <- rep("VSpdUnk", nrow(df))
@@ -250,18 +253,18 @@ InjuryCovariates = function(df) {
        VLg4 <- paste(" ", VLg, "feet", sep="", collapse="|")
        VLg5 <- paste(" ", VLg, " feet", sep="", collapse="|")
        VLg6 <- paste(VLg, "feet", sep="", collapse="|")
-       VLg7 <- paste(" ", VLg, " feet", sep="", collapse="|")
+       VLg7 <- paste(" ", VLg, " foot", sep="", collapse="|")
        VLg8 <- paste(" ", VLg, " foot", sep="", collapse="|")
        VLg9 <- paste(" ", VLg, "foot", sep="", collapse="|")
 
        VLg.strings <- paste(c(VLg1, VLg2, VLg3, VLg4, VLg5, VLg6, VLg7, VLg8, VLg9), sep=",", collapse="|")
 
        More.VLg.strings <- c(" >65", "> 65", "container ship", "size much greater than whale",
-                             "in excess of 65 ft", "cruise ship", "navy", "transport",
+                             "in excess of 65 ft", "cruise ship", "navy", "naval", "transport",
                              "ferry", "express", "vessel larger than whale", "assumed to be larger",
                              "much larger than the whale", "wrapped around bow", "bow of a large ship",
                              "larger and faster than whale", "wrapped around bow", "brought into",
-                             "freight", "large ship")
+                             "freight", "large ship", "carrier")
 
        VLg.strings <- paste(c(VLg.strings, More.VLg.strings), sep=",", collapse="|")
 
@@ -280,9 +283,9 @@ InjuryCovariates = function(df) {
        VSlow4 <- paste(" ", VSlow, "kts", sep="", collapse="|")
        VSlow5 <- paste(" ", VSlow, " kts", sep="", collapse="|")
        VSlow6 <- paste(VSlow, "kts", sep="", collapse="|")
-       VSlow7 <- paste(" ", VSlow, "knots", sep="", collapse="|")
-       VSlow8 <- paste(" ", VSlow, " knots", sep="", collapse="|")
-       VSlow9 <- paste(VSlow, "knots", sep="", collapse="|")
+       VSlow7 <- paste(" ", VSlow, "knot", sep="", collapse="|")
+       VSlow8 <- paste(" ", VSlow, " knot", sep="", collapse="|")
+       VSlow9 <- paste(VSlow, "knot", sep="", collapse="|")
 
        VFast1 <- paste(" ", VFast, "kt", sep="", collapse="|")
        VFast2 <- paste(" ", VFast, " kt", sep="", collapse="|")
@@ -290,20 +293,20 @@ InjuryCovariates = function(df) {
        VFast4 <- paste(" ", VFast, "kts", sep="", collapse="|")
        VFast5 <- paste(" ", VFast, " kts", sep="", collapse="|")
        VFast6 <- paste(VFast, "kts", sep="", collapse="|")
-       VFast7 <- paste(" ", VFast, "knots", sep="", collapse="|")
-       VFast8 <- paste(" ", VFast, " knots", sep="", collapse="|")
-       VFast9 <- paste(VFast, "knots", sep="", collapse="|")
+       VFast7 <- paste(" ", VFast, "knot", sep="", collapse="|")
+       VFast8 <- paste(" ", VFast, " knot", sep="", collapse="|")
+       VFast9 <- paste(VFast, "knot", sep="", collapse="|")
 
        VSpdUnk.strings <- c("speed unknown|unknown speed|no data on vessel size and speed
        |unknown vessel size and speed|vessel size and speed unknown|unknown size and speed
        |speed of vessel unknown|speed unk|unk speed")
 
        VSlow.strings <- paste(c(VSlow1, VSlow2, VSlow3, VSlow4, VSlow5, VSlow6, VSlow7, VSlow8, VSlow9), sep=",", collapse="|")
-       More.VSlow.strings <- paste("<10kt", "<10 kt", "<=10 kt", "<10 knots", "<10 kts", "stationary", "steerage", "kayak", sep="", collapse="|")
+       More.VSlow.strings <- paste("<10kt", "<10 kt", "<=10 kt", "<10 knot", "<10 kts", "stationary", "steerage", "kayak", sep="", collapse="|")
        VSlow.strings <- paste(c(VSlow.strings, More.VSlow.strings), sep=",", collapse="|")
 
        VFast.strings <- paste(c(VFast1, VFast2, VFast3, VFast4, VFast5, VFast6, VFast7, VFast8, VFast9), sep=",", collapse="|")
-       More.VFast.strings <- c("fast moving", "fast-moving", "high rate", "wrapped around bow", "stuck on bow", "larger and faster than whale", "bow of a large ship", ">10kt", ">10 kt", ">10 knots", ">10 kts", "exceeded 10 kts", "exceeded 10kts")
+       More.VFast.strings <- c("fast moving", "fast-moving", "high rate", "wrapped around bow", "stuck on bow", "larger and faster than whale", "bow of a large ship", ">10kt", ">10 kt", ">10 knot", ">10 kts", "exceeded 10 kts", "exceeded 10kts")
        VFast.strings <- paste(c(VFast.strings, More.VFast.strings), sep=",", collapse="|")
 
        VSlow.ind <- grep(VSlow.strings, df$Narrative, ignore.case=TRUE)
