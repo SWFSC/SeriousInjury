@@ -125,7 +125,6 @@ library(vctrs)
  sampsize = balancedSampsize(data.entangle$Health.status)
 
  ModelEntangle = rfPermute(data.entangle$Health.status ~ ., data.entangle[,c(entangle.covariates)], sampsize=sampsize, ntree=size.RF, replace=FALSE, importance=TRUE, proximity=TRUE)
- #ModelEntangle
 
 
  ###### Vessel Strike Model
@@ -133,7 +132,6 @@ library(vctrs)
  sampsize = balancedSampsize(data.vessel$Health.status)
 
  ModelVessel = rfPermute(data.vessel$Health.status ~ ., data.vessel[,c(vessel.covariates)], sampsize=sampsize, ntree=size.RF, replace=FALSE, importance=TRUE, proximity=TRUE)
- #ModelVessel
 
  ModelEntangle
  ModelVessel
