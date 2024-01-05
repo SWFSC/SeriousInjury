@@ -35,6 +35,7 @@ library(gridExtra)
 library(SeriousInjury)
 library(grid)
 library(rlang)
+library(vctrs)
 
  rm(list=ls())
 
