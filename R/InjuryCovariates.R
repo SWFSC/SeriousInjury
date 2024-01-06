@@ -202,138 +202,8 @@ InjuryCovariates = function(df) {
  wraps.absent.ind <- which(wraps.absent==1)
  wraps.present[wraps.absent.ind]=0
 
-
-##### Vessel speed and Size section ##############
-# Longest vessel ever built was 1502 ft oil tanker named ʻSeawise Giantʻ
-# Begin vessel strike covariate section, append covariates to current data frame
-# Assign null Vessel Speed and Size factors as default filter to index from
-  VessSpd <- rep("VSpdUnk", nrow(df))
-  VessSz <- rep("VSzUnk", nrow(df))
-
-# Vessel Variables (VSize and VSpeed)
-#  Archive Vessel Size and Speed strings
-
-# identify character vector that includes all unique numeric values in data$Narrative
-  all.values <- unlist(regmatches(df$Narrative, gregexpr("[0-9]*\\.?[0-9]", df$Narrative)))
-  all.values <- as.character(unique(as.numeric(all.values)))
-  all.values <- as.numeric(sort(all.values))
-
-# parse by vessel size (small, large) and speed (slow, fast) #####
-# omit VSm values==5 due to grep identifying '65' (vessel size threshold) as a longer case of '5'
-# there are no 5 ft long vessels other than kayaks and rafts, which are typically identified as such in narratives
-
-       VSm <- all.values[all.values<65 & all.values!=5]
-       VLg <- all.values[all.values>=65]
-
-# create character vectors of Vsize and VSpeed for use with grep, grepl, or regexpr
-
-       VSzUnk.strings <- c("unable to determine vessel size|vessel size unknown|
-                          unknown vessel size|size of vessel undetermined|vessel size
-                          and speed unknown|size unk|unk size")
-
-       VSm1 <- paste(" ", VSm, "ft", sep="", collapse="|")
-       VSm2 <- paste(" ", VSm, " ft", sep="", collapse="|")
-       VSm3 <- paste(VSm, "ft", sep="", collapse="|")
-       VSm4 <- paste(" ", VSm, "feet", sep="", collapse="|")
-       VSm5 <- paste(" ", VSm, " feet", sep="", collapse="|")
-       VSm6 <- paste(VSm, "feet", sep="", collapse="|")
-       VSm7 <- paste(" ", VSm, " feet", sep="", collapse="|")
-       VSm8 <- paste(" ", VSm, " foot", sep="", collapse="|")
-       VSm9 <- paste(" ", VSm, "foot", sep="", collapse="|")
-
-       VSm.strings <- paste(c(VSm1, VSm2, VSm3, VSm4, VSm5, VSm6, VSm7, VSm8, VSm9), sep=",", collapse="|")
-       More.VSm.strings <- c("<65","-65", "->65", "less than 65", "sailboat",
-                             "recreation", "rec boat", "kayak", "pleasure", "private", "sport")
-
-       VSm.strings <- paste(c(VSm.strings, More.VSm.strings), sep=",", collapse="|")
-
-       VLg1 <- paste(" ", VLg, "ft", sep="", collapse="|")
-       VLg2 <- paste(" ", VLg, " ft", sep="", collapse="|")
-       VLg3 <- paste(VLg, "ft", sep="", collapse="|")
-       VLg4 <- paste(" ", VLg, "feet", sep="", collapse="|")
-       VLg5 <- paste(" ", VLg, " feet", sep="", collapse="|")
-       VLg6 <- paste(VLg, "feet", sep="", collapse="|")
-       VLg7 <- paste(" ", VLg, " foot", sep="", collapse="|")
-       VLg8 <- paste(" ", VLg, " foot", sep="", collapse="|")
-       VLg9 <- paste(" ", VLg, "foot", sep="", collapse="|")
-
-       VLg.strings <- paste(c(VLg1, VLg2, VLg3, VLg4, VLg5, VLg6, VLg7, VLg8, VLg9), sep=",", collapse="|")
-
-       More.VLg.strings <- c(" >65", "> 65", "container ship", "size much greater than whale",
-                             "in excess of 65 ft", "cruise ship", "navy", "naval", "transport",
-                             "ferry", "express", "vessel larger than whale", "assumed to be larger",
-                             "much larger than the whale", "wrapped around bow", "bow of a large ship",
-                             "larger and faster than whale", "wrapped around bow", "brought into",
-                             "freight", "large ship", "carrier")
-
-       VLg.strings <- paste(c(VLg.strings, More.VLg.strings), sep=",", collapse="|")
-
-# indices for known vessel size identified first as filter
-       VSm.ind <- grep(VSm.strings, df$Narrative, ignore.case=TRUE)
-       VLg.ind <- grep(VLg.strings, df$Narrative, ignore.case=TRUE)
-
-# Vessel Speed descriptions / definitions VSpeed threshold is <= 10 kt and >10 kt
-
-       VSlow <- all.values[all.values<=10]
-       VFast <- all.values[all.values>10]
-
-       VSlow1 <- paste(" ", VSlow, "kt", sep="", collapse="|")
-       VSlow2 <- paste(" ", VSlow, " kt", sep="", collapse="|")
-       VSlow3 <- paste(VSlow, "kt", sep="", collapse="|")
-       VSlow4 <- paste(" ", VSlow, "kt", sep="", collapse="|")
-       VSlow5 <- paste(" ", VSlow, " kt", sep="", collapse="|")
-       VSlow6 <- paste(VSlow, "kt", sep="", collapse="|")
-       VSlow7 <- paste(" ", VSlow, "knot", sep="", collapse="|")
-       VSlow8 <- paste(" ", VSlow, " knot", sep="", collapse="|")
-       VSlow9 <- paste(VSlow, "knot", sep="", collapse="|")
-
-       VFast1 <- paste(" ", VFast, "kt", sep="", collapse="|")
-       VFast2 <- paste(" ", VFast, " kt", sep="", collapse="|")
-       VFast3 <- paste(VFast, "kt", sep="", collapse="|")
-       VFast4 <- paste(" ", VFast, "kt", sep="", collapse="|")
-       VFast5 <- paste(" ", VFast, " kt", sep="", collapse="|")
-       VFast6 <- paste(VFast, "kt", sep="", collapse="|")
-       VFast7 <- paste(" ", VFast, "knot", sep="", collapse="|")
-       VFast8 <- paste(" ", VFast, " knot", sep="", collapse="|")
-       VFast9 <- paste(VFast, "knot", sep="", collapse="|")
-
-       VSpdUnk.strings <- c("speed unknown|unknown speed|no data on vessel size and speed
-       |unknown vessel size and speed|vessel size and speed unknown|unknown size and speed
-       |speed of vessel unknown|speed unk|unk speed")
-
-       VSlow.strings <- paste(c(VSlow1, VSlow2, VSlow3, VSlow4, VSlow5, VSlow6, VSlow7, VSlow8, VSlow9), sep=",", collapse="|")
-       More.VSlow.strings <- paste("<10kt", "<10 kt", "<=10 kt", "<10 knot", "<10 kt", "stationary", "steerage", "kayak", sep="", collapse="|")
-       VSlow.strings <- paste(c(VSlow.strings, More.VSlow.strings), sep=",", collapse="|")
-
-       VFast.strings <- paste(c(VFast1, VFast2, VFast3, VFast4, VFast5, VFast6, VFast7, VFast8, VFast9), sep=",", collapse="|")
-       More.VFast.strings <- c("fast moving", "fast-moving", "high rate", "wrapped around bow", "stuck on bow", "larger and faster than whale",
-                               "bow of a large ship", ">10kt", ">10 kt", ">10 knot", ">10knot", "exceeded 10")
-       VFast.strings <- paste(c(VFast.strings, More.VFast.strings), sep=",", collapse="|")
-
-       VSlow.ind <- grep(VSlow.strings, df$Narrative, ignore.case=TRUE)
-       VFast.ind <- grep(VFast.strings, df$Narrative, ignore.case=TRUE)
-
-       VessSz[VSm.ind] <- "VSzSmall"
-       VessSz[VLg.ind] <- "VSzLarge"
-
-       VessSpd[VSlow.ind] <- "VSpdSlow"
-       VessSpd[VFast.ind] <- "VSpdFast"
-
-# overwrite entanglement 'CAUSE=EN' records with unknown vessel sizes / speeds
-
-       EN.ind <- which(df$CAUSE=="EN")
-       VessSz[EN.ind] <- "VSzUnk"
-       VessSpd[EN.ind] <- "VSpdUnk"
-
-# narratives in conflict for size and speed (addressed by assigning more severe speed / size
-# category in 'Narrative'. Example: cases where size and speed of vessel are described as
-# 'unknown', but the cruising speed or damage to whale allows inference of a large + fast
-# vessel. Whale carcasses that come into port on the bow of a large container ship are assigned
-# fast vessel speeds by default. Same for vessel size, if described as larger than whale, the
-# vessel size is assigned as VSizeLg). To resolve these conflicts, the unknown categories are
-# indexed first and narratives that contain matches between unknown and unknown categories are
-# assigned the known category last (Fast supercedes Unknown and Slow, Large supercedes Unknown and Small)
-
+ VessSpd <- VessSpd(df)
+ VessSz <- VessSz(df)
 
        df <- cbind.data.frame(df, mobility.limited, calf.juv, constricting, decline, extensive.severe, fluke.peduncle, gear.free, head, healing,
                              laceration.deep, laceration.shallow, pectoral, swim.dive, trailing, VessSpd, VessSz, wraps.present, wraps.absent)
@@ -341,6 +211,7 @@ InjuryCovariates = function(df) {
        df$VessSpd <- factor(df$VessSpd)
        df$VessSz <- factor(df$VessSz)
 
+# the following factor levels are required for randomForest to recognize the vessel speed and size covariates as three-state factors
        levels(df$VessSpd) <- c(levels(df$VessSpd), "VSpdUnk", "VSpdSlow", "VSpdFast")
        levels(df$VessSz) <- c(levels(df$VessSz), "VSzUnk", "VSzLarge", "VSzSmall")
 
