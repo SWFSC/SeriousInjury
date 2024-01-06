@@ -202,10 +202,16 @@ InjuryCovariates = function(df) {
  wraps.absent.ind <- which(wraps.absent==1)
  wraps.present[wraps.absent.ind]=0
 
- VessSpd <- as.factor(VessSpd(df))
- VessSz <- as.factor(VessSz(df))
+ VessSpd <- VessSpd(df)
+ VessSz <- VessSz(df)
 
        df <- cbind.data.frame(df, mobility.limited, calf.juv, constricting, decline, extensive.severe, fluke.peduncle, gear.free, head, healing,
                              laceration.deep, laceration.shallow, pectoral, swim.dive, trailing, VessSpd, VessSz, wraps.present, wraps.absent)
+
+       df$VessSpd <- factor(df$VessSpd)
+       df$VessSz <- factor(df$VessSz)
+
+       levels(df$VessSpd) <- c(levels(df$VessSpd), "VSpdUnk", "VSpdSlow", "VSpdFast")
+       levels(df$VessSz) <- c(levels(df$VessSz), "VSzUnk", "VSzLarge", "VSzSmall")
 
        df   }
