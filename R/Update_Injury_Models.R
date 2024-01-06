@@ -63,9 +63,13 @@ library(vctrs)
  if (length(which(Narratives_Health$Narrative==""))>0)
    Narratives_Health <- Narratives_Health[-which(Narratives_Health$Narrative==""),]
 
+   WhaleData <- Narratives_Health
+   WhaleDataCovs <- InjuryCovariates(WhaleData)
+
     include.fields <- which(names(Narratives_Health)%in%c("Narrative","Health.status", "CAUSE"))
      Narratives_Health <- Narratives_Health[,include.fields]
       Narratives_HealthCovs = InjuryCovariates(Narratives_Health)
+
        Narratives_HealthCovs$VessSz <- factor(Narratives_HealthCovs$VessSz)
          Narratives_HealthCovs$VessSpd <- factor(Narratives_HealthCovs$VessSpd)
 
