@@ -1,4 +1,4 @@
-#' @title UpdateInjuryModels
+#' @title Update_Injury_Models
 #'
 #' @description
 #' Generate Random Forest (RF) entanglement and vessel strike injury models.
@@ -7,11 +7,13 @@
 #'
 #' @examples ModelEntangle
 #' ModelVessel
+#' data.entangle
+#' data.vessel
 #'
 #' @export
 #'
 
- Update_Injury_Models = function(df) {
+ Update_Injury_Models = function() {
 
 # Random Forest classification tree models used to predict entanglement and vessel strike health status. 9/1/2022
 # Simple data frame version for use with single-field data frames including only 'Narrative'
@@ -26,16 +28,7 @@ if (!require('devtools')) install.packages('devtools')
 
 devtools::install_github("JimCarretta/SeriousInjury")
 
-library(rfPermute)
-library(tidyverse)
-library(ggplot2)
-library(ggforce)
-library(devtools)
-library(gridExtra)
 library(SeriousInjury)
-library(grid)
-library(rlang)
-library(vctrs)
 
  rm(list=ls())
 
@@ -60,8 +53,8 @@ library(vctrs)
  Narratives_Health$Health.status[grep("unknown", Narratives_Health$Health.status, ignore.case=TRUE)] <- "UNKNOWN"
 
 # if blank lines occur in Narratives_Health, omit them, else ignore
- if (length(which(Narratives_Health$Narrative==""))>0)
-   Narratives_Health <- Narratives_Health[-which(Narratives_Health$Narrative==""),]
+# if (length(which(Narratives_Health$Narrative==""))>0)
+#   Narratives_Health <- Narratives_Health[-which(Narratives_Health$Narrative==""),]
 
    WhaleData <- Narratives_Health
    WhaleDataCovs <- InjuryCovariates(WhaleData)
@@ -104,12 +97,12 @@ library(vctrs)
 # parse data into entanglement and vessel models
 
  data.entangle = data.model[which(data.model$CAUSE%in%c("EN","ET")),]
- omit.field <- which(names(data.entangle)=="CAUSE")
- data.entangle = data.entangle[,-omit.field]
+# omit.field <- which(names(data.entangle)=="CAUSE")
+# data.entangle = data.entangle[,-omit.field]
 
  data.vessel = data.model[which(data.model$CAUSE%in%c("VS")),]
- omit.field = which(names(data.vessel)=="CAUSE")
- data.vessel = data.vessel[,-omit.field]
+# omit.field = which(names(data.vessel)=="CAUSE")
+# data.vessel = data.vessel[,-omit.field]
 
  # Use different covariate suites for entanglement + vessel strike models
 

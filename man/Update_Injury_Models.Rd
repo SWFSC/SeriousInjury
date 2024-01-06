@@ -2,9 +2,9 @@
 % Please edit documentation in R/Update_Injury_Models.R
 \name{Update_Injury_Models}
 \alias{Update_Injury_Models}
-\title{UpdateInjuryModels}
+\title{Update_Injury_Models}
 \usage{
-Update_Injury_Models(df)
+Update_Injury_Models()
 }
 \description{
 Generate Random Forest (RF) entanglement and vessel strike injury models.
@@ -12,6 +12,8 @@ Generate Random Forest (RF) entanglement and vessel strike injury models.
 \examples{
 ModelEntangle
 ModelVessel
+data.entangle
+data.vessel
 
 }
 \author{
