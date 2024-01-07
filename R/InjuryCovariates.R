@@ -42,6 +42,11 @@ InjuryCovariates = function(df) {
 # Narratives including both 'flukes' and 'missing' are identified using grepl("missing.*fluke|fluke.*missing))
 # while phrases as 'partially disentangled' and 'partial disentanglement' are handled by grepl("partial.*disentangl)
 
+# clean narratives of non-ASCII characters
+
+    df$Narrative <- gsub("&",  "and", df$Narrative)
+    df$Narrative <- gsub("@",  "at",  df$Narrative)
+
 # Evidence the whale was mobility.limited or had limited mobility resulting from an entanglement?
 
     mobility.limited = paste(c("anchor", "difficultly spending time at surface", "exhausted", "hog", "motionless",

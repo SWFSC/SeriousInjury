@@ -21,6 +21,19 @@
 
 VessSz <- function(df) {
 
+  # replace apostrophe-abbreviated lengths with "FT" (i.e. 90' <- 90FT)
+
+    df$Narrative <- gsub("0'", "0FT", df$Narrative)
+    df$Narrative <- gsub("1'", "1FT", df$Narrative)
+    df$Narrative <- gsub("2'", "2FT", df$Narrative)
+    df$Narrative <- gsub("3'", "3FT", df$Narrative)
+    df$Narrative <- gsub("4'", "4FT", df$Narrative)
+    df$Narrative <- gsub("5'", "5FT", df$Narrative)
+    df$Narrative <- gsub("6'", "6FT", df$Narrative)
+    df$Narrative <- gsub("7'", "7FT", df$Narrative)
+    df$Narrative <- gsub("8'", "8FT", df$Narrative)
+    df$Narrative <- gsub("9'", "9FT", df$Narrative)
+
   # convert instances of ʻfeetʻ to ʻFTʻ to reduce dimensionality of regex
 
   df$Narrative <- gsub("feet", "FT", df$Narrative, ignore.case=TRUE)
