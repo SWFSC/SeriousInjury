@@ -4,11 +4,11 @@ library(SeriousInjury)
 server <- function(input, output){
 
     rv <- reactiveValues(
-        df = data.frame(
+        df = data.frame(Narrative = "Type/paste text and ʻEnterʻ to update probabilities. Use toggle to switch between entanglements or vessel strikes. ʻWhale with multiple wraps of line around peduncle and heavy cyamid growth.ʻ", Injury.Type = "EN"),
             Narrative = character(),
             Injury.Type = character()
         )
-    )
+
 
 
 

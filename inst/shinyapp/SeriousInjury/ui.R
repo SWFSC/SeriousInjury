@@ -1,14 +1,14 @@
 .libPaths(c("/usr/lib64/R/shiny_library",.libPaths()))
 
 ui <- fluidPage(
-    titlePanel("R-Package *SeriousInjury*: Assess Severity of Whale Injuries from Narratives with classification trees"),
-    sidebarPanel(
+    titlePanel("R-Package *SeriousInjury*: Assess severity of whale injuries from a narrative."),
+    mainPanel(
         textAreaInput(inputId = "Narrative",
                       label = "Narrative",
-                      value = "Enter / paste text and click 'Add' button to update. Include words and phrases related to whale injuries. Random text, such as 'the quick brown fox jumps over the lazy dog', will return a meaningless prediction of health status due to a lack of relevant variables.", width='400px', height='400px')),
+                      value = "Type/paste text and press ʻEnterʻ button for injury assessment. Use toggle to switch between entanglements or vessel strikes. Whale with multiple wraps of line around peduncle and heavy cyamid growth.", width='400px', height='400px')),
     selectInput("Injury.Type", "EN (entanglement) or VS (vessel strike)",
-                list(`Source` = list("EN", "VS"))),
-    actionButton("Add", "Add"),
+                list(`Injury.Type` = list("EN", "VS"))),
+    actionButton("Add", "Enter"),
 
     mainPanel(tabsetPanel(
         tabPanel("Predicted Probability of Death|Health Decline or Recovery", tableOutput(outputId = "table")))))
