@@ -21,6 +21,13 @@
 
 VessSz <- function(df) {
 
+  # extract unique numeric values from df; assign to small or large vessel sizes
+
+    unique.values <- Extract_Numeric_From_String(df)
+
+    small <- unique.values[unique.values<65]
+    large <- unique.values[unique.values>=65]
+
   # replace apostrophe-abbreviated lengths with "FT" (i.e. 90' <- 90FT)
 
     df$Narrative <- gsub("0'", "0FT", df$Narrative)
@@ -41,11 +48,11 @@ VessSz <- function(df) {
   df$Narrative <- gsub("foot", "FT", df$Narrative, ignore.case=TRUE)
   df$Narrative <- gsub(" foot", "FT", df$Narrative, ignore.case=TRUE)
 
-  small <- c(paste(seq(6,64.9,0.1), "FT", sep=""),
+  small <- c(paste(small, "FT", sep=""), paste(small, "FT", sep=" "),
              "<65FT", "< 65FT", "<65 FT", "<65FT",
              "16-40FT", "40-", "40->65", "-65FT")
 
-  large <- c(paste(seq(65,1500,1), "FT", sep=""),
+  large <- c(paste(large, "FT", sep=""), paste(large, "FT", sep=" "),
              "container ship", "size much greater than whale",
              "in excess of 65 FT", "cruise ship", "navy", "naval", "transport",
              "ferry", "express", "vessel larger than whale", "assumed to be larger",

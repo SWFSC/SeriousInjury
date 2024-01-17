@@ -2,6 +2,7 @@
 
 export(CovariatePresence)
 export(CovariateStrings)
+export(Extract_Numeric_From_String)
 export(InjuryCovariates)
 export(SeriousInjuryTutorial)
 export(Update_Injury_Models)

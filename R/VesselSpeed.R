@@ -22,6 +22,14 @@
 
 VessSpd <- function(df) {
 
+#  extract unique numeric values from df; assign to slow or fast vessel speeds
+
+    unique.values <- Extract_Numeric_From_String(df)
+
+    slow <- unique.values[unique.values<=10]
+    fast <- unique.values[unique.values>10]
+
+
   # convert instances of ʻknot|knots|kts to ʻKTʻ to reduce dimensionality of regex
 
   df$Narrative <- gsub("knot", "KT", df$Narrative, ignore.case=TRUE)
@@ -31,16 +39,10 @@ VessSpd <- function(df) {
   df$Narrative <- gsub("kts", "KT", df$Narrative, ignore.case=TRUE)
   df$Narrative <- gsub(" kts", "KT", df$Narrative, ignore.case=TRUE)
 
-       slow <- c(paste(seq(0,10,0.1), "KT"),
-                  paste(seq(0,10,0.1), "KT", sep=""),
-                  paste(seq(0,10,0.1), "KT"),
-                  paste(seq(0,10,0.1), " KT", sep=""),
-                 "<10KT", "< 10KT", "<10 KT", "<10KT")
+       slow <- c(paste(slow, "KT", sep=""), paste(slow, "KT", sep=" "),
+                 "<10KT", "< 10KT", "<10 KT", "<10KT", "kayak")
 
-       fast <- c(paste(seq(10.1,50,0.1), "KT"),
-                 paste(seq(10.1,50,0.1), "KT", sep=""),
-                 paste(seq(10.1,50,0.1), "KT"),
-                 paste(seq(10.1,50,0.1), " KT", sep=""),
+       fast <- c(paste(fast, "KT", sep=""), paste(fast, "KT", sep=" "),
                  "fast moving", "fast-moving", "high rate", "wrapped around bow",
                  "stuck on bow", "larger and faster than whale", "bow of a large ship",
                  ">10KT", ">10 KT", ">10 KT", ">10KT", "exceeded 10 KT", "exceeded 10KT")
