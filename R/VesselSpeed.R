@@ -32,12 +32,9 @@ VessSpd <- function(df) {
 
   # convert instances of ʻknot|knots|kts to ʻKTʻ to reduce dimensionality of regex
 
-  df$Narrative <- gsub("knot", "KT", df$Narrative, ignore.case=TRUE)
-  df$Narrative <- gsub(" knot", "KT", df$Narrative, ignore.case=TRUE)
   df$Narrative <- gsub("knots", "KT", df$Narrative, ignore.case=TRUE)
-  df$Narrative <- gsub(" knots", "KT", df$Narrative, ignore.case=TRUE)
-  df$Narrative <- gsub("kts", "KT", df$Narrative, ignore.case=TRUE)
-  df$Narrative <- gsub(" kts", "KT", df$Narrative, ignore.case=TRUE)
+  df$Narrative <- gsub("kts ", "KT", df$Narrative, ignore.case=TRUE)
+  df$Narrative <- gsub("kt", "KT", df$Narrative, ignore.case=TRUE)
 
        slow <- c(paste(slow, "KT", sep=""), paste(slow, "KT", sep=" "),
                  "<10KT", "< 10KT", "<10 KT", "<10KT", "kayak")

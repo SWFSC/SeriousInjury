@@ -50,7 +50,7 @@ VessSz <- function(df) {
 
   small <- c(paste(small, "FT", sep=""), paste(small, "FT", sep=" "),
              "<65FT", "< 65FT", "<65 FT", "<65FT",
-             "16-40FT", "40-", "40->65", "-65FT")
+             "16-40FT", "40-", "40->65", "-65FT", "kayak")
 
   large <- c(paste(large, "FT", sep=""), paste(large, "FT", sep=" "),
              "container ship", "size much greater than whale",
