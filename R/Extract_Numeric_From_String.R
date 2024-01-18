@@ -23,28 +23,14 @@
 # Extract Numeric values from string to be used for vessel sizes and speeds.
 
 Extract_Numeric_From_String <- function(df) {
-
-# Function to find numeric values in a string
-find_numeric <- function(input_string) {
-  # Use regular expression to find whole numbers
-  numbers <- str_extract_all(input_string, "\\b\\d+\\b")[[1]]
-  return(as.numeric(numbers))
-}
-
-
-empty.vec <- vector()
-
-for (i in 1:nrow(df)) {
   
-  record.numbers <- find_numeric(df$Narrative[i])
+  x <- unlist(regmatches(df$Narrative, gregexpr('\\(?[0-9,.]+', df$Narrative)))
+  x <- as.numeric(gsub('\\(', '-', gsub(',', '', x)))
+  x <- na.omit(x)
   
-  empty.vec <- c(record.numbers, empty.vec)
+  unique.x <- unique(x)
+  unique.x <- abs(unique.x)
+  unique.x <- unique.x[unique.x<1600]
+  unique.x
   
 }
-
-# remove all values that represent years or whale ID numbers (anything greater than largest known vessel around 1500 ft).
-# reduce values to unique values
-
-unique.numeric <- sort(unique(empty.vec))
-
-unique.numeric }
