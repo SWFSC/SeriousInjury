@@ -8,9 +8,9 @@
 WhaleData an object of class 'data.frame'
 }
 \usage{
-data(WhaleData)
-data(data.entangle)
-data(data.vessel)
+WhaleData
+data.entangle
+data.vessel
 }
 \description{
 Whale injury data for package \emph{SeriousInjury}. Data frame of > 1000 whale injury cases.

@@ -2,9 +2,9 @@
 % Please edit documentation in R/Extract_Numeric_From_String.R
 \name{Extract_Numeric_From_String}
 \alias{Extract_Numeric_From_String}
-\title{ExtractNumbers}
+\title{Extract_Numeric_From_String}
 \usage{
-ExtractNumbers(df)
+Extract_Numeric_From_String(df)
 }
 \arguments{
 \item{df}{an object of class 'data.frame'}
@@ -16,7 +16,7 @@ Extract numeric values appearing in data frame narratives to be used for VessSpd
 
 # Return a vector of unique numeric values appearing in object ʻdfʻ
 
-Values <- ExtractNumbers(WhaleData)
+Values <- Extract_Numeric_From_String(WhaleData)
 
 
 }

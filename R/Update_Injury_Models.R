@@ -26,9 +26,9 @@ if (!require('devtools')) install.packages('devtools')
 
 # latest update of R-package 'SeriousInjury'
 
-devtools::install_github("JimCarretta/SeriousInjury")
+# devtools::install_github("JimCarretta/SeriousInjury")
 
-library(SeriousInjury)
+# library(SeriousInjury)
 
  rm(list=ls())
 
@@ -36,7 +36,7 @@ library(SeriousInjury)
 
  setwd("c:/carretta/github/SeriousInjury/inst/extdata")
 
- file.list <- dir(pattern="Recalculation -")
+ file.list <- dir(pattern="Recalculation_")
 
  Narratives_Health <- data.frame()
 

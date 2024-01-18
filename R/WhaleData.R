@@ -10,9 +10,9 @@
 #' data frame 'entangle.data' includes cases used in RF entanglement model
 #' data frame 'vessel.data' includes cases used in RF vessel strike model
 #'
-#' @usage data(WhaleData)
-#' data(data.entangle)
-#' data(data.vessel)
+#' @usage WhaleData
+#' data.entangle
+#' data.vessel
 #'
 #' @format WhaleData an object of class 'data.frame'
 #'
