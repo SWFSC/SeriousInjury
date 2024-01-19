@@ -40,13 +40,21 @@ VessSpd <- function(df) {
    slow.2 <- paste(slow, "KT", sep=" ", collapse="|")
    slow.3 <- "<10KT|< 10KT|kayak"
 
-   slow.str <- paste(c(slow.1, slow.2, slow.3), sep="", collapse="|")
+   if(length(slow)>0) { slow.str <- paste(c(slow.1, slow.2, slow.3), sep="", collapse="|") }
+   if(length(slow)==0) { slow.str <- slow.3 }
 
    fast.1 <- paste(fast, "KT", sep="", collapse="|")
    fast.2 <- paste(fast, "KT", sep=" ", collapse="|")
-   fast.str <- paste(c(fast.1, fast.2, "broken","blunt force","carcass","dead","decomp","exceeded 10",
+
+   if(length(fast)>0) { fast.str <- paste(c(fast.1, fast.2, "broken","blunt force","carcass","dead","decomp","exceeded 10",
+                                           "fast","fracture","hemor","high rate","large ship","larger and faster than whale",
+                                           "necrop","stuck on bow","verteb","wrapped around bow",">10KT",">10 KT","> 10KT","> 10 KT"), sep=",", collapse="|")
+   }
+
+   if(length(fast)==0) { fast.str <- paste(c("broken","blunt force","carcass","dead","decomp","exceeded 10",
    "fast","fracture","hemor","high rate","large ship","larger and faster than whale",
-   "necrop","stuck on bow","verteb","wrapped around bow",">10KT",">10 KT","> 10KT","> 10 KT"), sep=",", collapse="|")
+   "necrop","stuck on bow","verteb","wrapped around bow",">10KT",">10 KT","> 10KT","> 10 KT"), sep=",", collapse="|") }
+
 
    slow.cases <- grep(slow.str, df$Narrative, ignore.case=T)
    fast.cases <- grep(fast.str, df$Narrative, ignore.case=T)
