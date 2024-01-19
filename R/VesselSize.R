@@ -48,34 +48,28 @@ VessSz <- function(df) {
   df$Narrative <- gsub("foot", "FT", df$Narrative, ignore.case=TRUE)
   df$Narrative <- gsub(" foot", "FT", df$Narrative, ignore.case=TRUE)
 
-  small <- c(paste(small, "FT", sep=""), paste(small, "FT", sep=" "),
-             "<65FT", "< 65FT", "<65 FT", "<65FT",
-             "16-40FT", "40-", "40->65", "-65FT", "kayak")
+  small.1 <- paste(small, "FT", sep="", collapse="|")
+  small.2 <- paste(small, "FT", sep=" ", collapse="|")
+  small.3 <- ("<65FT|< 65FT|<65 FT|<65FT|16-40FT|40-|40->65|-65FT|kayak")
 
-  large <- c(paste(large, "FT", sep=""), paste(large, "FT", sep=" "),
-             "container ship", "size much greater than whale",
-             "in excess of 65 FT", "cruise ship", "navy", "naval", "transport",
-             "ferry", "express", "vessel larger than whale", "assumed to be larger",
-             "much larger than the whale", "wrapped around bow", "bow of a large ship",
-             "larger and faster", "wrapped around bow", "brought into",
-             "freight", "large ship", "carrier")
+  small <- sort(paste(small.1, small.2, small.3))
 
-  small.ind <- paste(small, collapse="|")
-  large.ind <- paste(large, collapse="|")
+  large.1 <- paste(large, "FT", sep="", collapse="|")
+  large.2 <- paste(large, "FT", sep=" ", collapse="|")
+  large.3 <- paste(c("container ship", "size much greater than whale", "in excess of 65 FT",
+                   "cruise ship", "navy", "naval", "transport", "ferry", "express", "vessel larger than whale",
+                   "assumed to be larger", "much larger than the whale", "wrapped around bow", "bow of a large ship",
+                   "larger and faster", "wrapped around bow", "brought into", "freight", "large ship", "carrier",
+                   "carcass", "dead", "fracture", "verteb", "decomp", "hemorrhage", "blunt force trauma", "necrop", "broken"), collapse="|")
 
-  small.cases <- grep(small.ind, df$Narrative, ignore.case=T)
-  large.cases <- grep(large.ind, df$Narrative, ignore.case=T)
+  large <- sort(paste(large.1, large.2, large.3))
+
+
+  small.cases <- grep(small, df$Narrative, ignore.case=T)
+  large.cases <- grep(large, df$Narrative, ignore.case=T)
 
   df$VessSz <- "VSzUnk"    # baseline uniform assignment
   df$VessSz[small.cases] <- "VSzSmall"
   df$VessSz[large.cases] <- "VSzLarge"
-
-  # if vessel strike outcome was mortality (MT), assume vessel speed was fast
-
-  VS.mortality <- which(df$CAUSE=="VS" & df$DETERMINED.FATE=="MT")
-  df$VessSz[VS.mortality] <- "VSzLarge"
-
-  not.VS <- which(df$CAUSE!="VS")
-  df$VessSz[not.VS] <- "VSzUnk"
 
   df$VessSz        }

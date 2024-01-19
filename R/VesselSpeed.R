@@ -27,7 +27,7 @@ VessSpd <- function(df) {
     unique.values <- Extract_Numeric_From_String(df)
 
     slow <- unique.values[unique.values<=10]
-    fast <- unique.values[unique.values>10]
+    fast <- unique.values[unique.values>10 & unique.values<100]
 
 
   # convert instances of ʻknot|knots|kts to ʻKTʻ to reduce dimensionality of regex
@@ -36,31 +36,29 @@ VessSpd <- function(df) {
   df$Narrative <- gsub("kts ", "KT", df$Narrative, ignore.case=TRUE)
   df$Narrative <- gsub("kt", "KT", df$Narrative, ignore.case=TRUE)
 
-       slow <- c(paste(slow, "KT", sep=""), paste(slow, "KT", sep=" "),
-                 "<10KT", "< 10KT", "<10 KT", "<10KT", "kayak")
+   slow.1 <- paste(slow, "KT", sep="", collapse="|")
+   slow.2 <- paste(slow, "KT", sep=" ", collapse="|")
+   slow.3 <- "<10KT|< 10KT|kayak"
 
-       fast <- c(paste(fast, "KT", sep=""), paste(fast, "KT", sep=" "),
-                 "fast moving", "fast-moving", "high rate", "wrapped around bow",
-                 "stuck on bow", "larger and faster than whale", "bow of a large ship",
-                 ">10KT", ">10 KT", ">10 KT", ">10KT", "exceeded 10 KT", "exceeded 10KT")
+   slow <- sort(paste(slow.1, slow.2, slow.3))
 
-          slow.ind <- paste(slow, collapse="|")
-          fast.ind <- paste(fast, collapse="|")
+   fast.1 <- paste(fast, "KT", sep="", collapse="|")
+   fast.2 <- paste(fast, "KT", sep=" ", collapse="|")
+   fast.3 <- paste(c("broken","blunt force","carcass","dead","decomp","exceeded 10",
+   "fast","fracture","hemor","high rate","large ship","larger and faster than whale",
+   "necrop","stuck on bow","verteb","wrapped around bow",">10KT",">10 KT","> 10KT","> 10 KT"), collapse="|")
 
-          slow.cases <- grep(slow.ind, df$Narrative, ignore.case=T)
-             fast.cases <- grep(fast.ind, df$Narrative, ignore.case=T)
+   fast <- sort(paste(fast.1, fast.2, fast.3))
 
-         df$VessSpd <- "VSpdUnk"    # baseline uniform assignment
+   slow.cases <- grep(slow, df$Narrative, ignore.case=T)
+   fast.cases <- grep(fast, df$Narrative, ignore.case=T)
+
+# default VessSpd assignment to account for entanglement cases or unknown speed
+
+         df$VessSpd <- "VSpdUnk"
+
          df$VessSpd[slow.cases] <- "VSpdSlow"
          df$VessSpd[fast.cases] <- "VSpdFast"
-
-# if vessel strike outcome was mortality (MT), assume vessel speed was fast
-
-         VS.mortality <- which(df$CAUSE=="VS" & df$DETERMINED.FATE=="MT")
-         df$VessSpd[VS.mortality] <- "VSpdFast"
-
-         not.VS <- which(df$CAUSE!="VS")
-         df$VessSpd[not.VS] <- "VSpdUnk"
 
          df$VessSpd
 }
