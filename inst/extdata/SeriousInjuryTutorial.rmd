@@ -111,7 +111,7 @@ Covariates defined below are derived from injury narratives with the function â€
 
 
 ```{r message=FALSE, warning=FALSE}
-# library(SeriousInjury)
+library(SeriousInjury)
 # Generate covariates from case narratives. Append to WhaleData.
 WhaleDataCovs <- InjuryCovariates(WhaleData)
 # View a portion of WhaleDataCovs with appended covariates
