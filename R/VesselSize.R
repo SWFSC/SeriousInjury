@@ -52,7 +52,7 @@ VessSz <- function(df) {
   small.2 <- paste(small, "FT", sep=" ", collapse="|")
   small.3 <- ("<65FT|< 65FT|<65 FT|<65FT|16-40FT|40-|40->65|-65FT|kayak")
 
-  small <- sort(paste(small.1, small.2, small.3))
+  small.str <- paste(c(small.1, small.2, small.3), sep="", collapse="|")
 
   large.1 <- paste(large, "FT", sep="", collapse="|")
   large.2 <- paste(large, "FT", sep=" ", collapse="|")
@@ -62,11 +62,11 @@ VessSz <- function(df) {
                    "larger and faster", "wrapped around bow", "brought into", "freight", "large ship", "carrier",
                    "carcass", "dead", "fracture", "verteb", "decomp", "hemorrhage", "blunt force trauma", "necrop", "broken"), collapse="|")
 
-  large <- sort(paste(large.1, large.2, large.3))
+  large.str <- paste(c(large.1, large.2, large.3), sep="", collapse="|")
 
 
-  small.cases <- grep(small, df$Narrative, ignore.case=T)
-  large.cases <- grep(large, df$Narrative, ignore.case=T)
+  small.cases <- grep(small.str, df$Narrative, ignore.case=T)
+  large.cases <- grep(large.str, df$Narrative, ignore.case=T)
 
   df$VessSz <- "VSzUnk"    # baseline uniform assignment
   df$VessSz[small.cases] <- "VSzSmall"
