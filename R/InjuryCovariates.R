@@ -106,9 +106,9 @@ InjuryCovariates = function(df) {
        fluke.peduncle = as.numeric(lapply(fluke.peduncle, as.numeric))
 
 #  Evidence that whale is gear-free after initial sighting? Or is expected to shed loose gear?
- gear.free = paste(c("gear free", "shed", "gear-free", "no gear present", "no gear attached", "complete removal of gear",
+ gear.free = paste(c("gear free", "shed", "gear-free", "no gear present", "no gear", "complete removal of gear",
                       "free of gear", "self.*release", "disentangled", "removal of all gear",
-                        "no gear remaining", "all gear removed", "broke free", "removed all gear",
+                        "all gear removed", "broke free", "removed all gear",
                          "removal of all gear", "completely removed", "cut the gear", "removed lines",
                            "line removed", "removed all", "removed gear", "freeing it",
                              "confirmed to be free of any entanglements", " free of an active entanglement",

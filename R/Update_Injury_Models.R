@@ -22,7 +22,7 @@
 # from case narratives and random forest classification trees. Frontiers in Marine Science. https://doi.org/10.3389/fmars.2022.863070
 
 # make sure you have devtools installed
-if (!require('devtools')) install.packages('devtools')
+# if (!require('devtools')) install.packages('devtools')
 
 # latest update of R-package 'SeriousInjury'
 

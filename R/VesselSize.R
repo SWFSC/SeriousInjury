@@ -50,7 +50,7 @@ VessSz <- function(df) {
 
   small.1 <- paste(small, "FT", sep="", collapse="|")
   small.2 <- paste(small, "FT", sep=" ", collapse="|")
-  small.3 <- ("<65FT|< 65FT|<65 FT|<65FT|16-40FT|40-|40->65|-65FT|kayak")
+  small.3 <- ("<65FT|< 65FT|<65 FT|<65FT|16-40FT|40-|40->65|-65FT|kayak|recreational|small boat")
 
   if (length(small)>0) { small.str <- paste(c(small.1, small.2, small.3), sep="", collapse="|") }
   if (length(small)==0) { small.str <- small.3}

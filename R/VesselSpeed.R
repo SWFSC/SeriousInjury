@@ -35,10 +35,11 @@ VessSpd <- function(df) {
   df$Narrative <- gsub("knots", "KT", df$Narrative, ignore.case=TRUE)
   df$Narrative <- gsub("kts ", "KT", df$Narrative, ignore.case=TRUE)
   df$Narrative <- gsub("kt", "KT", df$Narrative, ignore.case=TRUE)
+  df$Narrative <- gsub("kn ", "KT", df$Narrative, ignore.case=TRUE)
 
    slow.1 <- paste(slow, "KT", sep="", collapse="|")
    slow.2 <- paste(slow, "KT", sep=" ", collapse="|")
-   slow.3 <- "<10KT|< 10KT|kayak"
+   slow.3 <- "<10KT|< 10KT|kayak|stationary|idle"
 
    if(length(slow)>0) { slow.str <- paste(c(slow.1, slow.2, slow.3), sep="", collapse="|") }
    if(length(slow)==0) { slow.str <- slow.3 }
