@@ -141,7 +141,7 @@ InjuryCovariates = function(df) {
                        "laceration.*heal", "small.*laceration","laceration.*small", "superficial prop", "superficial skeg",
                        "small.*wounds", "no.*blood", "or visible injuries", "no visible wounds", "no visible injur",
                        "no.inj", "not inj", "no noticeable inj", "no discernable inj", "no apparent inj", "wound free", "uninj",
-                       "no sign of injury", "unharmed"), collapse="|")
+                       "no sign of injury", "unharmed", "kayak"), collapse="|")
 
  laceration.shallow = grepl(laceration.shallow, df$Narrative, ignore.case=TRUE)
  laceration.shallow = as.numeric(lapply(laceration.shallow, as.numeric))
@@ -157,7 +157,7 @@ InjuryCovariates = function(df) {
  healing = paste(c("behavior appeared normal", "healthy", "healing","healed","healthy.*resight","resight.*healthy", "good body condition", "good condition", "good health", "minor",
                      "injury free", "full migration, returning with a healthy calf", "or visible injuries", "no visible wounds", "no visible injur",
                    "no.inj", "not inj", "no noticeable inj", "no discernable inj", "no apparent inj", "wound free", "uninj",
-                   "no sign of injury", "unharmed", "did not observe fresh blood or injuries"), collapse="|")
+                   "no sign of injury", "unharmed", "did not observe fresh blood or injuries", "kayak"), collapse="|")
 
  healing = grepl(healing, df$Narrative, ignore.case=TRUE)
  healing = as.numeric(lapply(healing, as.numeric))
