@@ -13,7 +13,7 @@
 #' @examples
 #' # Identify which cases include non-gillnet monofilament
 #'
-#' Monofilament <- Monofilament(WhaleData)
+#' Monofilament <- Monofilament_Hook_Line(WhaleData)
 #'
 #' @export
 #'
