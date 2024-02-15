@@ -28,10 +28,10 @@
 
      mono.only <-which(net==FALSE & hook.mono==TRUE)
 
-     df$monofilament.line <- 0
-     df$monofilament.line[mono.only] <- 1
+     df$mono.hook.line <- 0
+     df$mono.hook.line[mono.only] <- 1
 
-     return(df)
+     return(df$mono.hook.line)
 
  }
 
