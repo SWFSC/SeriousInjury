@@ -16,7 +16,7 @@ Targeted toward hook and line entanglements involving monofilament line.
 \examples{
 # Identify which cases include non-gillnet monofilament
 
-Monofilament <- Monofilament(WhaleData)
+Monofilament <- Monofilament_Hook_Line(WhaleData)
 
 }
 \author{
