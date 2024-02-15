@@ -12,7 +12,7 @@
 <meta name="author" content="Jim.Carretta@noaa.gov" />
 
 
-<title>R-Package SeriousInjury v1.3.1</title>
+<title>R-Package SeriousInjury v1.4</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -1479,11 +1479,11 @@ border-radius: 0px;
 
 
 <h1 class="title toc-ignore">R-Package <a href="https://github.com/JimCarretta/SeriousInjury"><em>SeriousInjury</em></a>
-v1.3.1</h1>
+v1.4</h1>
 <h3 class="subtitle">Classify Whale Injuries as Serious or Non-Serious
 with Classification Trees</h3>
 <h4 class="author"><a href="mailto:Jim.Carretta@noaa.gov" class="email">Jim.Carretta@noaa.gov</a></h4>
-<h4 class="date">13 February, 2024</h4>
+<h4 class="date">15 February, 2024</h4>
 
 </div>
 
@@ -1589,6 +1589,9 @@ absence covariates include ‘cyamids’, ‘fluke’, ‘grey skin’, ‘head�
 function ‘InjuryCovariates()’. Code to define, maintain, and extract
 covariates from narratives is found in the R-script
 InjuryCovariates.R.</p>
+<p><strong>mono.hook.line</strong> - Indicates a monofilament hook and
+line fishery entanglement, excluding monofilament gillnets. Uses
+function ʻMonofilament_Hook_Lineʻ.</p>
 <p><strong>mobility.limited</strong> - evidence a whale was anchored or
 immobilized by entangling material or gear. Narrative mentions inability
 to dive or swim, may refer to a heavily-weighted whale with multiple
@@ -1722,7 +1725,7 @@ set.seed(1234)
 size.RF = 1000
 
 # covariates included in ModelEntangle
-entangle.covariates = which(names(data.entangle)%in%c(&quot;mobility.limited&quot;, &quot;calf.juv&quot;, &quot;constricting&quot;, &quot;decline&quot;, 
+entangle.covariates = which(names(data.entangle)%in%c(&quot;mono.hook.line&quot;, &quot;mobility.limited&quot;, &quot;calf.juv&quot;, &quot;constricting&quot;, &quot;decline&quot;, 
 &quot;extensive.severe&quot;, &quot;fluke.peduncle&quot;, &quot;gear.free&quot;, &quot;head&quot;, &quot;healing&quot;, &quot;laceration.deep&quot;, &quot;laceration.shallow&quot;, 
 &quot;pectoral&quot;, &quot;swim.dive&quot;, &quot;trailing&quot;, &quot;wraps.present&quot;, &quot;wraps.absent&quot;))
 
@@ -1743,9 +1746,9 @@ ModelEntangle</code></pre>
 ##                      Number of trees: 1000 
 ## No. of variables tried at each split: 4 
 ##        No. of permutation replicates: 100 
-##                           Start time: 2024-02-13 12:12:52 
-##                             End time: 2024-02-13 12:13:50 
-##                             Run time: 58.1 secs 
+##                           Start time: 2024-02-15 12:55:52 
+##                             End time: 2024-02-15 12:56:40 
+##                             Run time: 47.5 secs 
 ## 
 ##              DEAD.DECLINE RECOVERED pct.correct LCI_0.95 UCI_0.95
 ## DEAD.DECLINE          126         8        94.0     88.6     97.4
@@ -1784,9 +1787,9 @@ ModelVessel</code></pre>
 ##                      Number of trees: 1000 
 ## No. of variables tried at each split: 3 
 ##        No. of permutation replicates: 100 
-##                           Start time: 2024-02-13 12:13:50 
-##                             End time: 2024-02-13 12:14:27 
-##                             Run time: 37 secs 
+##                           Start time: 2024-02-15 12:56:40 
+##                             End time: 2024-02-15 12:57:15 
+##                             Run time: 35.8 secs 
 ## 
 ##              DEAD.DECLINE RECOVERED pct.correct LCI_0.95 UCI_0.95
 ## DEAD.DECLINE          144        12        92.3     86.9     96.0
@@ -1869,7 +1872,7 @@ size (‘VessSz’) include the following states:</p>
 <pre class="r"><code>table(data.test.vessel$VessSz)</code></pre>
 <pre><code>## 
 ## VSzLarge VSzSmall   VSzUnk 
-##       25        8       20</code></pre>
+##       25        9       19</code></pre>
 <pre class="r"><code># VessSpd and VessSz are ignored in entanglement models.
 
 CovList &lt;- CovariatePresence(data.test.entangle)

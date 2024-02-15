@@ -210,7 +210,12 @@ InjuryCovariates = function(df) {
  VessSpd <- VessSpd(df)
  VessSz <- VessSz(df)
 
-       df <- cbind.data.frame(df, mobility.limited, calf.juv, constricting, decline, extensive.severe, fluke.peduncle, gear.free, head, healing,
+# add covariate for monofilament hook and line interaction (excludes mono nets)
+# uses function ʻMonofilament_Hook_Lineʻ from ʻMonofilament_Hook_Line.Rʻ script
+
+ mono.hook.line <- Monofilament_Hook_Line(df)
+
+       df <- cbind.data.frame(df, mono.hook.line, mobility.limited, calf.juv, constricting, decline, extensive.severe, fluke.peduncle, gear.free, head, healing,
                              laceration.deep, laceration.shallow, pectoral, swim.dive, trailing, VessSpd, VessSz, wraps.present, wraps.absent)
 
        df$VessSpd <- factor(df$VessSpd)

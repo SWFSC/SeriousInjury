@@ -106,7 +106,7 @@
 
  # Use different covariate suites for entanglement + vessel strike models
 
- entangle.covariates = which(names(data.entangle)%in%c("mobility.limited", "calf.juv", "constricting", "decline", "extensive.severe", "fluke.peduncle", "gear.free", "head", "healing", "laceration.deep",
+ entangle.covariates = which(names(data.entangle)%in%c("mono.hook.line", "mobility.limited", "calf.juv", "constricting", "decline", "extensive.severe", "fluke.peduncle", "gear.free", "head", "healing", "laceration.deep",
                                                     "laceration.shallow", "pectoral", "swim.dive", "trailing", "wraps.present", "wraps.absent"))
 
  vessel.covariates = which(names(data.vessel)%in%c("calf.juv", "decline", "extensive.severe", "fluke.peduncle", "head", "healing", "laceration.deep",

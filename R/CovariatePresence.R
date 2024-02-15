@@ -30,7 +30,7 @@ CovariatePresence <- function(df) {
     empty_list <- vector(mode ="list", length = nrow(df))
     empty_list
 
-    cov.names <- c("mobility.limited", "calf.juv", "constricting", "decline", "extensive.severe", "fluke.peduncle",
+    cov.names <- c("mono.hook.line", "mobility.limited", "calf.juv", "constricting", "decline", "extensive.severe", "fluke.peduncle",
                    "gear.free", "head", "healing", "laceration.deep", "laceration.shallow", "pectoral",
                    "swim.dive", "trailing", "VessSpd", "VessSz", "wraps.present", "wraps.absent")
 

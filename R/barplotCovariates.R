@@ -24,7 +24,7 @@
 
  barplotCovariates <- function(df) {
 
- first.covariate.col = which(names(df) %in% "mobility.limited")
+ first.covariate.col = which(names(df) %in% "mono.hook.line")
  last.covariate.col = which(names(df) %in% "VessSpd")
  covariate.names = names(df[first.covariate.col:last.covariate.col])
 
@@ -37,7 +37,7 @@
  # sum presence / absence of covariates by df type (using numeric covariates)
  # identify numeric covariates
 
- numeric.covars <- c("mobility.limited", "calf.juv", "constricting", "decline", "extensive.severe", "fluke.peduncle",
+ numeric.covars <- c("mono.hook.line", "mobility.limited", "calf.juv", "constricting", "decline", "extensive.severe", "fluke.peduncle",
                      "gear.free", "head", "healing", "laceration.deep", "laceration.shallow", "pectoral",
                      "swim.dive", "trailing", "wraps.present", "wraps.absent")
 
