@@ -42,7 +42,7 @@
 
  for (i in 1:length(file.list)) { df <- read.csv(file.list[i])
 
- species <- substr(file.list[i], 32, 35)
+ species <- substr(file.list[i], 30, 33)
 
  df$Species <- species
 
