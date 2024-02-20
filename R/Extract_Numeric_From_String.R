@@ -24,13 +24,23 @@
 
 Extract_Numeric_From_String <- function(df) {
 
-  x <- unlist(regmatches(df$Narrative, gregexpr('\\(?[0-9,.]+', df$Narrative)))
-  x <- as.numeric(gsub('\\(', '-', gsub(',', '', x)))
-  x <- na.omit(x)
+    string <- paste(df$Narrative, collapse="")
+    string <- as.character(string)
 
-  unique.x <- unique(x)
-  unique.x <- abs(unique.x)
-  unique.x <- unique.x[unique.x<1600]
-  unique.x
+    # Extract all numeric values from the string
+    numbers <- str_extract_all(string, "[0-9]+(\\.[0-9]+)?")[[1]]
+
+    # unique values only
+
+    numbers <- as.numeric(numbers)
+
+    numbers <- unique(numbers)
+
+    # only values <1600 are required (largest vessel in world = 1500 ft)
+
+    numbers <- numbers[which(numbers<1600)]
+
+    # return the values
+    numbers
 
 }
