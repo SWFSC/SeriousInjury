@@ -21,6 +21,7 @@
 #' @import rlang
 #' @import tidyverse
 #' @import vctrs
+#' @import stringr
 #'
 #' @export
 #'
