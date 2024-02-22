@@ -3,6 +3,23 @@
 ui <- fluidPage(
     tags$head(
         tags$style(HTML("
+        .btn-custom {
+                            background-color: #4CAF50; /* Green */
+                                border: none;
+                            color: white;
+                            padding: 15px 32px;
+                            text-align: center;
+                            text-decoration: none;
+                            display: inline-block;
+                            font-size: 12px;
+                            margin: 4px 2px;
+                            cursor: pointer;
+                        }
+                        .btn-custom:hover {
+                            background-color: #45a049; /* Darker Green */
+                                color: white;
+                        }
+
       /* Increase font size for all text elements */
       body {
         font-size: 24px; /* Adjust the font size as needed */
