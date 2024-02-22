@@ -18,10 +18,12 @@ ui <- fluidPage(
 
 
     titlePanel("R-Package SeriousInjury. Assess severity of whale injuries from a narrative."),
+    div(style = "width: 40px; display: inline-block;"), # Horizontal space
     mainPanel(actionButton("Add", "Update Narrative | Probabilities"),
         textAreaInput(inputId = "Narrative",
-                      label = "Narrative",
-                      value = "Type/paste text. Press ʻUpdate Narrativeʻ button for injury assessment. Toggle to switch between entanglements or vessel strikes. Whale with multiple wraps of line around peduncle and heavy cyamid growth.", width='1000px', height='200px')),
+        label = "Narrative",
+        value = "Type/paste text. Press ʻUpdate Narrativeʻ button for injury assessment. Toggle to switch between entanglements or vessel strikes. Multiple wraps of line around peduncle and heavy cyamid growth.",
+                      width='1000px', height='200px')),
 
                selectInput("Injury.Type", "EN (entanglement) or VS (vessel strike)",
                 list(`Injury.Type` = list("EN", "VS"))),
