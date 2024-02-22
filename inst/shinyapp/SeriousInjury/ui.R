@@ -3,26 +3,10 @@
 ui <- fluidPage(
     tags$head(
         tags$style(HTML("
-        .btn-custom {
-                            background-color: #4CAF50; /* Green */
-                                border: none;
-                            color: white;
-                            padding: 15px 32px;
-                            text-align: center;
-                            text-decoration: none;
-                            display: inline-block;
-                            font-size: 12px;
-                            margin: 4px 2px;
-                            cursor: pointer;
-                        }
-                        .btn-custom:hover {
-                            background-color: #45a049; /* Darker Green */
-                                color: white;
-                        }
 
       /* Increase font size for all text elements */
       body {
-        font-size: 24px; /* Adjust the font size as needed */
+        font-size: 18px; /* Adjust the font size as needed */
       }
 
       /* Increase font size for specific element by class */
@@ -34,10 +18,10 @@ ui <- fluidPage(
 
 
     titlePanel("R-Package SeriousInjury. Assess severity of whale injuries from a narrative."),
-    mainPanel(actionButton("Add", "Update Narrative"),
+    mainPanel(actionButton("Add", "Update Narrative | Probabilities"),
         textAreaInput(inputId = "Narrative",
                       label = "Narrative",
-                      value = "Type/paste text. Press ʻUpdate Narrativeʻ button for injury assessment. Toggle to switch between entanglements or vessel strikes. Whale with multiple wraps of line around peduncle and heavy cyamid growth.", width='400px', height='400px')),
+                      value = "Type/paste text. Press ʻUpdate Narrativeʻ button for injury assessment. Toggle to switch between entanglements or vessel strikes. Whale with multiple wraps of line around peduncle and heavy cyamid growth.", width='1000px', height='200px')),
 
                selectInput("Injury.Type", "EN (entanglement) or VS (vessel strike)",
                 list(`Injury.Type` = list("EN", "VS"))),
