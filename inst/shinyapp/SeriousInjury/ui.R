@@ -13,13 +13,20 @@ ui <- fluidPage(
       .title {
         font-size: 18px; /* Adjust the font size as needed */
       }
+
+      /* Custom CSS for action button */
+      .btn-custom {
+        background-color: #4CAF50; /* Green */
+        border-color: #ff5733; /* Match background color */
+        color: white; /* Text color */
+      }
+
     "))
     ),
 
-
     titlePanel("R-Package SeriousInjury. Assess severity of whale injuries from a narrative."),
-    div(style = "width: 40px; display: inline-block;"), # Horizontal space
-    mainPanel(actionButton("Add", "Update Narrative | Probabilities"),
+    div(style = "width: 100px; display: inline-block;"), # Horizontal space
+    mainPanel(actionButton("Add", "Update Narrative | Probabilities", class = "btn-custom"),
         textAreaInput(inputId = "Narrative",
         label = "Narrative",
         value = "Type/paste text. Press ʻUpdate Narrativeʻ button for injury assessment. Toggle to switch between entanglements or vessel strikes. Multiple wraps of line around peduncle and heavy cyamid growth.",

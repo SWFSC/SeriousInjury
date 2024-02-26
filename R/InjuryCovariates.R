@@ -112,7 +112,7 @@ InjuryCovariates = function(df) {
                          "removal of all gear", "completely removed", "cut the gear", "removed lines",
                            "line removed", "removed all", "removed gear", "freeing it",
                              "confirmed to be free of any entanglements", " free of an active entanglement",
-                               "complete gear removal"), collapse="|")
+                               "complete gear removal", "released from all", "released of all"), collapse="|")
 
  gear.free = grepl(gear.free, df$Narrative, ignore.case=TRUE)
   gear.free = as.numeric(lapply(gear.free, as.numeric))
