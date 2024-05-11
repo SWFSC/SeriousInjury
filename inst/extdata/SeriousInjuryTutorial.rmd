@@ -23,6 +23,9 @@ if (!require('devtools')) install.packages('devtools')
 # install from GitHub
 devtools::install_github('JimCarretta/SeriousInjury')
 
+# alternative method of download, using package 'pak':
+pak::pkg_install("JimCarretta/SeriousInjury")
+
 library(SeriousInjury)
 
 # see SeriousInjuryTutorial() for a guide to the package
