@@ -29,7 +29,6 @@ VessSpd <- function(df) {
     slow <- unique.values[unique.values<=10]
     fast <- unique.values[unique.values>10 & unique.values<100]
 
-
   # convert instances of ʻknot|knots|kts to ʻKTʻ to reduce dimensionality of regex
 
   df$Narrative <- gsub("knots", "KT", df$Narrative, ignore.case=TRUE)

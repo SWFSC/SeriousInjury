@@ -71,7 +71,7 @@ VessSz <- function(df) {
   large.cases <- grep(large.str, df$Narrative, ignore.case=T)
 
   df$VessSz <- "VSzUnk"    # baseline uniform assignment
-  df$VessSz[small.cases] <- "VSzSmall"
   df$VessSz[large.cases] <- "VSzLarge"
+  df$VessSz[small.cases] <- "VSzSmall"
 
   df$VessSz        }
