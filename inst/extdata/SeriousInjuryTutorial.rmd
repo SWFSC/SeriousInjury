@@ -1,5 +1,5 @@
 ---
-title: "R-Package [*SeriousInjury*](https://github.com/JimCarretta/SeriousInjury) v1.4"
+title: "R-Package [*SeriousInjury*](https://github.com/JimCarretta/SeriousInjury) v1.5"
 subtitle: "Classify Whale Injuries as Serious or Non-Serious with Classification Trees"
 author: "Jim.Carretta@noaa.gov"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
@@ -287,9 +287,9 @@ Finally, injury narratives should include words and phrases related to the subje
 
 ---
 
-### Shiny app
+## Shiny app
 
-As an alternative to predicting injury severity from narratives included in a data frame, the user may interactively enter single narratives into a user interface, by using the function 'run_shiny()'. This opens a window that allows direct entry of narratives, with a toggle for which injury model (entanglement or vessel strike) to apply. Using the 'Add' button will update the predicted probability of a death|health decline or recovery.
+As an alternative to predicting injury severity from narratives included in a data frame, the user may interactively assign injury characteristics from narratives through a series of checkboxes, via the function 'run_shiny()'. This opens a window that includes the option to include / exclude all injury covariates generated from text narratives with the function *InjuryCovariates()*. The user should select the appropriate injury type (Entanglement or Vessel Strike) to apply the correct model.  The 'Submit' button will update the predicted probability of a death|health decline or recovery.
 
 ![Example Shiny app user interface and data entry](ShinyUI.PNG)
 

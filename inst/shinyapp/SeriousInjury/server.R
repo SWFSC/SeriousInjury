@@ -19,7 +19,7 @@ server <- function(input, output, session) {
 
         if(df$Injury.Type=="EN") {df <- cbind.data.frame(df, predict(ModelEntangle, InjuryCovariates(df), type="prob"))}
         if(df$Injury.Type=="VS") {df <- cbind.data.frame(df, predict(ModelVessel, InjuryCovariates(df), type="prob")) }
-        #if(df$Injury.Type=="VS") {df <- InjuryCovariates(df) }
+        # use this if you just want to see the covariate states assigned: if(df$Injury.Type=="VS") {df <- InjuryCovariates(df) }
 
         # Update the reactive dataframe
         checkbox_df(df)
