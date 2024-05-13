@@ -6,7 +6,7 @@ strikes. Models are built using the R-Package *rfPermute*, which employs the R-p
 
 [Carretta, J.V. and A. Henry 2022. Risk Assessment of Whale Entanglement and Vessel Strike Injuries from Case Narratives and Classification Trees. Frontiers In Marine Science](https://www.frontiersin.org/articles/10.3389/fmars.2022.863070/abstract), although *SeriousInjury* includes data for several more species not included in the publication.
 
-Version 1.4 includes a Shiny app to allow assessment of single injury narratives. ʻMonofilament_Hook_Lineʻ, ʻVessSpdʻ, ʻVessSzʻ functions are updated as separate functions nested within the larger function ʻInjuryCovariatesʻ
+Version 1.5 includes a Shiny app to allow assessment of single injury narratives. ʻMonofilament_Hook_Lineʻ, ʻVessSpdʻ, ʻVessSzʻ functions are updated as separate functions nested within the larger function ʻInjuryCovariatesʻ
 
 To install the latest *SeriousInjury* version from GitHub:
 ```

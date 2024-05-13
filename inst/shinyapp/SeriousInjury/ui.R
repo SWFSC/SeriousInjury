@@ -1,39 +1,32 @@
 .libPaths(c("/usr/lib64/R/shiny_library",.libPaths()))
 
+# Define UI
 ui <- fluidPage(
     tags$head(
         tags$style(HTML("
-
-      /* Increase font size for all text elements */
-      body {
-        font-size: 18px; /* Adjust the font size as needed */
-      }
-
-      /* Increase font size for specific element by class */
-      .title {
-        font-size: 18px; /* Adjust the font size as needed */
-      }
-
-      /* Custom CSS for action button */
-      .btn-custom {
+      #submit {
         background-color: #4CAF50; /* Green */
-        border-color: #ff5733; /* Match background color */
-        color: white; /* Text color */
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
       }
 
+      #submit:hover {
+        background-color: #ff5733;
+      }
     "))
     ),
 
-    titlePanel("R-Package SeriousInjury. Assess severity of whale injuries from a narrative."),
-    div(style = "width: 100px; display: inline-block;"), # Horizontal space
-    mainPanel(actionButton("Add", "Update Narrative and Interaction Type", class = "btn-custom"),
-        textAreaInput(inputId = "Narrative",
-        label = "Narrative",
-        value = "Free-swimming whale with loose rope draped over dorsal hump and minor scrapes on skin.",
-                      width='1000px', height='200px')),
+    titlePanel(em("R-Package SeriousInjury: Choose Entanglement *or* Vessel Strike to run appropriate model.")),
+    fluidRow(
+        column(3, checkboxGroupInput("Injury.Type", "", choices = c("Entanglement", "Vessel Strike", "Calf or Juvenile", "Mobility.Limited (anchored, reduced mobility)", "Constricting Gear", "Non-Constricting or Loose Gear likely to be shed (lack of constricting gear must be confirmed)"))),
+        column(3, checkboxGroupInput("checkGroup2", "", choices = c("Injury involves head, mouth, or blowhole?", "Fluke or Peduncle involvement", "Free-swimming and/or Diving (opposite of Mobility.Limited)","Health Decline (cyamids, emaciation, skin discoloration)", "Gear-free", "Pectoral Flipper involvement", "Trailing Gear"))),
+        column(3, checkboxGroupInput("checkGroup3", "", choices = c("Wraps Present (one or multiple wraps of gear)", "Wraps Absent (must be confirmed)", "Evidence of Healing", "Laceration Deep", "Laceration Shallow", "Monofilament Hook & Line (exludes gillnets)", "Severe (extensive injuries)"))),
+        column(3, checkboxGroupInput("checkGroup4", "", choices = c("Vessel Fast >10kt", "Vessel Slow <=10kt", "Vessel Speed Unknown", "Vessel Large >=65ft", "Vessel Small <65ft", "Vessel Size Unknown")),
 
-               selectInput("Injury.Type", "EN (entanglement) or VS (vessel strike)",
-                list(`Injury.Type` = list("EN", "VS"))),
-
-    mainPanel(tabsetPanel(
-        tabPanel("Predicted Probability of Death|Health Decline or Recovery", tableOutput(outputId = "table")))))
+               actionButton("submit", "Submit"))),
+    tableOutput("table")
+)

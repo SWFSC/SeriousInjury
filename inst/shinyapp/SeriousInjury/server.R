@@ -1,26 +1,33 @@
 #.libPaths(c("/usr/lib64/R/shiny_library",.libPaths()))
 library(SeriousInjury)
+library(dplyr)
+library(shiny)
 
-server <- function(input, output){
+# Define server logic
+server <- function(input, output, session) {
+    # Reactive value to store the dataframe
+    checkbox_df <- reactiveVal(data.frame())
 
-    rv <- reactiveValues(
-        df = data.frame(Narrative = "Free-swimming whale with loose rope draped over dorsal hump and minor scrapes on skin.", Injury.Type = "EN"),
-            Narrative = character(),
-            Injury.Type = character()
-        )
+    observeEvent(input$submit, {
+        # Convert checkbox input to a single text field in a dataframe
+        combined_text <- paste(input$Injury.Type, input$checkGroup2, input$checkGroup3, collapse = ", ")
+        df <- data.frame(Narrative = combined_text, stringsAsFactors = FALSE)
 
+        # append df with Injury.Type, depending on text
 
+        if(grepl("Entanglement", df$Narrative)==TRUE) {df$Injury.Type = "EN"} else {df$Injury.Type = "VS"}
 
+        if(df$Injury.Type=="EN") {df <- cbind.data.frame(df, predict(ModelEntangle, InjuryCovariates(df), type="prob"))}
+        if(df$Injury.Type=="VS") {df <- cbind.data.frame(df, predict(ModelVessel, InjuryCovariates(df), type="prob")) }
+        #if(df$Injury.Type=="VS") {df <- InjuryCovariates(df) }
 
-    observeEvent(input$Add, {
-        rv$df <- data.frame(Narrative = input$Narrative,
-                            Injury.Type = input$Injury.Type
-        )
+        # Update the reactive dataframe
+        checkbox_df(df)
     })
 
-    output$table<-renderTable({
-        if(input$Injury.Type=="EN") {cbind.data.frame(rv$df, predict(ModelEntangle, InjuryCovariates(rv$df), type="prob"))}
-        else {cbind.data.frame(rv$df, predict(ModelVessel, InjuryCovariates(rv$df), type="prob"))}
+    # Render the table
+    output$table <- renderTable({
+        checkbox_df()
     })
 
 }
