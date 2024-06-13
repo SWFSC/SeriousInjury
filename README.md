@@ -14,7 +14,7 @@ To install the latest *SeriousInjury* version from GitHub:
 if (!require('devtools')) install.packages('devtools')
 
 # install from GitHub
-devtools::install_github('JimCarretta/SeriousInjury')
+devtools::install_github('SWFSC/SeriousInjury')
 
 library(SeriousInjury)
 
