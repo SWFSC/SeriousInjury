@@ -9,12 +9,16 @@ strikes. Models are built using the R-Package *rfPermute*, which employs the R-p
 Version 1.5 includes a Shiny app to allow assessment of single injury narratives. ʻMonofilament_Hook_Lineʻ, ʻVessSpdʻ, ʻVessSzʻ functions are updated as separate functions nested within the larger function ʻInjuryCovariatesʻ
 
 To install the latest *SeriousInjury* version from GitHub:
+
 ```
 # make sure you have devtools installed
 if (!require('devtools')) install.packages('devtools')
 
 # install from GitHub
 devtools::install_github('SWFSC/SeriousInjury')
+
+# if this install fails, use this alternative method, using package 'pak':
+pak::pkg_install("SWFSC/SeriousInjury")
 
 library(SeriousInjury)
 
