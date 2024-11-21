@@ -1,5 +1,5 @@
 ---
-title: "R-Package [*SeriousInjury*](https://github.com/JimCarretta/SeriousInjury) v1.5"
+title: "R-Package [*SeriousInjury*](https://github.com/JimCarretta/SeriousInjury) v1.5.1"
 subtitle: "Classify Whale Injuries as Serious or Non-Serious with Classification Trees"
 author: "Jim.Carretta@noaa.gov"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
@@ -21,10 +21,10 @@ To install the latest *SeriousInjury* version from GitHub:
 if (!require('devtools')) install.packages('devtools')
 
 # install from GitHub
-devtools::install_github('SWFSC/SeriousInjury')
+devtools::install_github('JimCarretta/SeriousInjury')
 
 # if this install fails, use this alternative method, using package 'pak':
-pak::pkg_install("SWFSC/SeriousInjury")
+pak::pkg_install("JimCarretta/SeriousInjury")
 
 library(SeriousInjury)
 
@@ -126,6 +126,8 @@ head(partial.WhaleDataCovs)
 
 ---  
   
+  
+  
 
 ```{r, results='hide'}
 # Examine the distribution of injury covariates by health status ('DEAD.DECLINE' and 'RECOVERED') for cases used to build injury models.
@@ -133,6 +135,7 @@ barplotCovariates(WhaleDataCovs)
 ```
 
 ---  
+  
   
 
 ## Random Forest (RF) Models
