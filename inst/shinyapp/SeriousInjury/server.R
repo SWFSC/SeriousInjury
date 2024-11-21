@@ -10,7 +10,7 @@ server <- function(input, output, session) {
 
     observeEvent(input$submit, {
         # Convert checkbox input to a single text field in a dataframe
-        combined_text <- paste(input$Injury.Type, input$checkGroup2, input$checkGroup3, collapse = ", ")
+        combined_text <- paste(input$Injury.Type, input$checkGroup2, input$checkGroup3, input$checkGroup4, collapse = ", ")
         df <- data.frame(Narrative = combined_text, stringsAsFactors = FALSE)
 
         # append df with Injury.Type, depending on text
